@@ -1,9 +1,104 @@
 <%- contentFor('styles') %>
 <%- contentFor('scripts') %>
 <script>
+const generateItemInputs = (values, errors) => {
+  const isFormData = values?.constructor?.name === 'FormData'
+  const items = values?.items || []
 
+  return items.map((item, i) => {
+    return `
+      <div class="mb-3">
+        <label for="wishlist-item-${i}-name" class="form-label">Item ${i + 1}</label>
+        <button class="delete-item btn btn-danger btn-sm float-end" data-index="${i}" type="button">Delete</button>
+        <input id="wishlist-item-${i}-name" class="form-control ${errors?.items?.[i].name && 'is-invalid'}" name="items[${i}][name]" value="${item?.name || ''}"></input>
+        <div class="invalid-feedback">${errors?.items?.[i].name || ''}</div>
+      </div>
+      <div class="form-check mb-3">
+        <input id="wishlist-item-${i}-checked" class="form-check-input" type="checkbox" name="items[${i}][checked]" ${item?.checked ? 'checked' : ''}>
+        <label for="wishlist-item-${i}-checked" class="form-check-label">Received/Brought</label>
+      </div>
+    `
+  }).join('')
+}
+
+const generateForm = ({ wishlist, errors } = {}) => {
+  return `
+    <div class="row">
+      <div id="form-wrapper" class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+        <form id="wishlist-new-form">
+          <div class="mb-3">
+            <label for="wishlist-title" class="form-label">Title</label>
+            <input id="wishlist-title" class="form-control ${errors?.title && 'is-invalid'}" name="title" rows="3" value="${wishlist?.title || ''}"></input>
+            <div class="invalid-feedback">${errors?.title || ''}</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="wishlist-description" class="form-label">Description (Optional)</label>
+            <textarea id="wishlist-description" class="form-control ${errors?.description && 'is-invalid'}" name="description" rows="3">${wishlist?.description || ''}</textarea>
+            <div class="invalid-feedback">${errors?.description || ''}</div>
+          </div>
+
+          <div class="mb-3">
+            <div class="mb-2 fw-bold">Items (Optional)</div>
+            ${generateItemInputs(wishlist, errors)}
+            <div class="text-center">
+              <button id="add-wishlist-item" class="btn btn-info btn-sm" type="button">Add Item</button>
+            </div>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  `
+}
+
+const generatePage = (info) => {
+  const $page = $('#pages-my-wishlists-new')
+  const $title = '<h1 class="text-center mb-3">New Wishlist</h1>'
+  const $form = generateForm(info)
+
+  $page.html('').append($title).append($form)
+}
+
+$(document).ready(() => {
+  generatePage()
+
+  $('#pages-my-wishlists-new').on('click', '#add-wishlist-item', () => {
+    const data = parseFormData(new FormData($('#wishlist-new-form')[0]))
+    data.items = [...data?.items || [], { name: '', checked: false }]
+
+    generatePage({ wishlist: data })
+  })
+
+  $('#pages-my-wishlists-new').on('click', '.delete-item', (e) => {
+    const data = parseFormData(new FormData($('#wishlist-new-form')[0]))
+    data.items.splice($(e.target).data('index'), 1)
+
+    generatePage({ wishlist: data })
+  })
+
+  $('#pages-my-wishlists-new').on('submit', '#wishlist-new-form', (e) => {
+    e.preventDefault()
+
+    const data = new FormData(e.target)
+    $('#wishlist-new-form button[type="submit"]').attr('disabled', true)
+
+    axios({
+      method: 'POST',
+      url: '/api/my/wishlists',
+      data
+    }).then((resp) => {
+      window.location.href = `/my/posts/${resp.data.id}`
+    }).catch((err) => {
+      generatePage({
+        wishlist: parseFormData(data),
+        errors: err.response.data
+      })
+    })
+  })
+})
 </script>
 
 <%- contentFor('body') %>
-<div id="pages-posts-create" class="container"></div>
-<h1 class="text-center">Create My New Posts</h1>
+<div id="pages-my-wishlists-new" class="container"></div>

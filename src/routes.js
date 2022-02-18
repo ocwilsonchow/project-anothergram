@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import authenticateUser from './_middlewares/authenticate-user.js'
 
 const router = Router()
 
@@ -10,7 +11,10 @@ router.post('/api/auth/signup', (await import('./controllers/api/auth/signup.js'
 router.post('/api/auth/login', (await import('./controllers/api/auth/login.js')).default)
 router.delete('/api/auth/logout', (await import('./controllers/api/auth/logout.js')).default)
 
-// API | POST
+// API | MY POST
+router.post('/api/my/posts/create',authenticateUser('json'), (await import('./controllers/api/my/posts/create.js')).default)
+router.post('/api/my/posts/index',authenticateUser('json'), (await import('./controllers/api/my/posts/index.js')).default)
+
 
 
 // API | PROFILE
