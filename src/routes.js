@@ -27,12 +27,15 @@ router.get('/auth/login', (await import('./controllers/pages/auth/login.js')).de
 
 // PAGE | POST
 router.get('/posts', (await import('./controllers/pages/posts/index.js')).default)
+router.get('/posts/:id', (await import('./controllers/pages/posts/show.js')).default)
 
 
 // PAGE | MY POST
 router.get('/my/posts', (await import('./controllers/pages/my/posts/index.js')).default)
 router.get('/my/posts/create', (await import('./controllers/pages/my/posts/create.js')).default)
-router.get('/my/posts/edit', (await import('./controllers/pages/my/posts/edit.js')).default)
+router.get('/my/posts/:id', (await import('./controllers/pages/my/posts/show.js')).default)
+router.get('/my/posts/:id/edit', (await import('./controllers/pages/my/posts/edit.js')).default)
+
 
 
 // PAGE | PROFILE
@@ -42,6 +45,8 @@ router.get('/my/profile/edit', (await import('./controllers/pages/my/profile/edi
 // PROFILE | COMMUNITY
 router.get('/community', (await import('./controllers/pages/community/index.js')).default)
 
+// PAGES | NOT FOUND
+router.use((await import('./controllers/pages/not-found.js')).default)
 
 
 export default router
