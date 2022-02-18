@@ -1,5 +1,7 @@
+Live Link: https://serene-garden-37851.herokuapp.com/
 
 # Instructions
+
 - Clone and rename folder `$ git clone git@github.com:dented-academy/express-full-starter.git [your_project_name_here]`
 - Find and rename all instance of `[your_project_name_here]` to your actual project name
 - Run `$ npm install`
@@ -18,6 +20,7 @@
 - Run `$ git push origin master`
 
 # Heroku Deploy
+
 - Run `$ heroku create` (This create another remote name `heroku` just like `origin`)
 - Run `$ heroku addons:create papertrail` (this adds a service that will keep your logs)
 - Run `$ heroku addons:create heroku-postgresql:hobby-dev` (this adds a postgresql)
