@@ -1,50 +1,63 @@
 <script>
-$(document).ready(() => {
-  $('#auth-logout').on('click', (e) => {
-    e.preventDefault()
+  $(document).ready(() => {
+    $("#auth-logout").on("click", (e) => {
+      e.preventDefault();
 
-    axios({
-      method: 'DELETE',
-      url: '/api/auth/logout'
-    }).then(() => {
-      window.location.href = '/'
-    })
-  })
-})
+      axios({
+        method: "DELETE",
+        url: "/api/auth/logout",
+      }).then(() => {
+        window.location.href = "/";
+      });
+    });
+  });
 </script>
 
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: ; border-bottom: 0.5px solid #fff;">
+<nav
+  class="navbar navbar-expand-lg navbar-light"
+  style="background-color: ; border-bottom: 0.5px solid #fff"
+>
   <div class="container-fluid mx-3">
-    <a class="navbar-brand" style="color: #4D7CF4; font-weight: bold;"  href="/">ANOTHERGRAM</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-links">
+    <a class="navbar-brand" style="color: #4d7cf4; font-weight: bold" href="/"
+      >ANOTHERGRAM</a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbar-links"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbar-links">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <% if (user.id) { %>
-          <li class="nav-item">
-            <a class="nav-link" href="/my/posts">Posts</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/my/profile/edit">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/my/posts/create">Create</a>
-          </li>
-          <li class="nav-item">
-            <a id="auth-logout" class="nav-link text-danger" href="#">Logout</a>
-          </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="/community">Community</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="/my/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="/my/profile/edit">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="/my/posts/create">Create</a>
+        </li>
+        <li class="nav-item">
+          <a id="auth-logout" class="nav-link text-danger" href="#">Logout</a>
+        </li>
         <% } else { %>
-           <li class="nav-item">
-            <a class="nav-link text-dark" href="/community">Community</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark" href="/auth/signup">Signup</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark" href="/auth/login">Login</a>
-          </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="/community">Community</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="/auth/signup">Signup</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="/auth/login">Login</a>
+        </li>
         <% } %>
       </ul>
     </div>
