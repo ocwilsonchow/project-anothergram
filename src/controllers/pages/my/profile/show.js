@@ -1,5 +1,5 @@
-const controllersPagesProfile = async (req, res) => {
-  res.render('my/profile/edit')
+const controllersPagesProfileShow = async (req, res) => {
+  res.render('my/profile/show')
 }
 
-export default controllersPagesProfile
+export default controllersPagesProfileShow

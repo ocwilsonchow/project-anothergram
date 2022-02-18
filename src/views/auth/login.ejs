@@ -47,7 +47,7 @@ $(document).ready(() => {
       url: '/api/auth/login',
       data
     }).then(() => {
-      window.location.href = `/my/wishlists`
+      window.location.href = `/posts`
     }).catch((err) => {
       generatePage({
         user: parseFormData(data),
