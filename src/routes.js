@@ -14,7 +14,6 @@ router.get('/', (await import('./controllers/static/home.js')).default)
 router.get('/auth/signup', (await import('./controllers/pages/auth/signup.js')).default)
 router.get('/auth/login', (await import('./controllers/pages/auth/login.js')).default)
 
-
 // POST | API
 
 
