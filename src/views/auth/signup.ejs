@@ -1,0 +1,81 @@
+<%- contentFor('styles') %>
+<%- contentFor('scripts') %>
+<script>
+const generateForm = ({ user, errors } = {}) => {
+  const $form = $(`
+    <div class="row">
+      <div id="form-wrapper" class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+        <form id="signup-form">
+          <div class="mb-3">
+            <label for="user-email" class="form-label">Email</label>
+            <input id="user-email" class="form-control ${errors?.email && 'is-invalid'}" name="email" rows="3" value="${user?.email || ''}" type="email"></input>
+            <div class="invalid-feedback">${errors?.email || ''}</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="user-password" class="form-label">Password</label>
+            <input id="user-password" class="form-control ${errors?.password && 'is-invalid'}" name="password" rows="3" value="${user?.password || ''}" type="password"></input>
+            <div class="invalid-feedback">${errors?.password || ''}</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="user-password-confirmation" class="form-label">Password Confirmation</label>
+            <input id="user-password-confirmation" class="form-control ${errors?.passwordConfirmation && 'is-invalid'}" name="passwordConfirmation" rows="3" value="${user?.passwordConfirmation || ''}" type="password"></input>
+            <div class="invalid-feedback">${errors?.passwordConfirmation || ''}</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="user-avatar" class="form-label">Avatar (Optional)</label>
+            <input id="user-avatar" class="form-control" name="avatar" type="file"></input>
+            <div class="invalid-feedback">${errors?.avatar || ''}</div>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  `)
+
+  if (user?.avatar?.constructor?.name === 'File') {
+    const $avatar = $('#user-avatar').attr('class', `form-control ${errors?.avatar && 'is-invalid'}`)
+    $form.find('#user-avatar').replaceWith($avatar)
+  }
+
+  return $form
+}
+
+const generatePage = (info) => {
+  const $page = $('#pages-auth-signup')
+  const $title = '<h1 class="text-center">Signup</h1>'
+  const $form = generateForm(info)
+
+  $page.html('').append($title).append($form)
+}
+
+$(document).ready(() => {
+  generatePage()
+
+  $('#pages-auth-signup').on('submit', '#signup-form', (e) => {
+    e.preventDefault()
+
+    const data = new FormData(e.target)
+    $('#signup-form button[type="submit"]').attr('disabled', true)
+
+    axios({
+      method: 'POST',
+      url: '/api/auth/signup',
+      data
+    }).then(() => {
+      window.location.href = `/my/wishlists`
+    }).catch((err) => {
+      generatePage({
+        user: parseFormData(data),
+        errors: err.response.data
+      })
+    })
+  })
+})
+</script>
+
+<%- contentFor('body') %>
+<div id="pages-auth-signup" class="container"></div>
