@@ -1,7 +1,3 @@
-Live link:
-https://serene-garden-37851.herokuapp.com
-
-
 
 # Instructions
 - Clone and rename folder `$ git clone git@github.com:dented-academy/express-full-starter.git [your_project_name_here]`
