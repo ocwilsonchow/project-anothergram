@@ -29,9 +29,10 @@ router.get('/auth/login', (await import('./controllers/pages/auth/login.js')).de
 
 
 // PAGE | PROFILE
-router.get('/profile', (await import('./controllers/pages/posts/index.js')).default)
+router.get('/my/profile', (await import('./controllers/pages/my/profile/show.js')).default)
 
 // PROFILE | COMMUNITY
+router.get('/community', (await import('./controllers/pages/community/index.js')).default)
 
 
 
