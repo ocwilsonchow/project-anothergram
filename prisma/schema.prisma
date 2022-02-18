@@ -31,4 +31,13 @@ model Post {
   title     String
   content   String
   imageURL  String?
+
+  Comment Comment[]
+}
+
+model Comment {
+  id      Int    @id @default(autoincrement())
+  post    Post   @relation(fields: [postId], references: [id])
+  postId  Int
+  content String
 }
