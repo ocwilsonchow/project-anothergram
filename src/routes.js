@@ -5,34 +5,33 @@ const router = Router()
 // STATIC
 router.get('/', (await import('./controllers/static/home.js')).default)
 
-// AUTH | API
+// API | AUTH
 // router.post('/api/auth/signup', (await import('./controllers/api/auth/signup.js')).default)
 // router.post('/api/auth/login', (await import('./controllers/api/auth/login.js')).default)
 // router.delete('/api/auth/logout', (await import('./controllers/api/auth/logout.js')).default)
 
-// AUTH | PAGE
+// API | POST
+
+
+// API | PROFILE
+
+
+// API | COMMUNITY
+
+
+
+// PAGE | AUTH
 router.get('/auth/signup', (await import('./controllers/pages/auth/signup.js')).default)
 router.get('/auth/login', (await import('./controllers/pages/auth/login.js')).default)
 
-// POST | API
+
+// PAGE | POST
 
 
+// PAGE | PROFILE
+router.get('/profile', (await import('./controllers/pages/posts/index.js')).default)
 
-// POST | PAGE
-
-
-
-// PROFILE | API
-
-
-// PROFILE | PAGE
-
-
-
-// COMMUNITY | API
-
-
-// COMMUNITY | PAGE
+// PROFILE | COMMUNITY
 
 
 
