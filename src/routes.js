@@ -12,11 +12,11 @@ router.post('/api/auth/login', (await import('./controllers/api/auth/login.js'))
 router.delete('/api/auth/logout', (await import('./controllers/api/auth/logout.js')).default)
 
 // API | MY POST
-router.post('/api/my/posts/create',authenticateUser('json'), (await import('./controllers/api/my/posts/create.js')).default)
-router.post('/api/my/posts/index',authenticateUser('json'), (await import('./controllers/api/my/posts/index.js')).default)
+router.post('/api/my/posts',authenticateUser('json'), (await import('./controllers/api/my/posts/create.js')).default)
+router.get('/api/my/posts',authenticateUser('json'), (await import('./controllers/api/my/posts/index.js')).default)
 
 // API | PROFILE
-
+router.get('/api/my/profile', authenticateUser('json'), (await import('./controllers/api/my/profile/show.js')).default)
 
 // API | COMMUNITY
 

@@ -1,11 +1,107 @@
 <%- contentFor('styles') %>
 <%- contentFor('scripts') %>
 <script>
+// Keep the avatar url reference
+let avatarURL = ''
 
+const generateTitle = ({ isLoading, user } = {}) => {
+  if (isLoading) return `<div class="text-center">Loading...</div>`
+  if (!user) return `<h1 class="text-center mb-3">Please Login First</h1>`
+
+  return `<h1 class="text-center mb-3">Update Profile</h1>`
+}
+
+const generateForm = ({ user, errors } = {}) => {
+  if (user?.avatar?.constructor?.name === 'String') {
+    avatarURL = user.avatar || avatarURL
+  }
+
+  const $form = $(`
+    <div class="row">
+      <div id="form-wrapper" class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+        <form id="my-profile-form">
+          <div class="mb-3">
+            <label for="user-email" class="form-label">Email</label>
+            <input id="user-email" class="form-control ${errors?.email && 'is-invalid'}" name="email" rows="3" value="${user?.email || ''}" type="email"></input>
+            <div class="invalid-feedback">${errors?.email || ''}</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="user-avatar" class="form-label">Avatar</label>
+            <div class="mb-3 ${!avatarURL && 'visually-hidden'}">
+              <img src="${avatarURL}" alt="user-avatar" width="150" />
+            </div>
+            <input id="user-avatar" class="form-control" name="avatar" type="file"></input>
+            <div class="invalid-feedback">${errors?.avatar || ''}</div>
+          </div>
+
+          <div class="mb-3 pt-3 border-top border-dark">
+            <label for="user-new-password" class="form-label">New Password</label>
+            <input id="user-new-password" class="form-control ${errors?.password && 'is-invalid'}" name="password" rows="3" value="${user?.password || ''}" type="password"></input>
+            <div class="invalid-feedback">${errors?.password || ''}</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="user-new-password-confirmation" class="form-label">New Password Confirmation</label>
+            <input id="user-new-password-confirmation" class="form-control ${errors?.passwordConfirmation && 'is-invalid'}" name="passwordConfirmation" rows="3" value="${user?.passwordConfirmation || ''}" type="password"></input>
+            <div class="invalid-feedback">${errors?.passwordConfirmation || ''}</div>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  `)
+
+  if (user?.avatar?.constructor?.name === 'File') {
+    const $avatar = $('#user-avatar').attr('class', `form-control ${errors?.avatar && 'is-invalid'}`)
+    $form.find('#user-avatar').replaceWith($avatar)
+  }
+
+  return $form
+}
+
+const generatePage = (info) => {
+  const $page = $('#pages-my-profile-edit')
+  const $title = generateTitle(info)
+  const $form = generateForm(info)
+
+  $page.html('').append($title).append($form)
+}
+
+$(document).ready(() => {
+  generatePage({ isLoading: true })
+
+  axios({
+    method: 'GET',
+    url: '/api/my/profile'
+  }).then((resp) => {
+    generatePage({ user: resp.data })
+  }).catch(() => {
+    generatePage()
+  })
+
+  $('#pages-my-profile-edit').on('submit', '#my-profile-form', (e) => {
+    e.preventDefault()
+
+    const data = new FormData(e.target)
+    $('#my-profile-form button[type="submit"]').attr('disabled', true)
+
+    axios({
+      method: 'PUT',
+      url: '/api/my/profile',
+      data
+    }).then((resp) => {
+      generatePage({ user: resp.data })
+    }).catch((err) => {
+      generatePage({
+        user: parseFormData(data),
+        errors: err.response.data
+      })
+    })
+  })
+})
 </script>
 
 <%- contentFor('body') %>
-<div id="pages-my-profile" class="container"></div>
-<div class="text-center">
-  <h1>Edit Profile</h1>
-</div>
+<div id="pages-my-profile-edit" class="container"></div>
