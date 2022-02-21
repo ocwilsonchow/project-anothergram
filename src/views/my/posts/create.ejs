@@ -29,7 +29,9 @@
   $(document).ready(() => {
     generatePage();
 
-    $("#pages-my-posts-new").on("submit", "#add-new-post", () => {
+    $("#pages-my-posts-new").on("submit", "#post-new-form", (e) => {
+      e.preventDefault()
+
       const data = new FormData(e.target);
       console.log(data)
       $('#post-new-form button[type="submit"]').attr("disabled", true);
