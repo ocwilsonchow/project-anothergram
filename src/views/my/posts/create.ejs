@@ -3,39 +3,50 @@
   const generateForm = () => {
     return `
       <div class="row mx-auto" style="max-width: 500px;">
-        <div class="mb-3">
-          <label for="title" class="form-label">Title</label>
-          <input type="text" name="title" class="form-control" id="titleInput">
-        </div>
-        <div class="mb-3">
-          <label for="contentInput" class="form-label">Content</label>
-          <textarea class="form-control" name="content" id="contentInput" rows="10"></textarea>
-        </div>
-        <button class="btn btn-primary mx-auto">Post</button>
+        <form id="post-new-form">
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" name="title" class="form-control" id="titleInput">
+          </div>
+          <div class="mb-3">
+            <label for="contentInput" class="form-label">Content</label>
+            <textarea class="form-control" name="content" id="contentInput" rows="10"></textarea>
+          </div>
+          <button class="btn btn-primary mx-auto" id="add-new-post">Post</button>
+        </form>
       </div>
     `;
   };
 
-
-
   const generatePage = () => {
-    const $page = $('#pages-my-posts-new')
-    const $title = $('#page-title')
-    const $form = generateForm()
+    const $page = $("#pages-my-posts-new");
+    const $title = $("#page-title");
+    const $form = generateForm();
 
-    $page.html('').append($title).append($form)
-  }
-
+    $page.html("").append($title).append($form);
+  };
 
   $(document).ready(() => {
-    generatePage()
+    generatePage();
 
+    $("#pages-my-posts-new").on("submit", "#add-new-post", () => {
+      const data = new FormData(e.target);
+      console.log(data)
+      $('#post-new-form button[type="submit"]').attr("disabled", true);
+    });
 
-
-  })
-
-
-
+    axios({
+      method: "POST",
+      url: "/api/my/posts",
+      data,
+    })
+      .then((resp) => {
+        window.location.href = `/my/posts`;
+      })
+      .catch((err) => {
+        generatePage();
+      });
+  });
 </script>
 
 <%- contentFor('body') %>
