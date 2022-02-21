@@ -16,30 +16,29 @@ router.post('/api/my/posts',authenticateUser('json'), (await import('./controlle
 router.get('/api/my/posts',authenticateUser('json'), (await import('./controllers/api/my/posts/index.js')).default)
 
 // API | PROFILE
-router.get('/api/my/profile', authenticateUser('json'), (await import('./controllers/api/my/profile/show.js')).default)
+router.get('/api/my/profile', authenticateUser('json'), (await import('./controllers/api/my/profile/update.js')).default)
 
 // API | COMMUNITY
 
 
 // PAGE | AUTH
-router.get('/auth/signup', (await import('./controllers/pages/auth/signup.js')).default)
-router.get('/auth/login', (await import('./controllers/pages/auth/login.js')).default)
+router.get('/auth/signup', authenticateUser('json'), (await import('./controllers/pages/auth/signup.js')).default)
+router.get('/auth/login', authenticateUser('json'), (await import('./controllers/pages/auth/login.js')).default)
 
 // PAGE | POST
 router.get('/posts', (await import('./controllers/pages/posts/index.js')).default)
 router.get('/posts/:id', (await import('./controllers/pages/posts/show.js')).default)
 
 // PAGE | MY POST
-router.get('/my/posts', (await import('./controllers/pages/my/posts/index.js')).default)
-router.get('/my/posts/create', (await import('./controllers/pages/my/posts/create.js')).default)
-router.get('/my/posts/:id', (await import('./controllers/pages/my/posts/show.js')).default)
-router.get('/my/posts/:id/edit', (await import('./controllers/pages/my/posts/edit.js')).default)
+router.get('/my/posts', authenticateUser('json'),(await import('./controllers/pages/my/posts/index.js')).default)
+router.get('/my/posts/create', authenticateUser('json'),(await import('./controllers/pages/my/posts/create.js')).default)
+router.get('/my/posts/:id', authenticateUser('json'),(await import('./controllers/pages/my/posts/show.js')).default)
+router.get('/my/posts/:id/edit', authenticateUser('json'),(await import('./controllers/pages/my/posts/edit.js')).default)
 
 // PAGE | PROFILE
-router.get('/my/profile', (await import('./controllers/pages/my/profile/show.js')).default)
-router.get('/my/profile/edit', (await import('./controllers/pages/my/profile/edit.js')).default)
+router.get('/my/profile/edit', authenticateUser('json'),(await import('./controllers/pages/my/profile/edit.js')).default)
 
-// PROFILE | COMMUNITY
+// PAGE | COMMUNITY
 // router.get('/community', (await import('./controllers/pages/community/index.js')).default)
 
 // PAGES | NOT FOUND
