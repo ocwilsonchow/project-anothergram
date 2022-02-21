@@ -35,9 +35,8 @@
       const data = new FormData(e.target);
       console.log(data)
       $('#post-new-form button[type="submit"]').attr("disabled", true);
-    });
 
-    axios({
+      axios({
       method: "POST",
       url: "/api/my/posts",
       data,
@@ -48,6 +47,9 @@
       .catch((err) => {
         generatePage();
       });
+    });
+
+
   });
 </script>
 
