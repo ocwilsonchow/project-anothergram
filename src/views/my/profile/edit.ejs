@@ -30,13 +30,13 @@ const generateForm = ({ user, errors } = {}) => {
             <div class="invalid-feedback">${errors?.avatar || ''}</div>
           </div>
 
-          <div class="mb-3">
+          <div class="py-3 border-top border-dark">
             <label for="user-email" class="form-label">Email</label>
             <input id="user-email" class="form-control ${errors?.email && 'is-invalid'}" name="email" rows="3" value="${user?.email || ''}" type="email"></input>
             <div class="invalid-feedback">${errors?.email || ''}</div>
           </div>
 
-          <div class="mb-3 pt-3 border-top border-dark">
+          <div class="mb-3 pt-3">
             <label for="user-new-password" class="form-label">New Password</label>
             <input id="user-new-password" class="form-control ${errors?.password && 'is-invalid'}" name="password" rows="3" value="${user?.password || ''}" type="password"></input>
             <div class="invalid-feedback">${errors?.password || ''}</div>

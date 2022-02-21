@@ -22,8 +22,8 @@ router.get('/api/my/profile', authenticateUser('json'), (await import('./control
 
 
 // PAGE | AUTH
-router.get('/auth/signup', authenticateUser('json'), (await import('./controllers/pages/auth/signup.js')).default)
-router.get('/auth/login', authenticateUser('json'), (await import('./controllers/pages/auth/login.js')).default)
+router.get('/auth/signup',(await import('./controllers/pages/auth/signup.js')).default)
+router.get('/auth/login',  (await import('./controllers/pages/auth/login.js')).default)
 
 // PAGE | POST
 router.get('/posts', (await import('./controllers/pages/posts/index.js')).default)
