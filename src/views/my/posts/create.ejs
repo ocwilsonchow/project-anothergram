@@ -2,14 +2,14 @@
 <script>
   const generateForm = () => {
     return `
-      <div class="row  mx-auto" style="max-width: 500px;">
+      <div class="row mx-auto" style="max-width: 500px;">
         <div class="mb-3">
           <label for="title" class="form-label">Title</label>
           <input type="text" name="title" class="form-control" id="titleInput">
         </div>
         <div class="mb-3">
           <label for="contentInput" class="form-label">Content</label>
-          <textarea class="form-control" name="content" id="contentInput" rows="3"></textarea>
+          <textarea class="form-control" name="content" id="contentInput" rows="10"></textarea>
         </div>
         <button class="btn btn-primary mx-auto">Post</button>
       </div>
@@ -18,8 +18,18 @@
 
 
 
+  const generatePage = () => {
+    const $page = $('#pages-my-posts-new')
+    const $title = $('#page-title')
+    const $form = generateForm()
+
+    $page.html('').append($title).append($form)
+  }
+
+
   $(document).ready(() => {
-    $('#pages-my-posts-new').html(generateForm())
+    generatePage()
+
 
 
   })
@@ -29,5 +39,5 @@
 </script>
 
 <%- contentFor('body') %>
-<div class="text-center"><h1>Create My New Post</h1></div>
+<div id="page-title" class="text-center"><h1>Create My New Post</h1></div>
 <div id="pages-my-posts-new" class="container"></div>
