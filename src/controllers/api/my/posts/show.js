@@ -2,14 +2,14 @@ import prisma from '../../../_helpers/prisma.js'
 import handleErrors from '../../../_helpers/handle-errors.js'
 import checkOwnership from './_check-ownership.js'
 
-const controllersApiWishlistsShow = async (req, res) => {
+const controllersApiPostsShow = async (req, res) => {
   try {
     const { params: { id } } = req
-    const foundWishlist = await prisma.post.findUnique({
+    const foundPost = await prisma.post.findUnique({
       where: { id: Number(id) },
       rejectOnNotFound: true,
     })
-    return res.status(200).json(foundWishlist)
+    return res.status(200).json(foundPost)
   } catch (err) {
     return handleErrors(res, err)
   }
@@ -17,5 +17,5 @@ const controllersApiWishlistsShow = async (req, res) => {
 
 export default [
   checkOwnership,
-  controllersApiWishlistsShow
+  controllersApiPostsShow
 ]
