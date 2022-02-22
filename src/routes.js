@@ -20,7 +20,8 @@ router.post('/api/my/posts',authenticateUser('json'), (await import('./controlle
 router.get('/api/my/posts',authenticateUser('json'), (await import('./controllers/api/my/posts/index.js')).default)
 
 // API | PROFILE
-router.get('/api/my/profile', authenticateUser('json'), (await import('./controllers/api/my/profile/update.js')).default)
+router.get('/api/my/profile', authenticateUser('json'), (await import('./controllers/api/my/profile/show.js')).default)
+router.put('/api/my/profile', authenticateUser('json'), (await import('./controllers/api/my/profile/update.js')).default)
 
 // API | COMMUNITY
 
