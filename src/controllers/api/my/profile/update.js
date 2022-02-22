@@ -5,8 +5,8 @@ import handleErrors from '../../../_helpers/handle-errors.js'
 
 const controllersApiMyProfileUpdate = async (req, res) => {
   try {
-    const { session: { user: { id } } } = req
-    const foundUser = await prisma.user.findUnique({ where: { id }, rejectOnNotFound: true })
+    const userId = req.session.user.id
+    const foundUser = await prisma.user.findUnique({ where: {id: userId}, rejectOnNotFound: true })
 
     return res.status(201).json(_.omit(foundUser, ['passwordHash']))
   } catch (err) {
