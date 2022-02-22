@@ -1,11 +1,73 @@
 <%- contentFor('styles') %>
 <%- contentFor('scripts') %>
 <script>
+  const id = window.location.href.split('/').reverse()[0]
+
+  const generateTitle = ({ isLoading, post } = {}) => {
+  if (isLoading) return `<div class="text-center">Loading...</div>`
+  if (!post) return `<h1 class="text-center mb-3">Post ${id} Not Found!</h1>`
+
+  return `<h1 class="text-center mb-3">Post ${id}</h1>`
+}
+
+
+  const generatePost = ({ isLoading, post } = {}) => {
+    if (isLoading && !post) return ''
+
+    return `
+       <div class="row">
+        <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+          <div class="card">
+            <div class="card-body text-center">
+              <img class="mb-2" src="${post.user.avatar}" alt="user avatar" width="150" />
+              <h5 class="card-title mb-2">${post.title}</h5>
+              <p class="card-text mb-2">${post.content}</p>
+              <p class="card-subtitle text-muted mb-2">${moment(post.createdAt).format('YYYY/MM/DD')}</p>
+
+              <div class="mb-2">
+                <a href="/my/wishlists/${id}/edit" class="btn btn-primary btn-sm">Edit</a>
+                <button id="delete-my-wishlist" class="btn btn-danger btn-sm">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    `
+
+
+  }
+
+  const generatePage = (info) => {
+    const $title = generateTitle(info)
+    const $page = $('#pages-my-posts-show')
+    const $post = generatePost(info)
+
+
+  }
+
+
+
+
+
+  $(document).ready(() => {
+    generatePage({ isLoading: true })
+
+    axios({
+      method: 'GET',
+      url: `/api/my/posts/${id}`
+    }).then((resp) => {
+      generatePage({post: resp.data})
+    })
+
+
+  })
+
 
 </script>
 
 <%- contentFor('body') %>
-<div id="pages-my-posts=show" class="container"></div>
-<div class="text-center">
+<div id="pages-my-posts-show" class="container"></div>
+<div class="text-center" id="">
   <h1>Show My Specific Posts</h1>
 </div>
