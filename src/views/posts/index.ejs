@@ -8,16 +8,11 @@
   const generatePost = (post) => {
     return `
       <div class="col">
-        <a class="card text-body" href="/my/posts/${
-          post.id
-        }" style="text-decoration: none;">
+        <a class="card text-body" href="/posts/${post.id}" style="text-decoration: none;">
           <div class="card-body text-center">
             <h5 class="card-title my-2">${post.title}</h5>
-            <p class="card-subtitle text-muted">${moment(post.createdAt).format(
-              "YYYY/MM/DD"
-            )}</p>
+            <p class="card-subtitle text-muted">${moment(post.createdAt).format("YYYY/MM/DD")}</p>
             <p class="card-text my-4">${post.content}</p>
-
           </div>
         </a>
       </div>
@@ -29,9 +24,6 @@
     if (posts.length === 0) {
       return `
           <h2 class="text-center mb-3">No Post Found!</h2>
-          <div class="text-center">
-            <a class="btn btn-primary" href="/my/posts/create">Create New Post</a>
-          </div>
         `;
     }
     return `
