@@ -1,18 +1,69 @@
-<%- contentFor('styles') %>
-<%- contentFor('scripts') %>
+<%- contentFor('styles') %> <%- contentFor('scripts') %>
+<script>
+  const generateTitle = () => {
+    return `
+    <h1 class="text-center">All Public Posts</h1>`;
+  };
 
+  const generatePost = (post) => {
+    return `
+      <div class="col">
+        <a class="card text-body" href="/my/posts/${
+          post.id
+        }" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <h5 class="card-title my-2">${post.title}</h5>
+            <p class="card-subtitle text-muted">${moment(post.createdAt).format(
+              "YYYY/MM/DD"
+            )}</p>
+            <p class="card-text my-4">${post.content}</p>
 
+          </div>
+        </a>
+      </div>
+`;
+  };
 
+  const generatePosts = ({ isLoading, posts = [] } = {}) => {
+    if (isLoading) return `<div class="text-center mb-3">Loading...</div>`;
+    if (posts.length === 0) {
+      return `
+          <h2 class="text-center mb-3">No Post Found!</h2>
+          <div class="text-center">
+            <a class="btn btn-primary" href="/my/posts/create">Create New Post</a>
+          </div>
+        `;
+    }
+    return `
+        <div class="row">
+          <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+            <div class="row row-cols-1 g-3">
+              ${posts.map((post) => generatePost(post)).join("")}
+            </div>
+          </div>
+        </div>
+      `;
+  };
 
+  const generatePage = (info) => {
+    const $page = $("#pages-posts-index");
+    const $title = generateTitle();
+    const $posts = generatePosts(info);
 
+    $page.html("").append($title).append($posts);
+  };
 
+  $(document).ready(() => {
+    generatePage({ isLoading: true });
 
-
-
-
-
-
-
+    axios({
+      method: "GET",
+      url: "/api/posts",
+    }).then((resp) => {
+      generatePage({ posts: resp.data.posts });
+    });
+  });
+</script>
 
 <%- contentFor('body') %>
-<div class="text-center"><h1>Home Page</h1></div>
+<div id="pages-posts-index" class="container"></div>
