@@ -26,7 +26,9 @@ const updateSchema = yup.object({
     (password) => !password || password.length >= 6
   ),
   passwordConfirmation: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match'),
-  avatar: yup.mixed()
+  avatar: yup.mixed(),
+  location: yup.string(),
+  occupation: yup.string()
 })
 
 const controllersApiMyProfileUpdate = async (req, res) => {
@@ -45,7 +47,9 @@ const controllersApiMyProfileUpdate = async (req, res) => {
         lastName: verifiedData.lastName,
         username: verifiedData.username,
         avatar: verifiedData.avatar || currentUser.avatar || 'https://lab-restful-api.s3.ap-northeast-2.amazonaws.com/profile.jpeg',
-        ...verifiedData.password && { passwordHash: await bcrypt.hash(verifiedData.password, 10) }
+        ...verifiedData.password && { passwordHash: await bcrypt.hash(verifiedData.password, 10) },
+        location: verifiedData.location,
+        occupation: verifiedData.occupation
       }
     })
 

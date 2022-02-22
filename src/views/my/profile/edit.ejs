@@ -16,10 +16,9 @@ const generateForm = ({ user, errors } = {}) => {
   if (user?.avatar?.constructor?.name === 'String') {
     avatarURL = user.avatar || avatarURL
   }
-
   const $form = $(`
     <div class="row">
-      <div id="form-wrapper" class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+      <div id="form-wrapper" class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 p-4 mb-4" style="background-color: #f5f5f5; border-radius: 10px;">
        <div id="alert-wrapper"></div>
         <form id="my-profile-form">
           <div class="mb-4">
