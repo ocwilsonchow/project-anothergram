@@ -5,17 +5,11 @@
 
   const generateTitle = ({ isLoading, post } = {}) => {
   if (isLoading) return `
-    <div class="text-center py-3">
-      <h1>Show My Specific Posts</h1>
-    </div>
     <div class="text-center">Loading...</div>`
   if (!post) return `<h1 class="text-center mb-3">Post ${id} Not Found!</h1>`
 
   return `
-  <div class="text-center" id="">
-  <h1>Show My Specific Posts</h1>
-</div>
-  <h1 class="text-center mb-3">Post ${id}</h1>`
+  <h2 class="text-center my-3">Post ${id}</h2>`
 }
 
 
@@ -25,13 +19,13 @@
     return `
        <div class="row">
         <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-          <div class="card">
+          <div class="card" style="border-radius: 10px;">
             <div class="card-body text-center">
-              <h5 class="card-title mb-2">${post.title}</h5>
+              <h3 class="card-title mb-2">${post.title}</h3>
               <p class="card-text mb-2">${post.content}</p>
               <p class="card-subtitle text-muted mb-2">${moment(post.createdAt).format('YYYY/MM/DD')}</p>
 
-              <div class="mb-2">
+              <div class="py-3">
                 <a href="/my/wishlists/${id}/edit" class="btn btn-primary btn-sm">Edit</a>
                 <button id="delete-my-wishlist" class="btn btn-danger btn-sm">Delete</button>
               </div>
