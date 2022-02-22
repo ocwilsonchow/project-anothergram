@@ -7,7 +7,10 @@ const controllersApiMyPostsIndex = async (req, res) => {
 
     const foundMyPosts = await prisma.post.findMany({
       where: {
-        id: userId
+        userId: userId
+      },
+      orderBy: {
+        createdAt: 'desc'
       }
     })
 

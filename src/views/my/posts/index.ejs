@@ -2,18 +2,22 @@
 <script>
   const generateTitle = () => {
     return `
-    <h1 class="text-center">All My Posts</h1>`
-  }
+    <h1 class="text-center">All My Posts</h1>`;
+  };
 
-  const generatePost = () => {
+  const generatePost = (post) => {
     return `
       <div class="col">
-        <a class="card text-body" href="/my/posts/${post.id}" style="text-decoration: none;">
+        <a class="card text-body" href="/my/posts/${
+          post.id
+        }" style="text-decoration: none;">
           <div class="card-body text-center">
-            <img class="mb-2" src="${post.user.avatar}" alt="user avatar" width="50" />
-            <h5 class="card-title mb-2">${post.title}</h5>
-            <p class="card-text mb-2">${post.content}</p>
-            <p class="card-subtitle text-muted">${moment(post.createdAt).format('YYYY/MM/DD')}</p>
+            <h5 class="card-title my-2">${post.title}</h5>
+            <p class="card-subtitle text-muted">${moment(post.createdAt).format(
+              "YYYY/MM/DD"
+            )}</p>
+            <p class="card-text my-4">${post.content}</p>
+
           </div>
         </a>
       </div>
@@ -21,43 +25,42 @@
   };
 
   const generatePosts = ({ isLoading, posts = [] } = {}) => {
-      if (isLoading) return `<div class="text-center mb-3">Loading...</div>`
-      if (posts.length === 0) {
-        return `
+    if (isLoading) return `<div class="text-center mb-3">Loading...</div>`;
+    if (posts.length === 0) {
+      return `
           <h2 class="text-center mb-3">No Post Found!</h2>
           <div class="text-center">
             <a class="btn btn-primary" href="/my/post/new">Create New Post</a>
           </div>
-        `
-      }
-      return `
+        `;
+    }
+    return `
         <div class="row">
           <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
             <div class="row row-cols-1 g-3">
-              ${posts.map((post) => generatePost(post)).join('')}
+              ${posts.map((post) => generatePost(post)).join("")}
             </div>
           </div>
         </div>
-      `
-  }
+      `;
+  };
 
-  const generatePage = () => {
+  const generatePage = (info) => {
     const $page = $("#pages-my-posts-index");
-    const $posts = generatePosts();
+    const $posts = generatePosts(info);
 
     $page.html("").append($posts);
   };
 
   $(document).ready(() => {
-    generatePage({ isLoading: true })
+    generatePage({ isLoading: true });
 
     axios({
-      method: 'GET',
-      url: '/api/my/posts'
+      method: "GET",
+      url: "/api/my/posts",
     }).then((resp) => {
-      generatePage({posts: resp.data.posts})
-    })
-
+      generatePage({ posts: resp.data.posts });
+    });
   });
 </script>
 
