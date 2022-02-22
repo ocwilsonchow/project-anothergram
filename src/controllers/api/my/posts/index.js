@@ -5,7 +5,15 @@ const controllersApiMyPostsIndex = async (req, res) => {
   try {
     const { session: { user: { id: userId } } } = req
 
-    const foundPosts = await prisma.post.findMany()
+    const foundMyPosts = await prisma.post.findMany({
+      where: {
+        id: userId
+      }
+    })
+
+    return res.status(200).json({
+      posts: foundMyPosts
+    })
   } catch (err) {
     return handleErrors(res, err)
   }

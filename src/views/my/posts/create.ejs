@@ -42,7 +42,7 @@
       data,
     })
       .then((resp) => {
-        window.location.href = `/my/posts`;
+        window.location.href = `/my/posts/${resp.data.id}`;
       })
       .catch((err) => {
         generatePage();
