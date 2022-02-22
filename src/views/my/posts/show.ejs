@@ -4,10 +4,18 @@
   const id = window.location.href.split('/').reverse()[0]
 
   const generateTitle = ({ isLoading, post } = {}) => {
-  if (isLoading) return `<div class="text-center">Loading...</div>`
+  if (isLoading) return `
+    <div class="text-center py-3">
+      <h1>Show My Specific Posts</h1>
+    </div>
+    <div class="text-center">Loading...</div>`
   if (!post) return `<h1 class="text-center mb-3">Post ${id} Not Found!</h1>`
 
-  return `<h1 class="text-center mb-3">Post ${id}</h1>`
+  return `
+  <div class="text-center" id="">
+  <h1>Show My Specific Posts</h1>
+</div>
+  <h1 class="text-center mb-3">Post ${id}</h1>`
 }
 
 
@@ -43,12 +51,8 @@
     const $page = $('#pages-my-posts-show')
     const $post = generatePost(info)
 
-
+    $page.html('').append($title).append($post)
   }
-
-
-
-
 
   $(document).ready(() => {
     generatePage({ isLoading: true })
@@ -57,8 +61,10 @@
       method: 'GET',
       url: `/api/my/posts/${id}`
     }).then((resp) => {
-      generatePage({post: resp.data})
-    })
+      generatePage({ isLoading: false, post: resp.data})
+    }).catch(() => {
+    generatePage()
+  })
 
 
   })
@@ -67,7 +73,5 @@
 </script>
 
 <%- contentFor('body') %>
+
 <div id="pages-my-posts-show" class="container"></div>
-<div class="text-center" id="">
-  <h1>Show My Specific Posts</h1>
-</div>
