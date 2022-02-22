@@ -23,8 +23,10 @@
             <div class="card-body text-center">
               <h3 class="card-title mb-2">${post.title}</h3>
               <p class="card-text mb-2">${post.content}</p>
-              <p class="card-subtitle text-muted mb-2">${moment(post.createdAt).format('YYYY/MM/DD')}</p>
+               <div>
 
+            <span class="card-subtitle text-muted">${moment(post.createdAt).format("YYYY/MM/DD")}</span>
+          </div>
               <div class="py-3">
                 <a href="/my/wishlists/${id}/edit" class="btn btn-primary btn-sm">Edit</a>
                 <button id="delete-my-wishlist" class="btn btn-danger btn-sm">Delete</button>

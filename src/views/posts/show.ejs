@@ -12,11 +12,13 @@
     if (isLoading || !post) return ''
     return `
       <div class="col">
-        <a class="card text-body" href="/posts/${post.id}" style="text-decoration: none;">
+        <a class="card text-body p-2" href="/posts/${id}" style="text-decoration: none;">
           <div class="card-body text-center">
-            <h5 class="card-title my-2">${post.title}</h5>
-            <p class="card-subtitle text-muted">${moment(post.createdAt).format("YYYY/MM/DD")}</p>
-            <p class="card-text my-4">${post.content}</p>
+            <h5 class="card-title my-2">${post?.title}</h5>
+            <p class="card-text my-4">${post?.content}</p>
+          </div>
+          <div>
+            <span class="card-subtitle text-muted">${moment(post.createdAt).format("YYYY/MM/DD")}</span>
           </div>
         </a>
       </div>
