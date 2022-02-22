@@ -8,7 +8,7 @@
   const generatePost = (post) => {
     return `
       <div class="col">
-        <a class="card text-body" href="/my/posts/${
+        <a class="card text-body"  href="/my/posts/${
           post.id
         }" style="text-decoration: none;">
           <div class="card-body text-center">
@@ -48,7 +48,7 @@
   const generatePage = (info) => {
 
     const $page = $("#pages-my-posts-index");
-     const $title = generateTitle()
+    const $title = generateTitle()
     const $posts = generatePosts(info);
 
     $page.html("").append($title).append($posts);

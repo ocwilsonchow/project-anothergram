@@ -7,6 +7,7 @@ const createSchema = yup.object({
   title: yup.string().required(),
   content: yup.string().required(),
   image: yup.string(),
+  public: yup.boolean()
 });
 
 const controllersApiMyPostsCreate = async (req, res) => {
