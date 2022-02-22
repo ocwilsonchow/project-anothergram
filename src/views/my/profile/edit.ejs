@@ -21,7 +21,7 @@ const generateForm = ({ user, errors } = {}) => {
       <div id="form-wrapper" class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
         <form id="my-profile-form">
 
-          <div class="mb-3">
+          <div class="mb-4">
             <label for="user-avatar" class="form-label">Avatar</label>
             <div class="mb-3 ${!avatarURL && 'visually-hidden'}">
               <img src="${avatarURL}" alt="user-avatar" width="150" />
@@ -30,10 +30,22 @@ const generateForm = ({ user, errors } = {}) => {
             <div class="invalid-feedback">${errors?.avatar || ''}</div>
           </div>
 
-          <div class="py-3 border-top border-dark">
+          <div class="py-2 pt-4 border-top border-dark">
             <label for="user-email" class="form-label">Email</label>
             <input id="user-email" class="form-control ${errors?.email && 'is-invalid'}" name="email" rows="3" value="${user?.email || ''}" type="email"></input>
             <div class="invalid-feedback">${errors?.email || ''}</div>
+          </div>
+
+          <div class="py-2">
+            <label for="user-first-name" class="form-label">First Name</label>
+            <input id="user-first-name" class="form-control ${errors?.firstName && 'is-invalid'}" name="firstName" rows="3" value="${user?.firstName || ''}" type="text"></input>
+            <div class="invalid-feedback">${errors?.firstName || ''}</div>
+          </div>
+
+          <div class="py-2">
+            <label for="user-last-name" class="form-label">Last Name</label>
+            <input id="user-last-name" class="form-control ${errors?.lastName && 'is-invalid'}" name="lastName" rows="3" value="${user?.lastName || ''}" type="text"></input>
+            <div class="invalid-feedback">${errors?.lastName || ''}</div>
           </div>
 
           <div class="mb-3 pt-3">
