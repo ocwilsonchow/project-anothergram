@@ -8,7 +8,7 @@ const generateTitle = ({ isLoading, user } = {}) => {
   if (isLoading) return `<div class="text-center">Loading...</div>`
   if (!user) return `<h1 class="text-center mb-3">Please Login First</h1>`
 
-  return `<h1 class="text-center mb-3">Update Profile</h1>`
+  return `<h1 class="text-center py-3">Update Profile</h1>`
 }
 
 const generateForm = ({ user, errors } = {}) => {
@@ -20,7 +20,6 @@ const generateForm = ({ user, errors } = {}) => {
     <div class="row">
       <div id="form-wrapper" class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
         <form id="my-profile-form">
-
           <div class="mb-4">
             <label for="user-avatar" class="form-label">Avatar</label>
             <div class="mb-3 ${!avatarURL && 'visually-hidden'}">
@@ -42,10 +41,16 @@ const generateForm = ({ user, errors } = {}) => {
             <div class="invalid-feedback">${errors?.firstName || ''}</div>
           </div>
 
-          <div class="py-2">
+           <div class="py-2">
             <label for="user-last-name" class="form-label">Last Name</label>
             <input id="user-last-name" class="form-control ${errors?.lastName && 'is-invalid'}" name="lastName" rows="3" value="${user?.lastName || ''}" type="text"></input>
             <div class="invalid-feedback">${errors?.lastName || ''}</div>
+          </div>
+
+          <div class="py-2">
+            <label for="username" class="form-label">Username</label>
+            <input id="username" class="form-control ${errors?.username && 'is-invalid'}" name="username" rows="3" value="${user?.username || ''}" type="text"></input>
+            <div class="invalid-feedback">${errors?.username || ''}</div>
           </div>
 
           <div class="mb-3 pt-3">

@@ -2,7 +2,7 @@
 <script>
   const generateTitle = () => {
     return `
-    <h1 class="text-center">All My Posts</h1>`;
+    <h1 class="text-center py-3">All My Posts</h1>`;
   };
 
   const generatePost = (post) => {
@@ -46,10 +46,12 @@
   };
 
   const generatePage = (info) => {
+
     const $page = $("#pages-my-posts-index");
+     const $title = generateTitle()
     const $posts = generatePosts(info);
 
-    $page.html("").append($posts);
+    $page.html("").append($title).append($posts);
   };
 
   $(document).ready(() => {
