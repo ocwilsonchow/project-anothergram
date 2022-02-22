@@ -17,8 +17,8 @@ const updateSchema = yup.object({
      (lastName) => !lastName || lastName.length <=25
   ),
   username: yup.string().test(
-     'username must be less than 25 characters',
-     (username) => !username || username.length <=25
+     'username must be less than 20 characters',
+     (username) => !username || username.length <=20
   ),
   password: yup.string().test(
     'empty-or-6-characters-check',
@@ -43,6 +43,7 @@ const controllersApiMyProfileUpdate = async (req, res) => {
         email: verifiedData.email,
         firstName: verifiedData.firstName,
         lastName: verifiedData.lastName,
+        username: verifiedData.username,
         avatar: verifiedData.avatar || currentUser.avatar || 'https://lab-restful-api.s3.ap-northeast-2.amazonaws.com/profile.jpeg',
         ...verifiedData.password && { passwordHash: await bcrypt.hash(verifiedData.password, 10) }
       }

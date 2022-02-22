@@ -3,6 +3,7 @@
 <script>
 // Keep the avatar url reference
 let avatarURL = ''
+let isUpdated
 
 const generateTitle = ({ isLoading, user } = {}) => {
   if (isLoading) return `<div class="text-center">Loading...</div>`
@@ -19,6 +20,7 @@ const generateForm = ({ user, errors } = {}) => {
   const $form = $(`
     <div class="row">
       <div id="form-wrapper" class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+       <div id="alert-wrapper"></div>
         <form id="my-profile-form">
           <div class="mb-4">
             <label for="user-avatar" class="form-label">Avatar</label>
@@ -28,7 +30,6 @@ const generateForm = ({ user, errors } = {}) => {
             <input id="user-avatar" class="form-control" name="avatar" type="file"></input>
             <div class="invalid-feedback">${errors?.avatar || ''}</div>
           </div>
-
 
           <div class="input-group py-3 pt-4 border-top border-dark"">
             <span class="input-group-text">First Name</span>
@@ -89,6 +90,7 @@ const generatePage = (info) => {
   const $title = generateTitle(info)
   const $form = generateForm(info)
 
+
   $page.html('').append($title).append($form)
 }
 
@@ -116,6 +118,12 @@ $(document).ready(() => {
       data
     }).then((resp) => {
       generatePage({ user: resp.data })
+      $('#alert-wrapper').html(`
+        <div id="updated-success-alert" class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>Succeed!</strong> Profile successfully updated.
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        `)
     }).catch((err) => {
       generatePage({
         user: parseFormData(data),
