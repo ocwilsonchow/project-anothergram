@@ -1,11 +1,46 @@
-<%- contentFor('styles') %>
-<%- contentFor('scripts') %>
+<%- contentFor('styles') %> <%- contentFor('scripts') %>
 <script>
+  const id = window.location.href.split('/').reverse()[0]
 
+  const generateTitle = () => {
+    return `
+    <h1 class="text-center py-4">Specific Public Posts</h1>`;
+  };
+
+  const generatePost = (post) => {
+    return `
+      <div class="col">
+        <a class="card text-body" href="/posts/${post.id}" style="text-decoration: none;">
+          <div class="card-body text-center">
+            <h5 class="card-title my-2">${post.title}</h5>
+            <p class="card-subtitle text-muted">${moment(post.createdAt).format("YYYY/MM/DD")}</p>
+            <p class="card-text my-4">${post.content}</p>
+          </div>
+        </a>
+      </div>
+`;
+  };
+
+  const generatePage = (info) => {
+    const $page = $("#pages-posts-show");
+    const $title = generateTitle();
+    const $post = generatePost(info);
+
+    $page.html("").append($title).append($post);
+  };
+
+  $(document).ready(() => {
+    generatePage({ isLoading: true });
+
+    axios({
+      method: "GET",
+      url: `/api/posts/${id}`,
+    }).then((resp) => {
+      console.log(resp.data )
+      generatePage(resp.data);
+    });
+  });
 </script>
 
 <%- contentFor('body') %>
-<div id="pages-posts-index" class="container"></div>
-<div class="text-center">
-  <h1>Posts</h1>
-</div>
+<div id="pages-posts-show" class="container"></div>
