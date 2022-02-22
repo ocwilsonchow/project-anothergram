@@ -7,9 +7,9 @@
     <h1 class="text-center py-4">Specific Public Posts</h1>`;
   };
 
-  const generatePost = (post, isLoading) => {
+  const generatePost = ({post, isLoading}) => {
+    if (isLoading) return `<div class="text-center mb-3">Loading...</div>`
 
-    if (isLoading || !post) return ''
     return `
       <div class="col">
         <a class="card text-body p-2" href="/posts/${id}" style="text-decoration: none;">
@@ -40,8 +40,7 @@
       method: "GET",
       url: `/api/posts/${id}`,
     }).then((resp) => {
-      console.log(resp.data )
-      generatePage(resp.data);
+      generatePage({isLoading: false, post: resp.data});
     })
     .catch(() => {
     generatePage()
