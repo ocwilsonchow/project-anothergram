@@ -12,7 +12,7 @@ router.post('/api/auth/login', (await import('./controllers/api/auth/login.js'))
 router.delete('/api/auth/logout', (await import('./controllers/api/auth/logout.js')).default)
 
 //API | All POSTS
-router.get('/api/posts',authenticateUser('json'), (await import('./controllers/api/posts/index.js')).default)
+router.get('/api/posts', (await import('./controllers/api/posts/index.js')).default)
 
 
 // API | MY POST

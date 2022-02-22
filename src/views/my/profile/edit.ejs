@@ -29,43 +29,48 @@ const generateForm = ({ user, errors } = {}) => {
             <div class="invalid-feedback">${errors?.avatar || ''}</div>
           </div>
 
-          <div class="py-2 pt-4 border-top border-dark">
-            <label for="user-email" class="form-label">Email</label>
+
+          <div class="input-group py-3 pt-4 border-top border-dark"">
+            <span class="input-group-text">First Name</span>
+            <input id="user-first-name" class="form-control ${errors?.firstName && 'is-invalid'}" name="firstName" rows="3" value="${user?.firstName || ''}" type="text">
+            <span class="input-group-text">Last Name</span>
+            <input id="user-last-name" class="form-control ${errors?.lastName && 'is-invalid'}" name="lastName" rows="3" value="${user?.lastName || ''}" type="text">
+          </div>
+
+          <div class="input-group py-3">
+              <span for="username" class="input-group-text">Username</span>
+              <input id="username" class="form-control ${errors?.username && 'is-invalid'}" name="username" rows="3" value="${user?.username || ''}" type="text"></input>
+              <div class="invalid-feedback">${errors?.username || ''}</div>
+          </div>
+
+          <div class="input-group py-3">
+            <span for="user-email" class="input-group-text">Email</span>
             <input id="user-email" class="form-control ${errors?.email && 'is-invalid'}" name="email" rows="3" value="${user?.email || ''}" type="email"></input>
             <div class="invalid-feedback">${errors?.email || ''}</div>
           </div>
 
-          <div class="py-2">
-            <label for="user-first-name" class="form-label">First Name</label>
-            <input id="user-first-name" class="form-control ${errors?.firstName && 'is-invalid'}" name="firstName" rows="3" value="${user?.firstName || ''}" type="text"></input>
-            <div class="invalid-feedback">${errors?.firstName || ''}</div>
-          </div>
 
-           <div class="py-2">
-            <label for="user-last-name" class="form-label">Last Name</label>
-            <input id="user-last-name" class="form-control ${errors?.lastName && 'is-invalid'}" name="lastName" rows="3" value="${user?.lastName || ''}" type="text"></input>
-            <div class="invalid-feedback">${errors?.lastName || ''}</div>
-          </div>
-
-          <div class="py-2">
-            <label for="username" class="form-label">Username</label>
-            <input id="username" class="form-control ${errors?.username && 'is-invalid'}" name="username" rows="3" value="${user?.username || ''}" type="text"></input>
-            <div class="invalid-feedback">${errors?.username || ''}</div>
-          </div>
-
-          <div class="mb-3 pt-3">
-            <label for="user-new-password" class="form-label">New Password</label>
+          <div class="input-group py-3">
+            <span for="user-new-password" class="input-group-text">New Password</span>
             <input id="user-new-password" class="form-control ${errors?.password && 'is-invalid'}" name="password" rows="3" value="${user?.password || ''}" type="password"></input>
             <div class="invalid-feedback">${errors?.password || ''}</div>
           </div>
 
-          <div class="mb-3">
-            <label for="user-new-password-confirmation" class="form-label">New Password Confirmation</label>
+          <div class="input-group py-3">
+            <span for="user-new-password-confirmation" class="input-group-text">New Password Confirmation</span>
             <input id="user-new-password-confirmation" class="form-control ${errors?.passwordConfirmation && 'is-invalid'}" name="passwordConfirmation" rows="3" value="${user?.passwordConfirmation || ''}" type="password"></input>
             <div class="invalid-feedback">${errors?.passwordConfirmation || ''}</div>
           </div>
 
-          <button class="btn btn-primary" type="submit">Submit</button>
+          <div><h3>Biography</h3></div>
+          <div class="input-group py-3 pt-4 border-top border-dark"">
+            <span class="input-group-text">Location</span>
+            <input id="user-location" class="form-control ${errors?.location && 'is-invalid'}" placeholder="optional" name="location" rows="3" value="${user?.location || ''}" type="text">
+            <span class="input-group-text">Occupation</span>
+            <input id="user-occupation" class="form-control ${errors?.occupation && 'is-invalid'}" placeholder="optional" name="occupation" rows="3" value="${user?.occupation || ''}" type="text">
+          </div>
+
+          <button class="btn btn-primary my-4" type="submit">Submit</button>
         </form>
       </div>
     </div>
