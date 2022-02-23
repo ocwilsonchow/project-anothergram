@@ -22,10 +22,6 @@ router.get('/api/my/posts/:id',authenticateUser('json'), (await import('./contro
 router.put('/api/my/posts/:id',authenticateUser('json'), (await import('./controllers/api/my/posts/update.js')).default)
 router.delete('/api/my/posts/:id',authenticateUser('json'), (await import('./controllers/api/my/posts/destroy.js')).default)
 
-// API | FIND USER
-router.get('/api/user/:id', (await import('./controllers/api/findUser.js')).default)
-
-
 // API | PROFILE
 router.get('/api/my/profile', authenticateUser('json'), (await import('./controllers/api/my/profile/show.js')).default)
 router.put('/api/my/profile', authenticateUser('json'), (await import('./controllers/api/my/profile/update.js')).default)
