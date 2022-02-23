@@ -11,6 +11,13 @@ const controllersApiPostsIndex = async (req, res) => {
       orderBy: {
         createdAt: "desc",
       },
+      include: {
+        user: {
+          select: {
+            username: true
+          }
+        }
+      }
     });
 
     return res.status(200).json({
