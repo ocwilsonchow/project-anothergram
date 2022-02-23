@@ -9,14 +9,18 @@ const createSchema = yup.object({
 
 const controllersApiCommentCreate = async (req, res) => {
   try {
-    const { body, session: { user: { id: userId } } } = req
-    const verifiedData = await createSchema.validate(body, { abortEarly: false, stripUnknown: true })
+    const data = req.body
+    const userId = req.session.user.id
+    const postId = 24
+    const verifiedData = await createSchema.validate(data, { abortEarly: false, stripUnknown: true })
     const newComment = await prisma.comment.create({
       data: {
-        userId, verifiedData
+        content: verifiedData.content,
+        postId: postId,
+        userId: userId
       }
     })
-    console.log(newComment)
+
     return res.status(201).json(newComment)
   } catch (err) {
     return handleErrors(res, err)

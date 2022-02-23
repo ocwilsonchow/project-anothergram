@@ -9,14 +9,14 @@
 
     return `
       <div class="col">
-        <a class="card text-body p-2" href="/posts/${post.id}" style="text-decoration: none;">
-          <div class="card-body text-center">
-            <h5 class="card-title my-2">${post.title}</h5>
-            <span class="badge bg-light text-dark">Posted by ${post.user.username}</span>
+        <a class="card text-body p-3 bg-light" href="/posts/${post.id}" style="text-decoration: none; border-radius: 1rem">
+          <div class="card-body">
+              <h4 class="card-title mb-2">${post.title}</h4>
               <img src="${post.user.avatar}" alt="user-avatar" width="50" height="50" style="border-radius: 50%; object-fit: cover;"/>
-
-            <p class="card-text my-4" style="text-align: left;">${post.content}</p>
-          </div>
+              <span class="badge bg-light text-muted">Posted by ${post.user.username}</span>
+              <span class="badge bg-light text-muted">#${post.id}</span>
+              <p class="card-text my-3" style="text-align: left;">${post.content}</p>
+            </div>
           <div>
             <span class="badge bg-info">Public</span>
             <span class="card-subtitle text-muted">${moment(post.createdAt).format("YYYY/MM/DD")}</span>
