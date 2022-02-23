@@ -22,7 +22,6 @@ const generateForm = ({ user, errors } = {}) => {
        <div id="alert-wrapper"></div>
         <form id="my-profile-form">
           <div class="mb-4">
-            <label for="user-avatar" class="form-label">Avatar</label>
             <div class="mb-3 ${!avatarURL && 'visually-hidden'}">
               <img src="${avatarURL}" alt="user-avatar" width="150" height="150" style="border-radius: 50%; object-fit: cover;"/>
             </div>
