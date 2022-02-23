@@ -21,6 +21,7 @@
         <a class="card text-body p-2"  href="/my/posts/${post.id}" style="text-decoration: none;">
           <div class="card-body text-center ">
             <h5 class="card-title my-2">${post.title}</h5>
+             <span class="badge bg-light text-dark">Posted by ${post.user.username}</span>
             <p class="card-text my-4" style="text-align: left;">${post.content}</p>
           </div>
           <div>
@@ -69,8 +70,6 @@
       method: "GET",
       url: "/api/my/posts",
     }).then((resp) => {
-      console.log(resp.data.posts)
-      console.log(resp.data.user)
       generatePage({ posts: resp.data.posts });
     });
   });

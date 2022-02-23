@@ -8,6 +8,13 @@ const controllersApiPostsShow = async (req, res) => {
       where: {
         id: Number(id),
        },
+       include: {
+        user: {
+          select: {
+            username: true
+          }
+        }
+      },
       rejectOnNotFound: true,
 
     })

@@ -7,6 +7,13 @@ const controllersApiPostsShow = async (req, res) => {
     const { params: { id } } = req
     const foundPost = await prisma.post.findUnique({
       where: { id: Number(id) },
+       include: {
+        user: {
+          select: {
+            username: true
+          }
+        }
+      },
       rejectOnNotFound: true,
     })
     return res.status(200).json(foundPost)

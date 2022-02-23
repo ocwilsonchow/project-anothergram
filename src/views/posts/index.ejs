@@ -5,14 +5,20 @@
     <h1 class="text-center py-4">All Public Posts</h1>`;
   };
 
-  const generatePost = (post) => {
+   const generatePost = (post) => {
+
     return `
       <div class="col">
-        <a class="card text-body" href="/posts/${post.id}" style="text-decoration: none;">
+        <a class="card text-body p-2" href="/posts/${post.id}" style="text-decoration: none;">
           <div class="card-body text-center">
             <h5 class="card-title my-2">${post.title}</h5>
-            <p class="card-subtitle text-muted">${moment(post.createdAt).format("YYYY/MM/DD")}</p>
-            <p class="card-text my-4">${post.content}</p>
+            <span class="badge bg-light text-dark">Posted by ${post.user.username}</span>
+
+            <p class="card-text my-4" style="text-align: left;">${post.content}</p>
+          </div>
+          <div>
+            <span class="badge bg-info">Public</span>
+            <span class="card-subtitle text-muted">${moment(post.createdAt).format("YYYY/MM/DD")}</span>
           </div>
         </a>
       </div>
@@ -52,7 +58,8 @@
       method: "GET",
       url: "/api/posts",
     }).then((resp) => {
-      generatePage({ posts: resp.data.posts });
+      console.log(resp.data.users)
+      generatePage({ posts: resp.data.posts, users: resp.data.users });
     });
   });
 </script>
