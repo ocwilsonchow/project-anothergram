@@ -18,13 +18,13 @@ const generateForm = ({ user, errors } = {}) => {
   }
   const $form = $(`
     <div class="row">
-      <div id="form-wrapper" class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 p-4 mb-4" style="background-color: #f5f5f5; border-radius: 10px;">
+      <div id="form-wrapper" class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 p-4 mb-4 bg-light" style="border-radius: 1rem;">
        <div id="alert-wrapper"></div>
         <form id="my-profile-form">
           <div class="mb-4">
             <label for="user-avatar" class="form-label">Avatar</label>
             <div class="mb-3 ${!avatarURL && 'visually-hidden'}">
-              <img src="${avatarURL}" alt="user-avatar" width="150" />
+              <img src="${avatarURL}" alt="user-avatar" width="150" height="150" style="border-radius: 50%; object-fit: cover;"/>
             </div>
             <input id="user-avatar" class="form-control" name="avatar" type="file"></input>
             <div class="invalid-feedback">${errors?.avatar || ''}</div>
