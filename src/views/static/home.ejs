@@ -9,7 +9,7 @@
 
     return `
       <div class="col">
-        <a class="card text-body p-3 bg-light" href="/posts/${post.id}" style="text-decoration: none; border-radius: 1rem">
+        <a class="card text-body p-3" href="/posts/${post.id}" style="text-decoration: none; border-radius: 1rem">
           <div class="card-body">
               <h4 class="card-title mb-2">${post.title}</h4>
               <img src="${post.user.avatar}" alt="user-avatar" width="50" height="50" style="border-radius: 50%; object-fit: cover;"/>
@@ -34,7 +34,7 @@
         `;
     }
     return `
-        <div class="row">
+        <div class="row pb-4">
           <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
             <div class="row row-cols-1 g-3">
               ${posts.map((post) => generatePost(post)).join("")}
