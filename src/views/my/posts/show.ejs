@@ -1,67 +1,114 @@
-<%- contentFor('styles') %>
-<%- contentFor('scripts') %>
+<%- contentFor('styles') %> <%- contentFor('scripts') %>
 <script>
-  const id = window.location.href.split('/').reverse()[0]
+  const id = window.location.href.split("/").reverse()[0];
 
   const generateTitle = ({ isLoading, post } = {}) => {
-  if (isLoading) return `
-    <div class="text-center">Loading...</div>`
-  if (!post) return `<h1 class="text-center mb-3">Post ${id} Not Found!</h1>`
+    if (isLoading)
+      return `
+    <div class="text-center">Loading...</div>`;
+    if (!post) return `<h1 class="text-center mb-3">Post ${id} Not Found!</h1>`;
 
-  return `
-  <h2 class="text-center my-3">Post ${id}</h2>`
-}
-
+    return `
+  <h2 class="text-center my-3">Post ${id}</h2>`;
+  };
 
   const generatePost = ({ isLoading, post } = {}) => {
-    if (isLoading && !post) return ''
+    if (isLoading && !post) return "";
+
+    let status = "";
+    if (post.public) {
+      status = "public";
+      bg = "bg-info";
+    } else {
+      status = "private";
+      bg = "bg-dark";
+    }
 
     return `
        <div class="row">
         <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-          <div class="card" style="border-radius: 10px;">
+          <div class="card p-2" style="border-radius: 10px;">
             <div class="card-body text-center">
               <h3 class="card-title mb-2">${post.title}</h3>
               <p class="card-text mb-2">${post.content}</p>
-               <div>
+            </div>
+            <div class="d-flex justify-content-between">
+              <span>
+                <span class="badge ${bg}"> ${status}</span>
+                <span class="card-subtitle text-muted">${moment(
+                  post.createdAt
+                ).format("YYYY/MM/DD")}</span>
+              </span>
+              <span>
+                <a href="/my/posts/${id}/edit" class="btn btn-info btn-sm">Edit</a>
+                 <!-- Button trigger modal -->
+                    <button type="button" id="delete-my-post" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                      Delete
+                    </button>
 
-            <span class="card-subtitle text-muted">${moment(post.createdAt).format("YYYY/MM/DD")}</span>
-          </div>
-              <div class="py-3">
-                <a href="/my/wishlists/${id}/edit" class="btn btn-primary btn-sm">Edit</a>
-                <button id="delete-my-wishlist" class="btn btn-danger btn-sm">Delete</button>
-              </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header bg-secondary">
+                            <h5 class="modal-title text-light" id="staticBackdropLabel">Warning</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body bg-secondary text-light">
+                            Are you sure to delete this post?
+                          </div>
+                          <div class="modal-footer bg-secondary">
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Go Back</button>
+                            <button type="button" id="delete-my-post-confirm" class="btn btn-dark">Delete</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+              </span>
+
             </div>
           </div>
         </div>
       </div>
-    `
-  }
+
+
+
+    `;
+  };
 
   const generatePage = (info) => {
-    const $title = generateTitle(info)
-    const $page = $('#pages-my-posts-show')
-    const $post = generatePost(info)
+    const $title = generateTitle(info);
+    const $page = $("#pages-my-posts-show");
+    const $post = generatePost(info);
 
-    $page.html('').append($title).append($post)
-  }
+    $page.html("").append($title).append($post);
+  };
 
   $(document).ready(() => {
-    generatePage({ isLoading: true })
+    generatePage({ isLoading: true });
 
     axios({
-      method: 'GET',
-      url: `/api/my/posts/${id}`
-    }).then((resp) => {
-      generatePage({ isLoading: false, post: resp.data})
-    }).catch(() => {
-    generatePage()
-  })
+      method: "GET",
+      url: `/api/my/posts/${id}`,
+    })
+      .then((resp) => {
+        generatePage({ isLoading: false, post: resp.data });
+      })
+      .catch(() => {
+        generatePage();
+      });
 
+    $("#pages-my-posts-show").on("click", "#delete-my-post-confirm", (e) => {
+      $(e.target).attr("disabled", true);
 
-  })
-
-
+      axios({
+        method: "DELETE",
+        url: `/api/my/posts/${id}`,
+      }).then((resp) => {
+        window.location.href = "/my/posts";
+      });
+    });
+  });
 </script>
 
 <%- contentFor('body') %>

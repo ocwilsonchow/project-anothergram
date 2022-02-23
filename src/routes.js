@@ -19,6 +19,9 @@ router.get('/api/posts/:id', (await import('./controllers/api/posts/show.js')).d
 router.post('/api/my/posts',authenticateUser('json'), (await import('./controllers/api/my/posts/create.js')).default)
 router.get('/api/my/posts',authenticateUser('json'), (await import('./controllers/api/my/posts/index.js')).default)
 router.get('/api/my/posts/:id',authenticateUser('json'), (await import('./controllers/api/my/posts/show.js')).default)
+router.put('/api/my/posts/:id',authenticateUser('json'), (await import('./controllers/api/my/posts/update.js')).default)
+router.delete('/api/my/posts/:id',authenticateUser('json'), (await import('./controllers/api/my/posts/destroy.js')).default)
+
 
 // API | PROFILE
 router.get('/api/my/profile', authenticateUser('json'), (await import('./controllers/api/my/profile/show.js')).default)
