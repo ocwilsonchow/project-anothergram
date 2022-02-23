@@ -10,12 +10,19 @@ const controllersApiMyPostsIndex = async (req, res) => {
         userId: userId
       },
       orderBy: {
-        createdAt: 'desc'
+        createdAt: "desc"
+      }
+    })
+
+    const foundUser = await prisma.user.findUnique({
+      where: {
+        id: userId
       }
     })
 
     return res.status(200).json({
-      posts: foundMyPosts
+      posts: foundMyPosts,
+      user: foundUser
     })
   } catch (err) {
     return handleErrors(res, err)

@@ -70,6 +70,7 @@
       url: "/api/my/posts",
     }).then((resp) => {
       console.log(resp.data.posts)
+      console.log(resp.data.user)
       generatePage({ posts: resp.data.posts });
     });
   });

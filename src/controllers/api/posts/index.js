@@ -1,23 +1,24 @@
-import prisma from '../../_helpers/prisma.js'
-import handleErrors from '../../_helpers/handle-errors.js'
+import prisma from "../../_helpers/prisma.js";
+import handleErrors from "../../_helpers/handle-errors.js";
+import _ from "lodash";
 
 const controllersApiPostsIndex = async (req, res) => {
   try {
     const foundPosts = await prisma.post.findMany({
       where: {
-        public: true
+        public: true,
       },
       orderBy: {
-        createdAt: 'desc'
-      }
-    })
+        createdAt: "desc",
+      },
+    });
 
     return res.status(200).json({
-      posts: foundPosts
-    })
+      posts: foundPosts,
+    });
   } catch (err) {
-    return handleErrors(res, err)
+    return handleErrors(res, err);
   }
-}
+};
 
-export default controllersApiPostsIndex
+export default controllersApiPostsIndex;

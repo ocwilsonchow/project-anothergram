@@ -5,12 +5,24 @@
     <h1 class="text-center py-4">All Public Posts</h1>`;
   };
 
-  const generatePost = (post) => {
+   const generatePost = (post) => {
+    let userId = post.userId
+    let user = ""
+
+     axios({
+      method: 'GET',
+      url: `/api/user/${userId}`
+    }).then((resp) => {
+      user = resp.data
+      console.log(user)
+    })
+
     return `
       <div class="col">
         <a class="card text-body p-2" href="/posts/${post.id}" style="text-decoration: none;">
           <div class="card-body text-center">
             <h5 class="card-title my-2">${post.title}</h5>
+            <span class="badge bg-light text-dark">${user.username}</span>
 
             <p class="card-text my-4" style="text-align: left;">${post.content}</p>
           </div>
@@ -56,7 +68,8 @@
       method: "GET",
       url: "/api/posts",
     }).then((resp) => {
-      generatePage({ posts: resp.data.posts });
+      console.log(resp.data.users)
+      generatePage({ posts: resp.data.posts, users: resp.data.users });
     });
   });
 </script>
