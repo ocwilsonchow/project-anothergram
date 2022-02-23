@@ -1,37 +1,59 @@
 <%- contentFor('styles') %> <%- contentFor('scripts') %>
 <script>
-  const generateForm = () => {
+
+const id = window.location.href.split('/').reverse()[1]
+let publicChecked
+
+  const generateForm = ({ isLoading, post, errors } = {}) => {
+    if (post?.public) {
+      publicChecked = "checked"
+    } else {
+      publicChecked = ""
+    }
+
     return `
       <div class="row mx-auto" style="max-width: 500px;">
         <form id="post-new-form">
           <div class="my-3">
             <label for="title" class="form-label">Title</label>
-            <input type="text" name="title" class="form-control" id="titleInput">
+            <input type="text" name="title" class="form-control" id="titleInput" value="${post?.title}">
           </div>
           <div class="my-3">
             <label for="contentInput" class="form-label">Content</label>
-            <textarea class="form-control" name="content" id="contentInput" rows="10"></textarea>
+            <textarea class="form-control" name="content" id="contentInput" rows="12" >${post?.content}</textarea>
           </div>
           <div class="form-check form-switch my-3">
-            <input class="form-check-input" type="checkbox" id="public" name="public">
+
+            <input class="form-check-input" type="checkbox" id="public" name="public" ${publicChecked}>
             <label class="form-check-label" for="public">Make this post public</label>
           </div>
-          <button class="btn btn-primary mx-auto my-4" id="add-new-post">Post</button>
+          <button class="btn btn-primary mx-auto my-4" id="update-post">Post</button>
         </form>
       </div>
     `;
   };
 
-  const generatePage = () => {
+  const generatePage = (info) => {
     const $page = $("#pages-my-posts-edit");
     const $title = $("#page-title");
-    const $form = generateForm();
+    const $form = generateForm(info);
 
     $page.html("").append($title).append($form);
   };
 
   $(document).ready(() => {
-    generatePage();
+     generatePage({ isLoading: true })
+
+
+    axios({
+      method: 'GET',
+      url: `/api/my/posts/${id}`
+    }).then((resp) => {
+      generatePage({ post: resp.data })
+      console.log(resp.data)
+    }).catch((err) => {
+      generatePage()
+    })
 
    $('#public').on('click', (e) => {
      console.log($('#public:checked').val())
