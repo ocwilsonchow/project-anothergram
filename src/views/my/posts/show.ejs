@@ -31,7 +31,9 @@
             <div class="card-body text-center">
               <h3 class="card-title mb-2">${post.title}</h3>
                <span class="badge bg-light text-dark">Posted by ${post.user.username}</span>
-              <p class="card-text mb-2" style="text-align: left;">${post.content}</p>
+               <img src="${post.user.avatar}" alt="user-avatar" width="50" height="50" style="border-radius: 50%; object-fit: cover;"/>
+
+              <p class="card-text my-3" style="text-align: left;">${post.content}</p>
             </div>
             <div class="d-flex justify-content-between">
               <span>

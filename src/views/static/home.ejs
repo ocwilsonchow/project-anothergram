@@ -13,6 +13,7 @@
           <div class="card-body text-center">
             <h5 class="card-title my-2">${post.title}</h5>
             <span class="badge bg-light text-dark">Posted by ${post.user.username}</span>
+              <img src="${post.user.avatar}" alt="user-avatar" width="50" height="50" style="border-radius: 50%; object-fit: cover;"/>
 
             <p class="card-text my-4" style="text-align: left;">${post.content}</p>
           </div>

@@ -11,7 +11,8 @@ const controllersApiPostsShow = async (req, res) => {
        include: {
         user: {
           select: {
-            username: true
+            username: true,
+            avatar: true
           }
         }
       },
