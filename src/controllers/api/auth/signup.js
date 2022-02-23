@@ -18,6 +18,7 @@ const signupSchema = yup.object({
       }
     }
   }),
+  username: yup.string().required(),
   password: yup.string().min(6).required(),
   passwordConfirmation: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match').required(),
   avatar: yup.mixed()
@@ -32,6 +33,7 @@ const controllersApiAuthSignup = async (req, res) => {
     const newUser = await prisma.user.create({
       data: {
         email: verifiedData.email,
+        username: verifiedData.username,
         avatar: verifiedData.avatar || 'https://lab-restful-api.s3.ap-northeast-2.amazonaws.com/profile.jpeg',
         passwordHash: await bcrypt.hash(verifiedData.password, 10)
       }
