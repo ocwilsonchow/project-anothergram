@@ -11,11 +11,11 @@ datasource db {
 }
 
 model User {
-  id           Int     @id @default(autoincrement())
+  id           Int       @id @default(autoincrement())
   firstName    String?
   lastName     String?
   username     String?
-  email        String  @unique
+  email        String    @unique
   passwordHash String
   avatar       String?
   location     String?
@@ -23,6 +23,7 @@ model User {
   website      String?
   occupation   String?
   post         Post[]
+  Comment      Comment[]
 }
 
 model Post {
@@ -40,8 +41,11 @@ model Post {
 }
 
 model Comment {
-  id      Int    @id @default(autoincrement())
-  post    Post   @relation(fields: [postId], references: [id])
-  postId  Int
-  content String
+  id        Int      @id @default(autoincrement())
+  post      Post     @relation(fields: [postId], references: [id])
+  createdAt DateTime @default(now())
+  postId    Int
+  content   String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
 }

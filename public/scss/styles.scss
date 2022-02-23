@@ -6,3 +6,15 @@
  font-family: 'Roboto Mono',
  monospace;
 }
+
+#nav-login {
+  background-color: rgb(90, 90, 231);
+  border-radius: 2rem;
+  transition: all ease 0.5s;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+#nav-login:hover {
+  background-color: rgb(50, 50, 156);
+}
