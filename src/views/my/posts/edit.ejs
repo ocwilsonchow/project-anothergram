@@ -1,9 +1,67 @@
-<%- contentFor('styles') %>
-<%- contentFor('scripts') %>
+<%- contentFor('styles') %> <%- contentFor('scripts') %>
 <script>
+  const generateForm = () => {
+    return `
+      <div class="row mx-auto" style="max-width: 500px;">
+        <form id="post-new-form">
+          <div class="my-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" name="title" class="form-control" id="titleInput">
+          </div>
+          <div class="my-3">
+            <label for="contentInput" class="form-label">Content</label>
+            <textarea class="form-control" name="content" id="contentInput" rows="10"></textarea>
+          </div>
+          <div class="form-check form-switch my-3">
+            <input class="form-check-input" type="checkbox" id="public" name="public">
+            <label class="form-check-label" for="public">Make this post public</label>
+          </div>
+          <button class="btn btn-primary mx-auto my-4" id="add-new-post">Post</button>
+        </form>
+      </div>
+    `;
+  };
 
+  const generatePage = () => {
+    const $page = $("#pages-my-posts-edit");
+    const $title = $("#page-title");
+    const $form = generateForm();
+
+    $page.html("").append($title).append($form);
+  };
+
+  $(document).ready(() => {
+    generatePage();
+
+   $('#public').on('click', (e) => {
+     console.log($('#public:checked').val())
+
+   })
+
+    $("#pages-my-posts-edit").on("submit", "#post-new-form", (e) => {
+      e.preventDefault()
+
+      const data = new FormData(e.target);
+      console.log(data)
+      $('#post-new-form button[type="submit"]').attr("disabled", true);
+
+      axios({
+      method: "POST",
+      url: "/api/my/posts",
+      data,
+    })
+      .then((resp) => {
+        window.location.href = `/my/posts`;
+      })
+      .catch((err) => {
+        generatePage();
+      });
+    });
+
+
+  });
 </script>
 
 <%- contentFor('body') %>
-<div id="pages-posts-edit" class="container"></div>
-<h1 class="text-center">Edit Posts</h1>
+<div id="page-title" class="text-center py-3"><h1>Edit My Post</h1></div>
+<div id="pages-my-posts-edit" class="container"></div>
