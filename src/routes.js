@@ -16,9 +16,8 @@ router.get('/api/posts', (await import('./controllers/api/posts/index.js')).defa
 router.get('/api/posts/:id', (await import('./controllers/api/posts/show.js')).default)
 
 // API | COMMENTS
-router.post('/api/comments',authenticateUser('json'), (await import('./controllers/api/comments/create.js')).default)
 router.delete('/api/comments',authenticateUser('json'), (await import('./controllers/api/comments/destroy.js')).default)
-
+router.post('/api/comments',authenticateUser('json'), (await import('./controllers/api/comments/create.js')).default)
 
 // API | MY POST
 router.post('/api/my/posts',authenticateUser('json'), (await import('./controllers/api/my/posts/create.js')).default)
@@ -33,7 +32,6 @@ router.put('/api/my/profile', authenticateUser('json'), (await import('./control
 
 // API | COMMUNITY
 router.get('/api/community', (await import('./controllers/api/community/index.js')).default)
-
 
 // PAGE | AUTH
 router.get('/auth/signup',(await import('./controllers/pages/auth/signup.js')).default)

@@ -50,8 +50,32 @@
                 <span class="p-2">
                   <form id="delete-comment">
                     <input hidden name="deleteId" value=${comment.id} placeholder=${comment.id}>
-                    <button class="rounded-pill btn btn-secondary btn-sm" id="delete-comment-btn" ${comment.userId != user && "disabled hidden"}>Delete</button>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="rounded-pill btn btn-secondary btn-sm" id="delete-comment-btn" ${comment.userId != user && "disabled hidden"} data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header bg-dark">
+                            <h5 class="modal-title text-light" id="staticBackdropLabel">Warning</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                          </div>
+                          <div class="modal-body bg-dark text-light">
+                            Are you sure to delete this post?
+                          </div>
+                          <div class="modal-footer bg-dark">
+                            <form id="delete-comment-form">
+                              <button type="button" class="btn btn-light" data-bs-dismiss="modal">Go Back</button>
+
+                              <button type="button" id="delete-my-comment-confirm" class="btn btn-danger" name="deleteId" value=${comment.id}>Delete</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
                   </form>
+                    </div>
                 </span>
               </div>
             `
@@ -104,6 +128,23 @@
     generatePage()
     })
 
+
+    // Delete Comment
+    $("#pages-posts-show").on("click", "#delete-my-comment-confirm", (e) => {
+      $(e.target).attr("disabled", true);
+      const deleteId = Number(e.target.value)
+      console.log(deleteId)
+
+      axios({
+        method: "DELETE",
+        url: `/api/comments`,
+        params: { deleteId }
+      }).then((resp) => {
+        window.location.href = `/posts/${id}`;
+      }).catch((err)=>{
+        console.log(err)
+      })
+    });
 
 
 
