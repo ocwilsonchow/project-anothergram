@@ -23,7 +23,7 @@ model User {
   website      String?
   occupation   String?
   post         Post[]
-  Comment      Comment[]
+  comment      Comment[]
 }
 
 model Post {
@@ -35,7 +35,7 @@ model Post {
   title     String
   content   String
   imageURL  String?
-  Comment   Comment[]
+  comment   Comment[]
   public    Boolean   @default(false)
 
 }

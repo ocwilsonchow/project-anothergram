@@ -14,11 +14,14 @@ const controllersApiPostsShow = async (req, res) => {
             username: true,
             avatar: true
           }
-        }
+        },
+        comment: true
       },
       rejectOnNotFound: true,
-
     })
+
+
+
     return res.status(200).json(foundPost)
   } catch (err) {
     return handleErrors(res, err)

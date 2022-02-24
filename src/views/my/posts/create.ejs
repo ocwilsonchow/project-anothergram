@@ -31,12 +31,7 @@
   };
 
   $(document).ready(() => {
-    generatePage();
-
-   $('#public').on('click', (e) => {
-     console.log($('#public:checked').val())
-
-   })
+    generatePage()
 
     $("#pages-my-posts-new").on("submit", "#post-new-form", (e) => {
       e.preventDefault()

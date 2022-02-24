@@ -3,8 +3,10 @@
 <script>
 const generateForm = ({ user, errors } = {}) => {
   const $form = $(`
-    <div class="row">
+    <div class="row bg-white py-5 mx-auto" style="border-radius: 1rem; max-width: 600px"">
+
       <div id="form-wrapper" class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+        <div class="text-center py-3"> <h1>Signup</h1></div>
         <form id="signup-form">
           <div class="mb-3">
             <label for="user-email" class="form-label">Email</label>
@@ -54,10 +56,10 @@ const generateForm = ({ user, errors } = {}) => {
 
 const generatePage = (info) => {
   const $page = $('#pages-auth-signup')
-  const $title = '<h1 class="text-center">Signup</h1>'
+
   const $form = generateForm(info)
 
-  $page.html('').append($title).append($form)
+  $page.html('').append($form)
 }
 
 $(document).ready(() => {
