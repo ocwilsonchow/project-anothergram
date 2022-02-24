@@ -1,6 +1,6 @@
-import prisma from '../../_helpers/prisma'
-import handleErrors from '../../_helpers/handle-errors'
-import checkOwnership from '../my/posts/_check-ownership'
+import prisma from '../../_helpers/prisma.js'
+import handleErrors from '../../_helpers/handle-errors.js'
+import checkOwnership from '../my/posts/_check-ownership.js'
 
 const controllersApiCommentDestroy = async (req, res) => {
   try {
