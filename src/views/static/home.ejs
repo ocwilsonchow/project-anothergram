@@ -11,7 +11,7 @@
         <a class="card text-body p-3" href="/posts/${post.id}" style="text-decoration: none; border-radius: 1rem">
           <div class="card-body">
               <h4 class="card-title mb-2">${post.title}</h4>
-              <img src="${post.user.avatar}" alt="user-avatar" width="50" height="50" style="border-radius: 50%; object-fit: cover;"/>
+              <img src="${post.user.avatar}" alt="user-avatar" width="40" height="40" style="border-radius: 50%; object-fit: cover;"/>
               <span class="badge bg-light text-muted">Posted by ${post.user.username}</span>
               <span class="badge bg-light text-muted">#${post.id}</span>
               <p class="card-text my-3" style="text-align: left;">${post.content}</p>
@@ -19,7 +19,7 @@
           <div>
             <span class="badge bg-info">Public</span>
             <span class="badge bg-light text-muted">${moment(post.createdAt).format("YYYY/MM/DD")}</span>
-             <span class="badge rounded-pill bg-light text-muted">💬 ${post.comment?.length || ""}</span>
+             <span class="badge rounded-pill bg-light text-muted" ${post.comment?.length || "hidden"}>💬 ${post.comment?.length}</span>
           </div>
         </a>
       </div>
