@@ -38,6 +38,7 @@
 
 
           ${post.comment.map((comment) => {
+            console.log(comment.id)
             return `
               <div class="d-flex p-2 my-1 rounded-pill bg-light align-items-center justify-content-between">
                 <span class="d-flex m-2 justify-content-center">
@@ -49,7 +50,7 @@
                 </span>
                 <span class="p-2">
                   <form id="delete-comment">
-                    <input hidden name="deleteId" value=${comment.id}>
+                    <input hidden name="deleteId" value=${comment.id} placeholder=${comment.id}>
                     <button class="rounded-pill btn btn-dark btn-sm" id="delete-comment-btn">Delete</button>
                   </form>
                 </span>

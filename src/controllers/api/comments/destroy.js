@@ -5,10 +5,11 @@ import checkOwnership from '../my/posts/_check-ownership.js'
 const controllersApiCommentDestroy = async (req, res) => {
   try {
     const postId = req.body.deleteId
-    const deletedPost = await prisma.comment.delete({
+    const deleteComment = await prisma.comment.delete({
       where: {
-        id: postId } })
-    return res.status(200).json(deletedPost)
+        id: postId }
+      })
+    return res.status(200).json(deleteComment)
   } catch (err) {
     return handleErrors(res, err)
   }
