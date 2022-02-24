@@ -1,6 +1,7 @@
 <%- contentFor('styles') %> <%- contentFor('scripts') %>
 <script>
-  const id = window.location.href.split("/").reverse()[0];
+  const user = "<%= user.id  %>"
+  const id = window.location.href.split('/').reverse()[0]
 
   const generateTitle = ({ isLoading, post } = {}) => {
     if (isLoading)
@@ -87,15 +88,21 @@
 
           ${post.comment.map((comment) => {
             return `
-              <div class="d-flex p-2 my-1 rounded-pill bg-light align-items-center">
+              <div class="d-flex p-2 my-1 rounded-pill bg-light align-items-center justify-content-between">
                 <span class="d-flex m-2 justify-content-center">
                      <img src="${comment.user.avatar}" alt="user-avatar" width="40" height="40" style="border-radius: 50%; object-fit: cover;"/>
-                </span>
-                <span class="ms-3">
+                     <span class="ms-3">
                   <div>${comment.user.username}</div>
                   <div class="text-muted">${comment.content}</div>
                 </span>
+                </span>
 
+                <span class="p-2">
+                  <form id="delete-comment">
+                    <input hidden name="deleteId" value=${comment.id} placeholder=${comment.id}>
+                    <button class="rounded-pill btn btn-secondary btn-sm" id="delete-comment-btn" ${comment.userId != user && "disabled hidden"}>Delete</button>
+                  </form>
+                </span>
               </div>
             `
           }).join("")}
