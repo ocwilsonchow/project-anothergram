@@ -18,7 +18,8 @@ const controllersApiMyPostsIndex = async (req, res) => {
             username: true,
             avatar: true
           }
-        }
+        },
+        comment: true
       }
     })
 

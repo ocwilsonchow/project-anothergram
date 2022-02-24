@@ -12,8 +12,9 @@ const controllersApiPostsShow = async (req, res) => {
           select: {
             username: true,
             avatar: true
-          }
-        }
+          },
+        },
+        comment: true
       },
       rejectOnNotFound: true,
     })

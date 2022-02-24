@@ -32,6 +32,12 @@
               <button class="btn btn-outline-secondary" type="submit" id="comment-submit">Comment</button>
             </div>
           </form>
+          ${post.comment.map((comment) => {
+            return `
+              <div class="card p-2 my-1 rounded-3">${comment.content}</div>
+            `
+          }).join("")}
+
         </a>
       </div>
 `;
@@ -41,6 +47,7 @@
     const $page = $("#pages-posts-show");
     const $title = generateTitle();
     const $post = generatePost(info);
+
 
     $page.html("").append($title).append($post);
   };
