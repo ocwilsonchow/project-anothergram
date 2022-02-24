@@ -39,15 +39,20 @@
 
           ${post.comment.map((comment) => {
             return `
-              <div class="d-flex p-2 my-1 rounded-pill bg-light align-items-center">
+              <div class="d-flex p-2 my-1 rounded-pill bg-light align-items-center justify-content-between">
                 <span class="d-flex m-2 justify-content-center">
-                     <img src="${comment.user.avatar}" alt="user-avatar" width="40" height="40" style="border-radius: 50%; object-fit: cover;"/>
+                  <img src="${comment.user.avatar}" alt="user-avatar" width="40" height="40" style="border-radius: 50%; object-fit: cover;"/>
+                  <span class="ms-3">
+                    <div>${comment.user.username}</div>
+                    <div class="text-muted">${comment.content}</div>
+                  </span>
                 </span>
-                <span class="ms-3">
-                  <div>${comment.user.username}</div>
-                  <div class="text-muted">${comment.content}</div>
+                <span class="p-2">
+                  <form id="delete-comment">
+                    <input hidden name="deleteId" value=${comment.id}>
+                    <button class="rounded-pill btn btn-dark btn-sm" id="delete-comment-btn">Delete</button>
+                  </form>
                 </span>
-
               </div>
             `
           }).join("")}
