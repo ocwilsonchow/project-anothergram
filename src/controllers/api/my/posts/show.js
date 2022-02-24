@@ -14,7 +14,16 @@ const controllersApiPostsShow = async (req, res) => {
             avatar: true
           },
         },
-        comment: true
+        comment: {
+          include: {
+            user: {
+              select: {
+                username: true,
+                avatar: true
+              }
+            }
+          }
+        }
       },
       rejectOnNotFound: true,
     })
