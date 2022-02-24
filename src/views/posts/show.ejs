@@ -1,13 +1,15 @@
 <%- contentFor('styles') %> <%- contentFor('scripts') %>
 <script>
+  const user = "<%= user.id  %>"
   const id = window.location.href.split('/').reverse()[0]
+
 
   const generateTitle = () => {
     return `
     <h1 class="text-center py-4">Specific Public Posts</h1>`;
   };
 
-  const generatePost = ({post, isLoading}) => {
+  const generatePost = ({post, isLoading, errors}) => {
 
     if (isLoading) return `<div class="text-center mb-3">Loading...</div>`
 
@@ -25,13 +27,16 @@
             <span class="card-subtitle text-muted">${moment(post.createdAt).format("YYYY/MM/DD")}</span>
           </div>
 
+
           <form id="comment-new-form" class="py-3">
             <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Your comment" name="content">
+              <input type="text" class="form-control" required placeholder="Your comment" name="content">
                <input type="number" hidden class="form-control" id="postId" name="postId" value=${post.id}>
-              <button class="btn btn-outline-secondary" type="submit" id="comment-submit">Comment</button>
+              <button class="btn btn-outline-secondary ${(!user) && "disabled"}"   type="submit" id="comment-submit">Comment</button>
             </div>
           </form>
+
+
           ${post.comment.map((comment) => {
             return `
               <div class="d-flex p-2 my-1 rounded-pill bg-light align-items-center">
@@ -66,6 +71,7 @@
 
     $('#pages-posts-show').on('submit', '#comment-new-form', (e) => {
      e.preventDefault()
+      $('#comment-new-form button[type="submit"]').attr("disabled", true);
      const data = new FormData(e.target);
      console.log(data)
 
@@ -76,7 +82,7 @@
           }).then((resp) => {
              window.location.href = `/posts/${id}`;
           }).catch((err)=>{
-            console.log(err)
+         console.log(err)
           })
         })
 

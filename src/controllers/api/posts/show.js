@@ -29,9 +29,6 @@ const controllersApiPostsShow = async (req, res) => {
       },
       rejectOnNotFound: true,
     })
-
-
-
     return res.status(200).json(foundPost)
   } catch (err) {
     return handleErrors(res, err)

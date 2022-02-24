@@ -40,7 +40,7 @@ const controllersApiMyPostsIndex = async (req, res) => {
 
     return res.status(200).json({
       posts: foundMyPosts,
-      user: foundUser
+      user: foundUser,
     })
   } catch (err) {
     return handleErrors(res, err)

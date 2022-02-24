@@ -4,7 +4,7 @@ import prisma from "../../_helpers/prisma.js";
 import handleErrors from "../../_helpers/handle-errors.js";
 
 const createSchema = yup.object({
-  content: yup.string(),
+  content: yup.string().required(),
   postId: yup.number(),
   userId: yup.number()
 });

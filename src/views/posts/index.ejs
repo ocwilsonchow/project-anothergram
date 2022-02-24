@@ -59,8 +59,7 @@
       method: "GET",
       url: "/api/posts",
     }).then((resp) => {
-      console.log(resp.data.users)
-      generatePage({ posts: resp.data.posts, users: resp.data.users });
+      generatePage({ posts: resp.data.posts });
     });
   });
 </script>

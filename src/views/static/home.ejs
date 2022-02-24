@@ -6,7 +6,6 @@
   };
 
    const generatePost = (post) => {
-
     return `
       <div class="col">
         <a class="card text-body p-3" href="/posts/${post.id}" style="text-decoration: none; border-radius: 1rem">
@@ -20,6 +19,7 @@
           <div>
             <span class="badge bg-info">Public</span>
             <span class="card-subtitle text-muted">${moment(post.createdAt).format("YYYY/MM/DD")}</span>
+             <span class="badge rounded-pill bg-info text-dark">${post.comment?.length || ""}</span>
           </div>
         </a>
       </div>
@@ -38,6 +38,7 @@
           <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
             <div class="row row-cols-1 g-3">
               ${posts.map((post) => generatePost(post)).join("")}
+
             </div>
           </div>
         </div>
@@ -55,12 +56,12 @@
   $(document).ready(() => {
     generatePage({ isLoading: true });
 
+
     axios({
       method: "GET",
       url: "/api/posts",
     }).then((resp) => {
-      console.log(resp.data.users)
-      generatePage({ posts: resp.data.posts, users: resp.data.users });
+      generatePage({ posts: resp.data.posts});
     });
 
 

@@ -74,13 +74,17 @@
           </div>
 
 
-           <form id="comment-new-form" class="py-3">
+            <form id="comment-new-form" class="py-3">
             <div class="input-group mb-3">
+              <div></div>
               <input type="text" class="form-control" placeholder="Your comment" name="content">
                <input type="number" hidden class="form-control" id="postId" name="postId" value=${post.id}>
               <button class="btn btn-outline-secondary" type="submit" id="comment-submit">Comment</button>
             </div>
           </form>
+
+
+
           ${post.comment.map((comment) => {
             return `
               <div class="d-flex p-2 my-1 rounded-pill bg-light align-items-center">
@@ -120,6 +124,7 @@
 
     $('#pages-my-posts-show').on('submit', '#comment-new-form', (e) => {
      e.preventDefault()
+      $('#comment-new-form button[type="submit"]').attr("disabled", true);
      const data = new FormData(e.target);
      console.log(data)
 
