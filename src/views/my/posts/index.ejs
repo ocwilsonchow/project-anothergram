@@ -28,7 +28,9 @@
             </div>
           <div>
             <span class="badge ${bg}"> ${status}</span>
-            <span class="card-subtitle text-muted">${moment(post.createdAt).format("YYYY/MM/DD")}</span>
+            <span class="badge bg-light text-muted">${moment(post.createdAt).format("YYYY/MM/DD")}</span>
+            <span class="badge rounded-pill bg-light text-muted">💬 ${post.comment?.length || ""}</span>
+
           </div>
         </a>
       </div>
