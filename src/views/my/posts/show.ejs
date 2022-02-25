@@ -64,7 +64,7 @@
                           </div>
                           <div class="modal-footer bg-secondary">
                             <button type="button" class="btn btn-light" data-bs-dismiss="modal">Go Back</button>
-                            <button type="button" id="delete-my-post-confirm" class="btn btn-dark">Delete</button>
+                            <button type="button" id="delete-my-post-confirm" class="btn btn-dark" value=${id}>Delete</button>
                           </div>
                         </div>
                       </div>
@@ -106,15 +106,8 @@
               </div>
             `
           }).join("")}
-
-
         </div>
-
-
       </div>
-
-
-
     `;
   };
 
@@ -128,6 +121,22 @@
 
   $(document).ready(() => {
     generatePage({ isLoading: true });
+
+    // Delete Post
+    $('#pages-my-posts-show').on('click', '#delete-my-post-confirm', (e) => {
+      $(e.target).attr("disabled", true);
+
+      axios({
+        method: "DELETE",
+        url: `/api/my/posts/${id}`,
+      }).then((resp) => {
+        window.location.href = `/my/posts`;
+      }).catch((err)=>{
+        console.log(err)
+      })
+
+    } )
+
 
       // Delete Comment
     $("#pages-my-posts-show").on("click", "#delete-my-comment-confirm", (e) => {

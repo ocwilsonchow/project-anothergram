@@ -6,7 +6,7 @@ import handleErrors from "../../../_helpers/handle-errors.js";
 const createSchema = yup.object({
   title: yup.string().required(),
   content: yup.string().required(),
-  image: yup.string(),
+  imageURL: yup.string(),
   public: yup.boolean().transform((value) => !!value)
 });
 
