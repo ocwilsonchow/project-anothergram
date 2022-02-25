@@ -2,30 +2,53 @@
 <script>
 const profileId = window.location.href.split('/').reverse()[0]
 
-const generateTitle = () => {
-  return `
-    <div class="text-center">
-    </div>
-`
-};
-
 const generatePage = (user) => {
   const $page = $('#pages-show-profile')
-  const $title = generateTitle()
   const $profile = generateProfile(user)
-   $page.html("").append($title).append($profile);
+  const $posts = generatePosts(user)
+  $page.html("").append($profile).append($posts);
 }
 
  const generateProfile = (user) => {
- console.log(user)
  return `
- <div class="text-center">
-    <img src="${user?.avatar}" alt="user-avatar" width="150" height="150" style="border-radius: 50%; object-fit: cover;"/>
-               <span class="ms-3">
-   <h1>${user?.username}</h1>
-   </div>
- `
+    <div class="text-center">
+        <img src="${user?.avatar}" alt="user-avatar" width="150" height="150" style="border-radius: 50%; object-fit: cover;"/>
+        <h1 class="py-2">${user?.username}</h1>
+        <div>
+          <div>${user?.occupation || ""}</div>
+          <div>${user?.location || ""}</div>
+          <div>${user?.website || ""}</div>
+          <div>${user?.hobbies || ""}</div>
+        </div>
+      </div> `
  }
+
+ const generatePost = (post) => {
+  return `
+    <div class="d-flex-column bg-white p-3 mx-auto my-2" style="max-width: 700px; text-align: left">
+      <div>
+       <h4 class="">${post.title}</h4>
+      </div>
+      <div class="text-muted">${post.content}</div>
+       <span class="badge bg-light text-muted">${moment(post.createdAt).format("YYYY/MM/DD")}</span>
+       <span class="badge rounded-pill bg-light text-muted" ${post.comment?.length || "hidden"}>💬 ${post.comment?.length}</span>
+    </div>
+
+
+  `
+ }
+
+ const generatePosts = (user) => {
+  return `
+    <div class="container text-center">
+      ${user?.post.map((post) => generatePost(post)).join("")}
+    </div>
+  `
+ }
+
+
+
+
 
 $(document).ready(() => {
   generatePage()
