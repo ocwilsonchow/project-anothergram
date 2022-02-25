@@ -32,7 +32,7 @@
             <div class="input-group mb-3">
               <input type="text" class="form-control" required placeholder="Your comment" name="content">
                <input type="number" hidden class="form-control" id="postId" name="postId" value=${post.id}>
-              <button class="btn btn-outline-secondary ${(!user) && "disabled"}"   type="submit" id="comment-submit">Comment</button>
+              <button class="btn btn-outline-secondary ${(!user) && "disabled"}"   type="submit" id="comment-submit">${(!user) && "Login required" || "Comment"}</button>
             </div>
           </form>
 
