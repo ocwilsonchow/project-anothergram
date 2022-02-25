@@ -30,11 +30,11 @@ router.delete('/api/my/posts/:id',authenticateUser('json'), (await import('./con
 router.get('/api/my/profile', authenticateUser('json'), (await import('./controllers/api/my/profile/show.js')).default)
 router.put('/api/my/profile', authenticateUser('json'), (await import('./controllers/api/my/profile/update.js')).default)
 
-// PAGE | COMMUNITY
-router.get('/community', (await import('./controllers/pages/community/index.js')).default)
-
 // API | COMMUNITY
 router.get('/api/community', (await import('./controllers/api/community/index.js')).default)
+
+// PAGE | COMMUNITY
+router.get('/community', (await import('./controllers/pages/community/index.js')).default)
 
 // PAGE | AUTH
 router.get('/auth/signup',(await import('./controllers/pages/auth/signup.js')).default)
