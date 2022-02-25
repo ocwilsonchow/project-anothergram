@@ -1,11 +1,56 @@
-<%- contentFor('styles') %>
-<%- contentFor('scripts') %>
+<%- contentFor('styles') %> <%- contentFor('scripts') %>
 <script>
+  const generateTitle = () => {
+    return `
+      <div class="text-center">
+        <h1>Our Community</h1>
+      </div>
+  `;
+  };
+
+  const generatePage = (info) => {
+    const $page = $('#pages-community')
+    const $title = generateTitle()
+    const $users = generateUsers(info)
+
+     $page.html("").append($title).append($users);
+  }
+
+    const generateUser = (user) => {
+      return `
+        <div class="card border-0 p-3 m-2 bg-light align-items-center" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -28px;">
+            <img src="${user.avatar}" alt="user-avatar" width="150" height="150" style="border-radius: 50%; object-fit: cover;"/>
+            <h6 class="text-dark pt-3">${user.username}</h6>
+            <p class="text-muted">${user.occupation || ""}</p>
+        </div>
+      `
+    }
+
+    const generateUsers = (users) => {
+    return `
+      <div class="d-flex justify-content-center p-3 flex-wrap">
+        ${users.map((user) =>  generateUser(user)).join("")}
+        </div>
+    `
+  }
+
+
+$(document).ready(() => {
+
+
+axios({
+  method: 'GET',
+  url: '/api/community'
+}).then((resp) => {
+  const users = resp.data.users
+  generatePage(users)
+})
+
+
+})
+
 
 </script>
 
 <%- contentFor('body') %>
 <div id="pages-community" class="container"></div>
-<div class="text-center">
-  <h1>Our Community</h1>
-</div>
