@@ -14,29 +14,23 @@
 </script>
 
 <nav class="navbar navbar-expand-lg navbar-light mx-auto" style="max-width: 1500px;">
-  <div class="container-fluid mx-3">
-    <a class="navbar-brand" style="color: #4d7cf4; font-weight: bold; font-size: 1.5rem;" href="/">Anothergram</a
+  <div class="container-fluid">
+    <a class="navbar-brand mx-2" style="color: #4d7cf4; font-weight: bold; font-size: 1.5rem;" href="/">Anothergram</a
     >
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbar-links"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="">
 
-    <div class="collapse navbar-collapse" id="navbar-links">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <% if (user.id) { %>
+         <% if (user.id) { %>
+          <div class="dropdown">
+            <button class="btn btn-dark dropdown-toggle rounded-pill" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">Menu
+      </button>
+      <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end dropdown-menu-lg-end" aria-labelledby="dropdownMenuButton2">
         <li class="nav-item">
-          <a class="nav-link text-dark" href="/my/posts">Private</a>
+          <a class="nav-link text-dark" href="/my/posts">My Posts</a>
         </li>
-          <li class="nav-item">
+        <li class="nav-item">
           <a class="nav-link text-dark" href="/my/posts/create">Create</a>
         </li>
         <li class="nav-item">
-           <li class="nav-item">
           <a class="nav-link text-dark " href="/community">Community</a>
         </li>
           <a class="nav-link text-dark " href="/my/profile/edit">Profile</a>
@@ -44,18 +38,27 @@
         <li class="nav-item">
           <a id="auth-logout" class="nav-link text-danger fw-bold" href="/">Logout</a>
         </li>
+         </ul>
+        </div>
+
         <% } else { %>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="/community">Community</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark fw-bold" href="/auth/signup">Signup</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-primary fw-bold" href="/auth/login">Login</a>
-        </li>
+          <div>
+            <ul class="d-flex" style="list-style: none;">
+              <li class="nav-item">
+                <a class="nav-link text-dark" href="/community">Community</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-dark fw-bold" href="/auth/signup">Signup</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-dark fw-bold" href="/auth/login">Login</a>
+              </li>
+          </ul>
+        </div>
         <% } %>
-      </ul>
+
     </div>
+
+
   </div>
 </nav>
