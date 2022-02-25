@@ -13,37 +13,28 @@
   });
 </script>
 
-<nav class="navbar navbar-expand-lg navbar-light mx-auto" style="max-width: 1500px;">
+<nav class="navbar  navbar-expand-lg navbar-light mx-auto" style="max-width: 1500px;">
   <div class="container-fluid">
-    <a class="navbar-brand mx-2" style="color: #4d7cf4; font-weight: bold; font-size: 1.5rem;" href="/">Anothergram</a
-    >
-    <div class="">
-
-         <% if (user.id) { %>
+    <a class="navbar-brand mx-2" style="color: #4d7cf4; font-weight: bold; font-size: 1.5rem;" href="/">Anothergram</a>
           <div class="dropdown">
-            <button class="btn btn-dark dropdown-toggle rounded-pill" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">Menu
-      </button>
-      <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end dropdown-menu-lg-end" aria-labelledby="dropdownMenuButton2">
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="/my/posts">My Posts</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="/my/posts/create">Create</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark " href="/community">Community</a>
-        </li>
-          <a class="nav-link text-dark " href="/my/profile/edit">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a id="auth-logout" class="nav-link text-danger fw-bold" href="/">Logout</a>
-        </li>
-         </ul>
-        </div>
-
-        <% } else { %>
-          <div>
-            <ul class="d-flex" style="list-style: none;">
+            <button class="btn btn-dark dropdown-toggle rounded-pill" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">Menu</button>
+            <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end dropdown-menu-lg-end" aria-labelledby="dropdownMenuButton2">
+            <% if (user.id) { %>
+              <li class="nav-item">
+                <a class="nav-link text-dark" href="/my/posts">My Posts</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-dark" href="/my/posts/create">Create</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-dark " href="/community">Community</a>
+              </li>
+                <a class="nav-link text-dark " href="/my/profile/edit">Profile</a>
+              </li>
+              <li class="nav-item">
+                <a id="auth-logout" class="nav-link text-danger fw-bold" href="/">Logout</a>
+              </li>
+              <% } else { %>
               <li class="nav-item">
                 <a class="nav-link text-dark" href="/community">Community</a>
               </li>
@@ -53,12 +44,8 @@
               <li class="nav-item">
                 <a class="nav-link text-dark fw-bold" href="/auth/login">Login</a>
               </li>
-          </ul>
-        </div>
-        <% } %>
-
+            </ul>
+             <% } %>
     </div>
-
-
   </div>
 </nav>
