@@ -39,7 +39,7 @@ const generatePage = (user) => {
  }
 
  const generatePosts = (user) => {
-    if (user?.post) {
+    if (user?.post.length < 1) {
     return `<div class="text-center">This user does not has any post.</div>
     `}
    else return `
