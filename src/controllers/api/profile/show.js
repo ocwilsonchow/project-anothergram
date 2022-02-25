@@ -16,6 +16,9 @@ const controllersApiProfileUpdate = async (req, res) => {
           orderBy: {
             createdAt: "desc",
           },
+          where: {
+            public: true
+          },
           include: {
             comment: true,
             user: {
