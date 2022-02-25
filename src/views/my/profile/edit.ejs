@@ -62,11 +62,19 @@ const generateForm = ({ user, errors } = {}) => {
           </div>
 
           <div><h3>Biography</h3></div>
-          <div class="input-group py-3 pt-4 border-top border-dark"">
+          <div class="input-group py-3 pt-4 border-top border-dark">
             <span class="input-group-text">Location</span>
             <input id="user-location" class="form-control ${errors?.location && 'is-invalid'}" placeholder="optional" name="location" rows="3" value="${user?.location || ''}" type="text">
             <span class="input-group-text">Occupation</span>
             <input id="user-occupation" class="form-control ${errors?.occupation && 'is-invalid'}" placeholder="optional" name="occupation" rows="3" value="${user?.occupation || ''}" type="text">
+          </div>
+          <div class="input-group py-1">
+            <span class="input-group-text">Website</span>
+            <input id="user-website" class="form-control ${errors?.website && 'is-invalid'}" placeholder="optional" name="website" rows="3" value="${user?.website || ''}" type="text">
+          </div>
+          <div class="input-group py-1">
+            <span class="input-group-text">Hobbies</span>
+            <input id="user-hobbies" class="form-control ${errors?.hobbies && 'is-invalid'}" placeholder="optional" name="hobbies" rows="3" value="${user?.hobbies || ''}" type="text">
           </div>
 
           <button class="btn btn-primary my-4" type="submit">Submit</button>

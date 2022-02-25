@@ -14,11 +14,11 @@ const generatePage = (user) => {
     <div class="text-center">
         <img src="${user?.avatar}" alt="user-avatar" width="150" height="150" style="border-radius: 50%; object-fit: cover;"/>
         <h1 class="py-2">${user?.username}</h1>
-        <div>
-          <div>${user?.occupation || ""}</div>
-          <div>${user?.location || ""}</div>
-          <div>${user?.website || ""}</div>
-          <div>${user?.hobbies || ""}</div>
+        <div class="pb-3">
+          <div class="badge bg-dark text-light">${user?.occupation && user?.occupation + " 🏆"|| ""}</div>
+          <div class="badge bg-dark text-light">${user?.location && user?.location + " 📍"|| ""}</div>
+          <a class="badge bg-dark text-light" >${user?.website || ""}</a>
+          <div class="badge bg-dark text-light">${user?.hobbies || ""}</div>
         </div>
       </div> `
  }
