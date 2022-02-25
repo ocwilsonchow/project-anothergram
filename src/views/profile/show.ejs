@@ -1,0 +1,45 @@
+<%- contentFor('styles') %> <%- contentFor('scripts') %>
+<script>
+const profileId = window.location.href.split('/').reverse()[0]
+
+const generateTitle = () => {
+  return `
+    <div class="text-center">
+    </div>
+`
+};
+
+const generatePage = (user) => {
+  const $page = $('#pages-show-profile')
+  const $title = generateTitle()
+  const $profile = generateProfile(user)
+   $page.html("").append($title).append($profile);
+}
+
+ const generateProfile = (user) => {
+ console.log(user)
+ return `
+ <div class="text-center">
+    <img src="${user?.avatar}" alt="user-avatar" width="150" height="150" style="border-radius: 50%; object-fit: cover;"/>
+               <span class="ms-3">
+   <h1>${user?.username}</h1>
+   </div>
+ `
+ }
+
+$(document).ready(() => {
+  generatePage()
+
+  axios({
+    method: 'GET',
+    url: `/api/profile/${profileId}`
+  }).then((resp) => {
+    const user = resp.data
+    generatePage(user)
+  })
+
+})
+</script>
+
+<%- contentFor('body') %>
+<div id="pages-show-profile" class="container"></div>

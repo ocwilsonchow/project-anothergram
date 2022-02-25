@@ -18,11 +18,11 @@
 
     const generateUser = (user) => {
       return `
-        <div class="card border-0 p-3 m-2 bg-light align-items-center" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -28px;">
+        <a class="user-card card p-3 m-2 align-items-center" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -28px; text-decoration: none" href="/profile/${user.id}">
             <img src="${user.avatar}" alt="user-avatar" width="150" height="150" style="border-radius: 50%; object-fit: cover;"/>
-            <h6 class="text-dark pt-3">${user.username}</h6>
-            <p class="text-muted">${user.occupation || ""}</p>
-        </div>
+            <h6 class="pt-3">${user.username}</h6>
+            <p class="">${user.occupation || ""}</p>
+        </a>
       `
     }
 

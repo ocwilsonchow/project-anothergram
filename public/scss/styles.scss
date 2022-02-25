@@ -22,7 +22,27 @@
   transition: all ease 0.3s
 }
 
+.user-card {
+  border-radius: 0.5rem;
+  background-color: rgb(248, 248, 248);
+  cursor: pointer;
+   h6 {
+     color: rgb(0, 0, 0);
+   }
+   p {
+     color: rgb(128, 128, 128);
+   }
+}
 
+.user-card:hover {
+  background-color:rgb(15, 15, 15);
+  h6{
+    color:rgb(248, 248, 248);
+  }
+  p{
+    color:rgb(179, 177, 177);
+  }
+}
 
 body{
   background-color: rgb(245, 245, 245)
