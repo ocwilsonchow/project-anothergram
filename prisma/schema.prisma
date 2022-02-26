@@ -21,6 +21,7 @@ model User {
   location     String?
   hobbies      String?
   website      String?
+  bio          String?
   occupation   String?
   post         Post[]
   comment      Comment[]
