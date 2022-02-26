@@ -7,7 +7,7 @@
         navigator.geolocation.getCurrentPosition((position)=> {
           lat = position.coords.latitude
           long = position.coords.longitude
-          console.log(lat + "," + long)
+          // console.log(lat + "," + long)
 
             axios({
               method: 'GET',
@@ -32,7 +32,7 @@
      const generateWeatherBoard = (weatherData) => {
       if (!weatherData) {
         return `
-       <div class="py-2 bg-light text-dark">
+       <div class="py-3 bg-light text-dark">
          <span class="spinner-border spinner-border-sm" role="status">
           <span class="visually-hidden">Loading...</span>
         </span>
@@ -42,11 +42,19 @@
       }
 
       return `
-        <div class="row">
-          <div class="mx-auto bg-light text-dark py-2" >
+       <a class="" style="text-decoration: none" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+         <div class="row">
+          <div class="mx-auto bg-light text-dark py-3" >
             <span>Welcome back! ${weatherData?.name}, ${weatherData?.sys.country} is ${weatherData?.weather[0].main}.</span>
             <span class="fw-bold text-primary">${weatherData?.main.temp}ºC</span>
           </div>
+        </div>
+      </a>
+        <div class="collapse text-center bg-light text-dark pb-3" id="collapseExample">
+          <div>Feel like: <span class="fw-bold text-primary">${weatherData?.main.feels_like}ºC</span> </div>
+          <div>Humidity: <span class="fw-bold text-primary">${weatherData?.main.humidity}%</span></div>
+          <div>Wind Speed: <span class="fw-bold text-primary">${(weatherData?.wind.speed)*3.6}km/hr</span></div>
+
         </div>
       `
     }
