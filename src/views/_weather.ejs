@@ -7,12 +7,14 @@
         navigator.geolocation.getCurrentPosition((position)=> {
           lat = position.coords.latitude
           long = position.coords.longitude
+          console.log(lat + "," + long)
 
             axios({
               method: 'GET',
               url: `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`,
             }).then((resp)=> {
               weatherData = resp.data
+              console.log(weatherData)
               generateWeatherPage(weatherData)
 
             })
@@ -28,7 +30,6 @@
       }
     }
      const generateWeatherBoard = (weatherData) => {
-      console.log(weatherData)
       if (!weatherData) {
         return `
        <div class="py-2 bg-dark text-light">
