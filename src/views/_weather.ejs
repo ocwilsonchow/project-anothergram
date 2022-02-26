@@ -32,7 +32,7 @@
      const generateWeatherBoard = (weatherData) => {
       if (!weatherData) {
         return `
-       <div class="py-2 bg-dark text-light">
+       <div class="py-2 bg-light text-dark">
          <span class="spinner-border spinner-border-sm" role="status">
           <span class="visually-hidden">Loading...</span>
         </span>
@@ -43,9 +43,9 @@
 
       return `
         <div class="row">
-          <div class="mx-auto bg-dark text-light py-2" >
+          <div class="mx-auto bg-light text-dark py-2" >
             <span>Welcome back! ${weatherData?.name}, ${weatherData?.sys.country} is ${weatherData?.weather[0].main}.</span>
-            <span class="fw-bold text-info">${weatherData?.main.temp}ºC</span>
+            <span class="fw-bold text-primary">${weatherData?.main.temp}ºC</span>
           </div>
         </div>
       `
