@@ -53,7 +53,7 @@
         <div class="collapse text-center bg-light text-dark pb-3" id="collapseExample">
           <div>Feel like: <span class="fw-bold text-primary">${weatherData?.main.feels_like}ºC</span> </div>
           <div>Humidity: <span class="fw-bold text-primary">${weatherData?.main.humidity}%</span></div>
-          <div>Wind Speed: <span class="fw-bold text-primary">${(weatherData?.wind.speed)*3.6}km/hr</span></div>
+          <div>Wind Speed: <span class="fw-bold text-primary">${((weatherData?.wind.speed)*3.6).toFixed(1)}km/hr</span></div>
 
         </div>
       `
