@@ -17,7 +17,7 @@
               <p class="card-text my-3" style="text-align: left;">${post.content}</p>
             </div>
           <div>
-            <span class="badge bg-info">Public</span>
+            <span class="badge bg-dark">Public</span>
             <span class="badge bg-light text-muted">${moment(post.createdAt).format("YYYY/MM/DD")}</span>
              <span class="badge rounded-pill bg-light text-muted" ${post.comment?.length || "hidden"}>💬 ${post.comment?.length}</span>
           </div>

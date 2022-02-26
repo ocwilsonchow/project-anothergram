@@ -19,7 +19,7 @@
     let status = "";
     if (post.public) {
       status = "public";
-      bg = "bg-info";
+      bg = "bg-dark";
     } else {
       status = "private";
       bg = "bg-dark";
@@ -45,7 +45,7 @@
                 ).format("YYYY/MM/DD")}</span>
               </span>
               <span>
-                <a href="/my/posts/${id}/edit" class="btn btn-info btn-sm">Edit</a>
+                <a href="/my/posts/${id}/edit" class="btn btn-light btn-sm">Edit</a>
                  <!-- Button trigger modal -->
                     <button type="button" id="delete-my-post" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                       Delete
@@ -92,7 +92,7 @@
                 <span class="d-flex m-2 justify-content-center">
                   <img src="${comment.user.avatar}" alt="user-avatar" width="40" height="40" style="border-radius: 50%; object-fit: cover;"/>
                   <span class="ms-3">
-                    <div>${comment.user.username} ${comment.id}</div>
+                    <div>${comment.user.username}</div>
                     <div class="text-muted">${comment.content}</div>
 
                   </span>
