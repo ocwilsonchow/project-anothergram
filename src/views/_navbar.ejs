@@ -1,20 +1,14 @@
 <script>
-
-   const generateDashboard = () => {
-    return `
-
-    `
-  }
+  const apiKey = '<%= process.env.OPEN_WEATHER_API_KEY %>';
 
   $(document).ready(() => {
+    console.log(apiKey)
     navigator.geolocation.getCurrentPosition = (console.log, console.log)
-
-
 
     // Get weather data
     axios({
       method: 'GET',
-      url: `https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=9275c7cb0f80737f5d03cf3ca3786d06`,
+      url: `https://api.openweathermap.org/data/2.5/weather?lat=22.3193&lon=114.1694&appid=${apiKey}`,
     }).then((resp)=> {
       console.log(resp)
     })
