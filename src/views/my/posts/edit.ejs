@@ -68,8 +68,8 @@ let publicChecked
       $('#post-new-form button[type="submit"]').attr("disabled", true);
 
       axios({
-      method: "POST",
-      url: "/api/my/posts",
+      method: "PUT",
+      url: `/api/my/posts/${id}`,
       data,
     })
       .then((resp) => {
