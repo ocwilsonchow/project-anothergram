@@ -1,27 +1,8 @@
 <script>
-  const apiKey = '<%= process.env.OPEN_WEATHER_API_KEY %>';
-  let lat, long
-    const getLocation = () => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position)=> {
-          lat = position.coords.latitude
-          long = position.coords.longitude
-          console.log("lat: " + lat + ", long: " + long)
 
-            axios({
-              method: 'GET',
-              url: `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}`,
-            }).then((resp)=> {
-              console.log(resp.data)
-            })
-        });
-      } else {
-        console.log("Geolocation is not supported by this browser.");
-      }
-    }
+
 
   $(document).ready(() => {
-    getLocation()
 
     $("#auth-logout").on("click", (e) => {
       e.preventDefault();

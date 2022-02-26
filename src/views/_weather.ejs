@@ -1,0 +1,69 @@
+<script>
+  const apiKey = '<%= process.env.OPEN_WEATHER_API_KEY %>';
+  let lat, long, weatherData
+
+    const getLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position)=> {
+          lat = position.coords.latitude
+          long = position.coords.longitude
+
+            axios({
+              method: 'GET',
+              url: `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`,
+            }).then((resp)=> {
+              weatherData = resp.data
+              generateWeatherPage(weatherData)
+
+            })
+        });
+      } else {
+        console.log("Geolocation is not supported by this browser.");
+        axios({
+              method: 'GET',
+              url: `https://api.openweathermap.org/data/2.5/weather?lat=22.3355433&lon=114.1622848&appid=${apiKey}&units=metric`,
+            }).then((resp)=> {
+              weatherData = resp.data
+            })
+      }
+    }
+     const generateWeatherBoard = (weatherData) => {
+      console.log(weatherData)
+      if (!weatherData) {
+        return `
+       <div class="py-2 bg-dark text-light">
+         <span class="spinner-border spinner-border-sm" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </span>
+      </div>
+
+`
+      }
+
+      return `
+        <div class="row">
+          <div class="mx-auto bg-dark text-light py-2" >
+            <span>Welcome back! ${weatherData?.name}, ${weatherData?.sys.country} is ${weatherData?.weather[0].main}.</span>
+            <span class="fw-bold text-info">${weatherData?.main.temp}ºC</span>
+          </div>
+        </div>
+      `
+    }
+
+
+    const generateWeatherPage = (weatherData) => {
+      const $page = $("#weather-wrapper")
+      const $weather = generateWeatherBoard(weatherData)
+
+      $page.html("").append($weather)
+    }
+
+     $(document).ready(() => {
+      generateWeatherPage(weatherData, {isLoading: true})
+      getLocation()
+
+    })
+
+</script>
+
+<div id="weather-wrapper" class="text-center"></div>
