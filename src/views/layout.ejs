@@ -42,9 +42,15 @@
     <%- scripts %>
   </head>
   <body>
-      <%- include('_weather') %>
-    <%- include('_navbar') %>
+    <nav><%- include('_navbar') %></nav>
+    <main class="main-container">
+      <div class="left-container"><%- include('_weather') %> </div>
+      <div class="middle-container"> <%- body %></div>
+      <div class="right-container">Right</div>
 
-     <%- body %>
+    </main>
+
+
+
   </body>
 </html>

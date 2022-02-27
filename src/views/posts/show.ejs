@@ -24,7 +24,7 @@
               <p class="card-text my-3" style="text-align: left;">${post.content}</p>
             </div>
           <div>
-            <span class="badge bg-light text-muted">${moment(post.createdAt).format("YYYY/MM/DD")}</span>
+            <span class="badge bg-light text-muted">${moment(post.createdAt).subtract(1, 'days').calendar()}</span>
           </div>
 
 
@@ -43,7 +43,7 @@
                 <span class="d-flex m-2 justify-content-center">
                   <img src="${comment.user.avatar}" alt="user-avatar" width="40" height="40" style="border-radius: 50%; object-fit: cover;"/>
                   <span class="ms-3">
-                    <div>${comment.user.username}</div>
+                    <div>${comment.user.username} <span class="badge bg-light text-muted">${moment(comment.createdAt).subtract(1, 'days').calendar()}</span></div>
                     <div class="text-muted">${comment.content}</div>
 
                   </span>

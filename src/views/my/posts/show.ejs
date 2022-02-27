@@ -42,7 +42,7 @@
                 <span class="badge ${bg}"> ${status}</span>
                 <span class="badge bg-light text-muted">${moment(
                   post.createdAt
-                ).format("YYYY/MM/DD")}</span>
+                ).subtract(1, 'days').calendar()}</span>
               </span>
               <span>
                 <a href="/my/posts/${id}/edit" class="btn btn-light btn-sm">Edit</a>
@@ -92,7 +92,7 @@
                 <span class="d-flex m-2 justify-content-center">
                   <img src="${comment.user.avatar}" alt="user-avatar" width="40" height="40" style="border-radius: 50%; object-fit: cover;"/>
                   <span class="ms-3">
-                    <div>${comment.user.username}</div>
+                    <div>${comment.user.username}<span class="badge bg-light text-muted">${moment(comment.createdAt).subtract(1, 'days').calendar()}</span></div>
                     <div class="text-muted">${comment.content}</div>
 
                   </span>
