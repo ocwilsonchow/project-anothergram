@@ -42,13 +42,14 @@
     <%- scripts %>
   </head>
   <body>
-    <nav><%- include('_navbar') %></nav>
+
     <main class="row">
-      <div class="col-0 col-sm-2 col-l-4 col-xl-3 bg-light">
+      <nav><%- include('_navbar') %></nav>
+      <div class="col-0 col-sm-2 col-l-3 col-xl-3 bg-light border-end">
         <div id="sidebar" class="d-flex flex-column align-items-end"><%- include('_sidebar') %></div>
       </div>
-      <div class="col"> <%- body %></div>
-      <div class="col-0 col-sm-2 col-l-4  col-xl-3  bg-light"></div>
+      <div class="col bg-light"> <%- body %></div>
+      <div class="col-0 col-sm-2 col-l-3  col-xl-3  bg-light border-start"></div>
 
     </main>
 
