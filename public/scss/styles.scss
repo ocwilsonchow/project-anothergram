@@ -3,8 +3,8 @@
 
 *{
  font-family: 'Poppins', sans-serif;
- padding: 0;
- margin: 0;
+ padding: 0px;
+ margin: 0px;
 
 }
 
@@ -15,6 +15,7 @@
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
+
 
 #nav-login:hover {
   background-color: rgb(50, 50, 156);
@@ -50,10 +51,6 @@
   p{
     color:rgb(179, 177, 177);
   }
-}
-
-main {
-  width: 100vw;
 }
 
 .nav-link:hover {
