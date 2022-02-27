@@ -43,10 +43,12 @@
   </head>
   <body>
     <nav><%- include('_navbar') %></nav>
-    <main class="main-container">
-      <div class="left-container"><%- include('_weather') %> </div>
-      <div class="middle-container"> <%- body %></div>
-      <div class="right-container">Right</div>
+    <main class="row">
+      <div class="col-0 col-sm-2 col-l-4 col-xl-3 bg-light">
+        <div id="sidebar" class="d-flex flex-column align-items-end"><%- include('_sidebar') %></div>
+      </div>
+      <div class="col"> <%- body %></div>
+      <div class="col-0 col-sm-2 col-l-4  col-xl-3  bg-light"></div>
 
     </main>
 

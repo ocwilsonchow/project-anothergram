@@ -42,20 +42,20 @@
       }
 
       return `
-       <a class="" style="text-decoration: none;" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-         <div class="">
-          <div class="mx-auto bg-light text-dark p-3" >
-            <span>Welcome back! ${weatherData?.name}, ${weatherData?.sys.country} is ${weatherData?.weather[0].main}.</span>
+       <div id="weather-component">
+        <div style="text-decoration: none;">
+          <div class="mx-auto bg-white text-dark p-3" >
+            <h3>Welcome back!</h3>
+            <span>${weatherData?.name}, ${weatherData?.sys.country} is ${weatherData?.weather[0].main}.</span>
             <span class="fw-bold text-primary">${weatherData?.main.temp}ºC</span>
-          </div>
-        </div>
-      </a>
-        <div class="collapse text-center bg-light text-dark pb-3" id="collapseExample">
-          <div>Feel like: <span class="fw-bold text-primary">${weatherData?.main.feels_like}ºC</span> </div>
+             <div>Feel like: <span class="fw-bold text-primary">${weatherData?.main.feels_like}ºC</span> </div>
           <div>Humidity: <span class="fw-bold text-primary">${weatherData?.main.humidity}%</span></div>
           <div>Wind Speed: <span class="fw-bold text-primary">${((weatherData?.wind.speed)*3.6).toFixed(1)}km/hr</span></div>
+          </div>
 
         </div>
+
+       </div>
       `
     }
 
@@ -75,4 +75,4 @@
 
 </script>
 
-<div id="weather-wrapper" class="text-center"></div>
+<div id="weather-wrapper" class=" my-3"></div>
