@@ -10,27 +10,27 @@
     },
      {
       title: "Community",
-      icon: "bx-home bx-sm",
+      icon: "bx-globe bx-sm",
       link: "/community"
     },
      {
       title: "My Posts",
-      icon: "bx-home bx-sm",
+      icon: "bx-paper-plane bx-sm",
       link: "/my/posts"
     },
      {
       title: "Create",
-      icon: "bx-home bx-sm",
+      icon: "bx-edit-alt bx-sm",
       link: "/my/posts/create"
     },
      {
       title: "Profile",
-      icon: "bx-home bx-sm",
+      icon: "bx-user bx-sm",
       link: "/my/profile/edit"
     },
      {
       title: "Log out",
-      icon: "bx-home bx-sm",
+      icon: "bx-log-out bx-sm",
       link: "/"
     },
   ]
@@ -71,7 +71,7 @@
             <h3>Welcome back!</h3>
             <div> <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></div>
             <div> <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></div>
-            <div class="fw-bold fs-3 text-primary"> <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></div>
+            <div class="fs-3 text-dark"> <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></div>
           <div>Humidity: <span class="fw-bold text-dark"> <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></span></div>
           <div>Wind Speed: <span class="fw-bold text-dark"> <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></span></div>
           </div>
@@ -94,7 +94,7 @@
 
   const generateMenuItem = (menuItem)=> {
      return `
-     <a class="py-3  d-flex text-muted align-items-center" style="text-decoration: none;" href=${menuItem.link}>
+     <a class="py-3  d-flex text-dark align-items-center" style="text-decoration: none;" href=${menuItem.link}>
        <i class='mx-2 bx ${menuItem.icon}'></i>
        <div class="mx-3 fs-6 d-none d-sm-none d-lg-none d-xl-block ">${menuItem.title}</div>
      </a>`
@@ -103,7 +103,7 @@
   const generateSidebar = (menuItems, weatherData) => {
    return `
    <div class="p-3 mb-3 bg-white d-md-block d-lg-block d-xl-none" style="border-radius: 15px;">
-      <i class='m-2 bx bx-sun bx-sm text-muted'></i>
+      <i class='m-2 bx bx-sun bx-sm text-dark'></i>
     </div>
     <div class="p-3 mb-3 bg-white d-none d-sm-none d-lg-none d-xl-block"  style="border-radius: 15px;">
       ${generateWeatherBoard(weatherData)}
