@@ -4,10 +4,7 @@
   const id = window.location.href.split('/').reverse()[0]
 
 
-  const generateTitle = () => {
-    return `
-    <h1 class="text-center py-4">Specific Public Posts</h1>`;
-  };
+
 
   const generatePost = ({post, isLoading, errors}) => {
 
@@ -66,11 +63,10 @@
 
   const generatePage = (info) => {
     const $page = $("#pages-posts-show");
-    const $title = generateTitle();
     const $post = generatePost(info);
 
 
-    $page.html("").append($title).append($post);
+    $page.html("").append($post);
   };
 
   $(document).ready(() => {
@@ -116,7 +112,7 @@
       url: `/api/posts/${id}`,
     }).then((resp) => {
       generatePage({isLoading: false, post: resp.data});
-      console.log(resp.data)
+
     }).catch(() => {
     generatePage()
     })

@@ -1,5 +1,41 @@
-<script></script>
+<script>
 
-<div class="bg-white p-3" style="border-radius: 15px;">
-  <h4>Messages</h4>
-</div>
+   const generateUser = (user) => {
+     console.log(user)
+      return `
+        <a class="py-1 user-avatar" href="/profile/${user.id}" data-bs-toggle="tooltip" data-bs-placement="right" title=${user.username}>
+          <img src="${user.avatar}" alt="user-avatar" width="80" height="80" style="border-radius: 50%; object-fit: cover;"/>
+        </a>
+      `
+    }
+
+    const generateUsers = (users) => {
+    return `
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <h4 class="text-center py-3 d-lg-none d-xl-block">Community</h4>
+        ${users.map((user) =>  generateUser(user)).join("")}
+      </div>
+    `
+    }
+
+    const generateUsersComponent = (users) => {
+    const $page = $('#toolbar-users-container')
+    const $users = generateUsers(users)
+
+    $page.html("").append($users);
+
+  }
+
+
+  $(document).ready(() => {
+    axios({
+      method: "GET",
+      url: "/api/community",
+    }).then((resp) => {
+      const users = resp.data.users;
+      generateUsersComponent(users);
+    });
+  });
+</script>
+
+<div id="toolbar-users-container" class="bg-white p-2" style="border-radius: 1rem; overflow: auto;" ></div>
