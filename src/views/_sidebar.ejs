@@ -1,6 +1,65 @@
-<script></script>
+<script>
 
-<div>
-  <h4>Sidebar</h4>
+  const menuItems = [
+    {
+      title: "Home",
+      icon: "bx-home bx-sm",
+      link: "/"
+    },
+     {
+      title: "Community",
+      icon: "bx-home bx-sm",
+      link: "/"
+    },
+     {
+      title: "Create",
+      icon: "bx-home bx-sm",
+      link: "/"
+    },
+     {
+      title: "Profile",
+      icon: "bx-home bx-sm",
+      link: "/"
+    },
+     {
+      title: "Log out",
+      icon: "bx-home bx-sm",
+      link: "/"
+    },
+  ]
 
-</div>
+  const generateMenuItem = (menuItem)=> {
+     return `
+     <a class="py-2 my-2 d-flex text-muted align-items-center" style="text-decoration: none;">
+       <i class='bx ${menuItem.icon}'></i>
+       <div class="mx-3 fs-5 ">${menuItem.title}</div>
+     </a>`
+  }
+
+  const generateSidebar = (menuItems) => {
+   return `
+   <div class="p-3 bg-white">
+    ${menuItems.map((menuItem) => generateMenuItem(menuItem)).join("")}
+    </div>
+   `
+  }
+
+  const generateComponent = (menuItems) =>{
+    const $page = $('#sidebar-menu-container')
+    const $menu = generateSidebar(menuItems)
+
+
+    $page.html("").append($menu)
+  }
+
+
+    $(document).ready(() =>{
+      generateComponent(menuItems)
+
+
+    })
+
+</script>
+
+
+  <div id="sidebar-menu-container" class=""></div>

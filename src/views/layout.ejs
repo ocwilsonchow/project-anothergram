@@ -45,17 +45,17 @@
     <%- scripts %>
   </head>
   <body class="bg-light">
-    <nav class="bg-white mb-3 "><%- include('_navbar') %></nav>
+    <nav class="bg-white mb-3"><%- include('_navbar') %></nav>
 
-    <main class="container bg-light">
+    <main class="container bg-dark">
         <div class="row">
-          <div class="col-0 col-sm-0 col-l-2 col-xl-3 bg-white">
+          <div class="col-xs-0 d-none d-md-block col-sm-2 col-l-3 col-xl-2 p-2">
             <div id="sidebar" class="d-flex flex-column align-items-end">
               <%- include('_sidebar') %>
             </div>
           </div>
           <div class="col bg-light"><%- body %></div>
-          <div class="col-0 col-sm-3 col-l-2 col-xl-3 bg-white">
+          <div class="col-xs-0 d-none d-sm-block col-sm-2 col-l-3 col-xl-2 p-3">
               <%- include('_toolbar') %>
           </div>
         </div>
