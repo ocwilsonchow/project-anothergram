@@ -47,15 +47,15 @@
   <body class="bg-light">
     <nav class="bg-white mb-3"><%- include('_navbar') %></nav>
 
-    <main class="container bg-dark">
+    <main class="container">
         <div class="row">
-          <div class="col-xs-0 d-none d-md-block col-sm-2 col-l-3 col-xl-2 p-2">
+          <div class="col-2 col-sm-2 col-l-3 col-xl-2 p-2">
             <div id="sidebar" class="d-flex flex-column align-items-end">
               <%- include('_sidebar') %>
             </div>
           </div>
           <div class="col bg-light"><%- body %></div>
-          <div class="col-xs-0 d-none d-sm-block col-sm-2 col-l-3 col-xl-2 p-3">
+          <div class="col-xs-0 d-none d-md-block col-sm-0 col-l-3 col-xl-2 p-3">
               <%- include('_toolbar') %>
           </div>
         </div>
