@@ -3,7 +3,7 @@
    const generateUser = (user) => {
      console.log(user)
       return `
-        <a class="py-1" href="/profile/${user.id}" data-bs-toggle="tooltip" data-bs-placement="right" title=${user.username}>
+        <a class="" href="/profile/${user.id}" data-bs-toggle="tooltip" data-bs-placement="right" title=${user.username}>
           <img src="${user.avatar}" class="user-avatar" alt="user-avatar" width="80" height="80" style="border-radius: 50%; object-fit: cover;"/>
         </a>
       `
@@ -12,7 +12,7 @@
     const generateUsers = (users) => {
     return `
       <div class="d-flex flex-column justify-content-center align-items-center">
-        <h4 class="text-center py-2 d-lg-none d-xl-block">Community</h4>
+        <h4 class="text-center py-1 d-lg-none d-xl-block">Community</h4>
         ${users.map((user) =>  generateUser(user)).join("")}
       </div>
     `
