@@ -5,7 +5,7 @@ const controllersApiCommunityIndex = async (req, res) => {
   try {
     const foundUsers = await prisma.user.findMany({
       orderBy: {
-        id: 'asc'
+        id: 'desc'
       }
     })
     return res.status(200).json({
