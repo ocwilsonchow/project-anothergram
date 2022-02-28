@@ -78,3 +78,13 @@
 .menu-item:hover{
   background-color:rgb(238, 238, 238);
 }
+
+.user-avatar{
+  border: 4px solid transparent;
+  transition: all ease 0.3s;
+}
+
+.user-avatar:hover {
+   border: 4px solid rgb(153, 154, 248);
+   box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+}
