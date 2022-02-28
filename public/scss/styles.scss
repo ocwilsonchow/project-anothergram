@@ -1,11 +1,10 @@
-@import 'node_modules/bootstrap/scss/bootstrap';
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&family=Roboto:ital,wght@0,100;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap');
+@import "node_modules/bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&family=Roboto:ital,wght@0,100;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap");
 
-*{
- font-family: 'Poppins', sans-serif;
- padding: 0px;
- margin: 0px;
-
+* {
+  font-family: "Poppins", sans-serif;
+  padding: 0px;
+  margin: 0px;
 }
 
 #nav-login {
@@ -16,42 +15,49 @@
   padding-right: 0.5rem;
 }
 
-
 #nav-login:hover {
   background-color: rgb(50, 50, 156);
 }
 
 .card {
-  transition: all ease 0.2s
+  transition: all ease 0.2s;
 }
 
 .card:hover {
- box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
-
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
 }
 
 .user-card {
   border-radius: 0.5rem;
-  background-color: rgb(248, 248, 248);
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
   cursor: pointer;
-   h6 {
-     color: rgb(0, 0, 0);
-   }
-   p {
-     color: rgb(128, 128, 128);
-   }
+  h6 {
+    color: rgb(0, 0, 0);
+  }
+  p {
+    color: rgb(128, 128, 128);
+  }
 }
 
 .user-card:hover {
-  background-color:rgb(15, 15, 15);
-  h6{
-    color:rgb(248, 248, 248);
+  background-color: rgb(15, 15, 15);
+  h6 {
+    color: rgb(248, 248, 248);
   }
-  p{
-    color:rgb(179, 177, 177);
+  p {
+    color: rgb(179, 177, 177);
   }
 }
 
 .nav-link:hover {
-  background-color:rgb(245, 245, 245)
+  background-color: rgb(245, 245, 245);
+}
+
+.menu-item {
+  transition: all ease .3s
+}
+
+.menu-item:hover{
+  background-color:rgb(238, 238, 238);
 }

@@ -2,23 +2,23 @@
 <script>
   const generateTitle = () => {
     return `
-    <h1 class="text-center py-4">All Public Posts</h1>`;
+    <h1 class="text-center"></h1>`;
   };
 
    const generatePost = (post) => {
     return `
       <div class="col">
-        <a class="card text-body p-3" href="/posts/${post.id}" style="text-decoration: none; border-radius: 1rem">
+        <a class="card  text-body p-3" href="/posts/${post.id}" style="text-decoration: none; border-radius: 1rem">
           <div class="card-body">
-              <h4 class="card-title mb-2">${post.title}</h4>
+              <h4 class="card-title mb-2" ">${post.title}</h4>
               <img src="${post.user.avatar}" alt="user-avatar" width="40" height="40" style="border-radius: 50%; object-fit: cover;"/>
               <span class="badge bg-light text-muted">Posted by ${post.user.username}</span>
 
               <p class="card-text my-3" style="text-align: left;">${post.content}</p>
             </div>
           <div>
-            <span class="badge bg-info">Public</span>
-            <span class="badge bg-light text-muted">${moment(post.createdAt).format("YYYY/MM/DD")}</span>
+            <span class="badge bg-dark">Public</span>
+            <span class="badge bg-light text-muted">${moment(post.createdAt).subtract(1, 'days').calendar()}</span>
              <span class="badge rounded-pill bg-light text-muted" ${post.comment?.length || "hidden"}>💬 ${post.comment?.length}</span>
           </div>
         </a>
@@ -34,9 +34,9 @@
         `;
     }
     return `
-        <div class="row pb-4">
-          <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
-            <div class="row row-cols-1 g-3">
+        <div class="row pb-3">
+          <div class="">
+            <div class="row row-cols-1 g-2">
               ${posts.map((post) => generatePost(post)).join("")}
 
             </div>
@@ -55,8 +55,6 @@
 
   $(document).ready(() => {
     generatePage({ isLoading: true });
-
-
     axios({
       method: "GET",
       url: "/api/posts",
@@ -70,4 +68,6 @@
 </script>
 
 <%- contentFor('body') %>
+
+
 <div id="pages-posts-index" class=""></div>

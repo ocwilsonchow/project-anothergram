@@ -106,9 +106,9 @@
 
   const generateMenuItem = (menuItem)=> {
      return `
-     <a class="py-3  d-flex text-dark align-items-center" style="text-decoration: none;" href=${menuItem.link}>
+     <a class="menu-item py-2 my-3 d-flex text-dark align-items-center rounded-3" style="text-decoration: none;" href=${menuItem.link}>
        <i class='mx-2 bx ${menuItem.icon}'></i>
-       <div class="mx-3  fw-bold fs-6 d-none d-sm-none d-lg-none d-xl-block ">${menuItem.title}</div>
+       <div class="mx-3 fs-6 d-none d-sm-none d-lg-none d-xl-block ">${menuItem.title}</div>
      </a>`
   }
 
