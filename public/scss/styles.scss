@@ -5,6 +5,23 @@
   font-family: "Poppins", sans-serif;
   padding: 0px;
   margin: 0px;
+
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+  background: rgb(0, 0, 0);
+
 }
 
 #nav-login {
