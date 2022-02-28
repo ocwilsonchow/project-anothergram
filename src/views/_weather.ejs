@@ -36,15 +36,11 @@
          <span class="spinner-border spinner-border-sm" role="status">
           <span class="visually-hidden">Loading...</span>
         </span>
-      </div>
-
-`
+      </div>`
       }
 
       return `
-       <div id="weather-component">
-        <div style="text-decoration: none;">
-          <div class="mx-auto bg-white text-dark p-3" >
+          <div class=" bg-white text-dark p-3" style="text-decoration: none;" >
             <h3>Welcome back!</h3>
             <span>${weatherData?.name}, ${weatherData?.sys.country} is ${weatherData?.weather[0].main}.</span>
             <span class="fw-bold text-primary">${weatherData?.main.temp}ºC</span>
@@ -52,10 +48,6 @@
           <div>Humidity: <span class="fw-bold text-primary">${weatherData?.main.humidity}%</span></div>
           <div>Wind Speed: <span class="fw-bold text-primary">${((weatherData?.wind.speed)*3.6).toFixed(1)}km/hr</span></div>
           </div>
-
-        </div>
-
-       </div>
       `
     }
 
@@ -75,4 +67,4 @@
 
 </script>
 
-<div id="weather-wrapper" class=" my-3"></div>
+<div id="weather-wrapper" class=""></div>

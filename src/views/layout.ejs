@@ -5,7 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Anothergram</title>
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/scss/styles.scss" />
     <%- styles %>
 
@@ -41,18 +44,22 @@
 
     <%- scripts %>
   </head>
-  <body>
-    <nav><%- include('_navbar') %></nav>
-    <main class="row">
-      <div class="col-0 col-sm-2 col-l-4 col-xl-3 bg-light">
-        <div id="sidebar" class="d-flex flex-column align-items-end"><%- include('_sidebar') %></div>
-      </div>
-      <div class="col"> <%- body %></div>
-      <div class="col-0 col-sm-2 col-l-4  col-xl-3  bg-light"></div>
+  <body class="bg-light">
+    <nav class="bg-white mb-3"><%- include('_navbar') %></nav>
+
+    <main class="container">
+        <div class="row">
+          <div class="col-2 col-sm-2 col-l-3 col-xl-2 p-2 ms-2">
+            <div id="sidebar" class="d-flex flex-column align-items-end">
+              <%- include('_sidebar') %>
+            </div>
+          </div>
+          <div class="col bg-light"><%- body %></div>
+          <div class="col-xs-0 d-none d-md-block col-sm-0 col-l-3 col-xl-2 p-3">
+              <%- include('_toolbar') %>
+          </div>
+        </div>
 
     </main>
-
-
-
   </body>
 </html>
