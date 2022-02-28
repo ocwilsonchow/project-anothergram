@@ -11,8 +11,8 @@
 
     const generateUsers = (usersData) => {
     return `
-      <div class="d-flex flex-column justify-content-center align-items-center">
-        <h4 class="text-center py-1 d-lg-none d-xl-block">Community</h4>
+      <div class=" d-flex flex-column justify-content-center align-items-center">
+        <h6 class="text-center py-3 d-lg-none d-xl-block">Community</h6>
         ${usersData.map((user) =>  generateUser(user)).join("")}
       </div>
     `
@@ -38,4 +38,4 @@
   });
 </script>
 
-<div id="toolbar-users-container" class="bg-white p-2" style="border-radius: 1rem; overflow: auto; max-height: 90vh;" ></div>
+<div id="toolbar-users-container" class="p-2 bg-white" style="border-radius: 1rem; overflow: auto; max-height: 90vh;" ></div>
