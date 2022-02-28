@@ -3,9 +3,9 @@
 <script>
 const generateForm = ({ user, errors } = {}) => {
   const $form = $(`
-    <div class="row bg-white py-5 mx-auto" style="border-radius: 1rem; max-width: 600px"">
+    <div class="bg-white my-2 p-5 mx-auto" style="border-radius: 1rem;">
 
-      <div id="form-wrapper" class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+      <div id="form-wrapper" class="">
         <div class="text-center py-3"> <h1>Signup</h1></div>
         <form id="signup-form">
           <div class="mb-3">
@@ -38,7 +38,7 @@ const generateForm = ({ user, errors } = {}) => {
             <div class="invalid-feedback">${errors?.avatar || ''}</div>
           </div>
 
-          <button class="btn btn-primary" type="submit">Submit</button>
+          <button class="btn btn-primary my-3" type="submit">Submit</button>
         </form>
                 <div class="my-3">Have an account already? <a href="/auth/login">Log in</a></div>
 
@@ -88,4 +88,4 @@ $(document).ready(() => {
 </script>
 
 <%- contentFor('body') %>
-<div id="pages-auth-signup" class="container"></div>
+<div id="pages-auth-signup" class=""></div>

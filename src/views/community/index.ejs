@@ -1,23 +1,17 @@
 <%- contentFor('styles') %> <%- contentFor('scripts') %>
 <script>
-  const generateTitle = () => {
-    return `
-      <div class="text-center py-3">
-        <h1>Our Community</h1>
-      </div>
-  `;
-  };
 
   const generatePage = (info) => {
     const $page = $('#pages-community')
-    const $title = generateTitle()
+
     const $users = generateUsers(info)
 
-     $page.html("").append($title).append($users);
+     $page.html("").append($users);
   }
 
     const generateUser = (user) => {
       return `
+
         <a class="user-card card p-3 m-1 align-items-center" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -28px; text-decoration: none" href="/profile/${user.id}">
             <img src="${user.avatar}" alt="user-avatar" width="170" height="170" style="border-radius: 50%; object-fit: cover;"/>
             <h6 class="pt-3">${user.username}</h6>
@@ -28,9 +22,13 @@
 
     const generateUsers = (users) => {
     return `
-      <div class="d-flex justify-content-center py-3 flex-wrap">
+
+      <div class="bg-white d-flex justify-content-center my-2 py-3 flex-wrap" style="border-radius: 1rem">
+         <div class="text-center py-3" style="width: 100%">
+          <h1>Our Community</h1>
+         </div>
         ${users.map((user) =>  generateUser(user)).join("")}
-        </div>
+      </div>
     `
     }
 
@@ -54,4 +52,4 @@ axios({
 </script>
 
 <%- contentFor('body') %>
-<div id="pages-community" class="container"></div>
+<div id="pages-community" class=""></div>

@@ -11,7 +11,7 @@
     },
      {
       title: "Community",
-      icon: "bx-globe bx-sm",
+      icon: "bx-compass bx-sm",
       link: "/community"
     },
      {
@@ -69,8 +69,8 @@
             })
       }
     }
-     const generateWeatherBoard = (weatherData) => {
-       console.log(weatherData)
+
+    const generateWeatherBoard = (weatherData) => {
       if (!weatherData) {
         return `
        <div class="bg-white text-dark p-2" style="text-decoration: none;" >
@@ -113,6 +113,28 @@
   }
 
   const generateSidebar = (menuItems, weatherData) => {
+    console.log(user)
+
+    if (!user) {
+      return `
+      <div class="p-3 d-md-block d-lg-block d-xl-none" >
+        <i class='m-2 bx bx-sun bx-sm text-dark'></i>
+      </div>
+       <div class="p-3 d-md-block d-lg-block d-xl-none" >
+        <a class='bx bx-compass bx-sm text-dark' href="/community" style="text-decoration: none"></a>
+      </div>
+      <div class="p-3 d-md-block d-lg-block d-xl-none" >
+        <a class='bx bx-log-in-circle bx-sm text-primary' href="/auth/login" style="text-decoration: none"></a>
+      </div>
+      <div class="p-3 d-none d-sm-none d-lg-none d-xl-block">
+        ${generateWeatherBoard(weatherData)}
+      </div>
+      <div class="p-3 d-none d-sm-none d-lg-none d-xl-block">
+       <a class="btn btn-primary rounded-pill my-3" href="/auth/login">Log in</a>
+      </div>
+      `
+    }
+
    return `
    <div class="p-3 d-md-block d-lg-block d-xl-none" >
       <i class='m-2 bx bx-sun bx-sm text-dark'></i>
