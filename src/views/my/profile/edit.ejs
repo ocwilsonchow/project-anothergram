@@ -10,7 +10,7 @@ const generateForm = ({ user, errors } = {}) => {
     avatarURL = user.avatar || avatarURL
   }
   const $form = $(`
-    <div class="row">
+    <div class="">
       <div id="form-wrapper" class="my-2 p-4 mb-4 bg-white" style="border-radius: 1rem;">
         <h1 class="text-center py-3">Update Profile</h1>
        <div id="alert-wrapper"></div>
@@ -140,4 +140,4 @@ $(document).ready(() => {
 </script>
 
 <%- contentFor('body') %>
-<div id="pages-my-profile-edit" class="container"></div>
+<div id="pages-my-profile-edit" class=""></div>

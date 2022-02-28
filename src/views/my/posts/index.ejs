@@ -2,7 +2,7 @@
 <script>
   const generateTitle = () => {
     return `
-    <h1 class="text-center py-3">All My Posts</h1>`;
+   `;
   };
 
 
@@ -47,7 +47,7 @@
         `;
     }
     return `
-        <div class="row pb-4">
+        <div class="row py-2">
           <div class="">
             <div class="row row-cols-1 g-2">
               ${posts.map((post) => generatePost(post)).join("")}
@@ -79,4 +79,4 @@
 </script>
 
 <%- contentFor('body') %>
-<div id="pages-my-posts-index" class="container"></div>
+<div id="pages-my-posts-index" class=""></div>

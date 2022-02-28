@@ -27,7 +27,7 @@
 
     return `
        <div class="row">
-        <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+        <div class="">
           <div class="card p-3" style="border-radius: 1rem">
            <div class="card-body">
               <h4 class="card-title mb-2">${post.title}</h4>
@@ -46,12 +46,11 @@
               </span>
               <span>
                 <a href="/my/posts/${id}/edit" class="btn btn-light btn-sm">Edit</a>
-                 <!-- Button trigger modal -->
+
                     <button type="button" id="delete-my-post" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                       Delete
                     </button>
 
-                    <!-- Modal -->
                     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-content">
@@ -187,5 +186,4 @@
 </script>
 
 <%- contentFor('body') %>
-
-<div id="pages-my-posts-show" class="container"></div>
+<div id="pages-my-posts-show" class=""></div>

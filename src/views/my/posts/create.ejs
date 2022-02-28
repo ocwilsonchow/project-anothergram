@@ -2,8 +2,9 @@
 <script>
   const generateForm = () => {
     return `
-      <div class="row mx-auto p-3 bg-white" style="max-width: 500px; border-radius: 1rem">
+      <div class="my-2 row mx-auto p-3 bg-white" style="border-radius: 1rem">
         <form id="post-new-form">
+          <h1>Create My New Post</h1>
           <div class="my-3">
             <label for="title" class="form-label">Title</label>
             <input type="text" name="title" class="form-control" id="titleInput" required>
@@ -32,10 +33,10 @@
 
   const generatePage = () => {
     const $page = $("#pages-my-posts-new");
-    const $title = $("#page-title");
+
     const $form = generateForm();
 
-    $page.html("").append($title).append($form);
+    $page.html("").append($form);
   };
 
   $(document).ready(() => {
@@ -66,5 +67,5 @@
 </script>
 
 <%- contentFor('body') %>
-<div id="page-title" class="text-center py-3"><h1>Create My New Post</h1></div>
-<div id="pages-my-posts-new" class="container"></div>
+
+<div id="pages-my-posts-new" class=""></div>

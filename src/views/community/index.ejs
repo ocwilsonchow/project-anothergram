@@ -18,7 +18,7 @@
 
     const generateUser = (user) => {
       return `
-        <a class="user-card flex-wrap  card p-3 m-1 align-items-center" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -28px; text-decoration: none" href="/profile/${user.id}">
+        <a class="user-card card p-3 m-1 align-items-center" style="box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -28px; text-decoration: none" href="/profile/${user.id}">
             <img src="${user.avatar}" alt="user-avatar" width="170" height="170" style="border-radius: 50%; object-fit: cover;"/>
             <h6 class="pt-3">${user.username}</h6>
             <p class="">${user.occupation || ""}</p>
