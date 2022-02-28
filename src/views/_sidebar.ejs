@@ -1,6 +1,8 @@
 <script>
+  const apiKey = '<%= process.env.OPEN_WEATHER_API_KEY %>';
+  let lat, long, weatherData
 
-  const menuItems = [
+   const menuItems = [
     {
       title: "Home",
       icon: "bx-home bx-sm",
@@ -28,33 +30,88 @@
     },
   ]
 
+
+    const getLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position)=> {
+          lat = position.coords.latitude
+          long = position.coords.longitude
+          // console.log(lat + "," + long)
+
+            axios({
+              method: 'GET',
+              url: `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`,
+            }).then((resp)=> {
+              weatherData = resp.data
+
+              generateComponent(menuItems, weatherData)
+
+            })
+        });
+      } else {
+        console.log("Geolocation is not supported by this browser.");
+        axios({
+              method: 'GET',
+              url: `https://api.openweathermap.org/data/2.5/weather?lat=22.3355433&lon=114.1622848&appid=${apiKey}&units=metric`,
+            }).then((resp)=> {
+              weatherData = resp.data
+            })
+      }
+    }
+     const generateWeatherBoard = (weatherData) => {
+       console.log(weatherData)
+      if (!weatherData) {
+        return `
+       <div class="text-dark p-3">
+         <span class="spinner-border spinner-border-sm" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </span>
+      </div>`
+      }
+
+      return `
+          <div class=" bg-white text-dark p-3" style="text-decoration: none;" >
+            <h3>Welcome back!</h3>
+            <span>${weatherData?.name}, ${weatherData?.sys.country} is ${weatherData?.weather[0].main}.</span>
+            <span class="fw-bold text-primary">${weatherData?.main.temp}ºC</span>
+             <div>Feel like: <span class="fw-bold text-primary">${weatherData?.main.feels_like}ºC</span> </div>
+          <div>Humidity: <span class="fw-bold text-primary">${weatherData?.main.humidity}%</span></div>
+          <div>Wind Speed: <span class="fw-bold text-primary">${((weatherData?.wind.speed)*3.6).toFixed(1)}km/hr</span></div>
+          </div>
+      `
+    }
+
   const generateMenuItem = (menuItem)=> {
      return `
-     <a class="py-2 my-2 d-flex text-muted align-items-center" style="text-decoration: none;">
-       <i class='bx ${menuItem.icon}'></i>
-       <div class="mx-3 fs-5 ">${menuItem.title}</div>
+     <a class="py-3  d-flex text-muted align-items-center" style="text-decoration: none;">
+       <i class='mx-2 bx ${menuItem.icon}'></i>
+       <div class="mx-3 fs-5 d-none d-sm-none d-lg-none d-xl-block ">${menuItem.title}</div>
      </a>`
   }
 
-  const generateSidebar = (menuItems) => {
+  const generateSidebar = (menuItems, weatherData) => {
    return `
-   <div class="p-3 bg-white">
+    <div class="p-3 mb-3 bg-white d-none d-sm-none d-lg-none d-xl-block"  style="border-radius: 15px;">
+      ${generateWeatherBoard(weatherData)}
+    </div>
+   <div class="p-3 bg-white"  style="border-radius: 15px;">
     ${menuItems.map((menuItem) => generateMenuItem(menuItem)).join("")}
     </div>
    `
   }
 
-  const generateComponent = (menuItems) =>{
+  const generateComponent = (menuItems, weatherData) =>{
     const $page = $('#sidebar-menu-container')
-    const $menu = generateSidebar(menuItems)
-
+    const $menu = generateSidebar(menuItems, weatherData)
 
     $page.html("").append($menu)
   }
 
 
     $(document).ready(() =>{
-      generateComponent(menuItems)
+
+      getLocation()
+      generateComponent(menuItems, weatherData, {isLoading: true})
 
 
     })
@@ -62,4 +119,4 @@
 </script>
 
 
-  <div id="sidebar-menu-container" class=""></div>
+  <div id="sidebar-menu-container"></div>
