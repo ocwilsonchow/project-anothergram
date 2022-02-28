@@ -96,8 +96,8 @@
       if (!weatherData) {
         return `
        <div class="bg-white text-dark p-2" style="text-decoration: none;" >
-            <a href="/profile/${userData.id}"> <img src="${userData.avatar}" class="user-avatar my-2" alt="user-avatar" width="80" height="80" style="border-radius: 50%; object-fit: cover;"/></a>
-            <h4>Welcome back, ${userData?.username.toUpperCase()}</h4>
+            <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar my-2" alt="user-avatar" width="80" height="80" style="border-radius: 50%; object-fit: cover;"/></a>
+            <h4>Welcome back, ${userData?.username}</h4>
             <div> <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></div>
           </div>
       `
@@ -105,8 +105,8 @@
 
       return `
           <div class="bg-white text-dark p-2" style="text-decoration: none;" >
-            <a href="/profile/${userData.id}"> <img src="${userData.avatar}" class="user-avatar my-2" alt="user-avatar" width="80" height="80" style="border-radius: 50%; object-fit: cover;"/></a>
-            <h4>Welcome back, ${userData?.username.toUpperCase()}</h4>
+            <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar my-2" alt="user-avatar" width="80" height="80" style="border-radius: 50%; object-fit: cover;"/></a>
+            <h4>Welcome back, ${userData?.username}</h4>
             <div>
               <a data-bs-toggle="collapse" style="text-decoration: none" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                  <div class=' text-dark'>📍 ${weatherData?.name}, ${weatherData?.sys.country}</div>
