@@ -107,7 +107,7 @@
           <div class="bg-white text-dark p-2" style="text-decoration: none;" >
             ${user && ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar my-2" alt="user-avatar" width="80" height="80" style="border-radius: 50%; object-fit: cover;"/></a>`}
             <h4>Welcome back! ${user && userData?.username}</h4>
-            <div>
+            <div class="pt-2">
               <a data-bs-toggle="collapse" style="text-decoration: none" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                  <div class=' text-dark'>📍 ${weatherData?.name}, ${weatherData?.sys.country}</div>
                  <div class="fw-bold fs-1 text-dark">${weatherData?.main.temp}ºC</div>
@@ -161,6 +161,9 @@
    return `
    <div class="p-3 d-md-block d-lg-block d-xl-none" >
       <i class='m-2 bx bx-sun bx-sm text-dark'></i>
+    </div>
+    <div class="px-3 d-md-block d-lg-block d-xl-none" >
+     ${user && ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar" alt="user-avatar" width="40" height="40" style="border-radius: 50%; object-fit: cover;"/></a>`}
     </div>
     <div class="px-3  d-none d-sm-none d-lg-none d-xl-block">
       ${generateWeatherBoard(weatherData, userData)}
