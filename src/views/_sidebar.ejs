@@ -106,7 +106,7 @@
       return `
           <div class="bg-white text-dark p-2" style="text-decoration: none;" >
             ${user && ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar my-2" alt="user-avatar" width="80" height="80" style="border-radius: 50%; object-fit: cover;"/></a>`}
-            <p>Welcome back! ${user && userData?.username}</p>
+            <p>Welcome back! ${user && userData?.username.toUpperCase()}</p>
             <div class="pt-2">
               <a data-bs-toggle="collapse" style="text-decoration: none" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                  <div class=' text-dark'>📍 ${weatherData?.name}, ${weatherData?.sys.country}</div>
