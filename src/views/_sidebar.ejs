@@ -1,4 +1,5 @@
 <script>
+  const user = "<%= user.id  %>"
   const apiKey = '<%= process.env.OPEN_WEATHER_API_KEY %>';
   let lat, long, weatherData
 
@@ -26,6 +27,11 @@
      {
       title: "Profile",
       icon: "bx-user bx-sm",
+      link: "/my/profile/edit"
+    },
+     {
+      title: "Messages",
+      icon: "bx-message-rounded bx-sm",
       link: "/my/profile/edit"
     },
      {
@@ -67,7 +73,7 @@
        console.log(weatherData)
       if (!weatherData) {
         return `
-       <div class="bg-white text-dark p-3" style="text-decoration: none;" >
+       <div class="bg-white text-dark p-2" style="text-decoration: none;" >
             <h3>Welcome back!</h3>
             <div> <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></div>
             <div> <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></div>
@@ -81,7 +87,7 @@
       }
 
       return `
-          <div class="bg-white text-dark p-3" style="text-decoration: none;" >
+          <div class="bg-white text-dark p-2" style="text-decoration: none;" >
             <h3>Welcome back!</h3>
             <div>${weatherData?.name}, ${weatherData?.sys.country}</div>
             <div>${weatherData?.weather[0].main}</div>
@@ -102,13 +108,13 @@
 
   const generateSidebar = (menuItems, weatherData) => {
    return `
-   <div class="p-3 mb-3 bg-white d-md-block d-lg-block d-xl-none" style="border-radius: 15px;">
+   <div class="p-3 d-md-block d-lg-block d-xl-none" >
       <i class='m-2 bx bx-sun bx-sm text-dark'></i>
     </div>
-    <div class="p-3 mb-3 bg-white d-none d-sm-none d-lg-none d-xl-block"  style="border-radius: 15px;">
+    <div class="p-3 d-none d-sm-none d-lg-none d-xl-block">
       ${generateWeatherBoard(weatherData)}
     </div>
-   <div class="p-3 bg-white"  style="border-radius: 15px;">
+   <div class="p-3">
     ${menuItems.map((menuItem) => generateMenuItem(menuItem)).join("")}
     </div>
    `
@@ -133,4 +139,4 @@
 </script>
 
 
-  <div id="sidebar-menu-container" class=" d-flex flex-column justify-content-center align-items-center"></div>
+  <div id="sidebar-menu-container" class="bg-white d-flex flex-column justify-content-center align-items-center" style="border-radius: 15px;"></div>
