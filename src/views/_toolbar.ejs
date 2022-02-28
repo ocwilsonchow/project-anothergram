@@ -1,5 +1,6 @@
 <script>
 
+
    const generateUser = (user) => {
       return `
         <a class="" href="/profile/${user.id}" data-bs-toggle="tooltip" data-bs-placement="right" title=${user.username}>
@@ -8,18 +9,18 @@
       `
     }
 
-    const generateUsers = (users) => {
+    const generateUsers = (usersData) => {
     return `
       <div class="d-flex flex-column justify-content-center align-items-center">
         <h4 class="text-center py-1 d-lg-none d-xl-block">Community</h4>
-        ${users.map((user) =>  generateUser(user)).join("")}
+        ${usersData.map((user) =>  generateUser(user)).join("")}
       </div>
     `
     }
 
-    const generateUsersComponent = (users) => {
+    const generateUsersComponent = (usersData) => {
     const $page = $('#toolbar-users-container')
-    const $users = generateUsers(users)
+    const $users = generateUsers(usersData)
 
     $page.html("").append($users);
 
@@ -31,8 +32,8 @@
       method: "GET",
       url: "/api/community",
     }).then((resp) => {
-      const users = resp.data.users;
-      generateUsersComponent(users);
+      const usersData = resp.data.users;
+      generateUsersComponent(usersData);
     });
   });
 </script>

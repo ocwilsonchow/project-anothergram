@@ -1,7 +1,16 @@
 <script>
   const user = "<%= user.id  %>"
   const apiKey = '<%= process.env.OPEN_WEATHER_API_KEY %>';
-  let lat, long, weatherData
+  let lat, long, weatherData, userData
+
+  axios({
+          method: "GET",
+          url: `/api/profile/${user}`,
+        }).then((resp) => {
+          userData = resp.data;
+          generateComponent(menuItems, weatherData, userData)
+        });
+
 
    const menuItems = [
     {
@@ -54,8 +63,7 @@
     },
   ]
 
-
-    const getLocation = () => {
+   const getLocation = () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position)=> {
           lat = position.coords.latitude
@@ -68,7 +76,7 @@
             }).then((resp)=> {
               weatherData = resp.data
 
-              generateComponent(menuItems, weatherData)
+              generateComponent(menuItems, weatherData, userData)
 
             })
         });
@@ -82,25 +90,26 @@
             })
       }
     }
+   getLocation()
 
-    const generateWeatherBoard = (weatherData) => {
+   const generateWeatherBoard = (weatherData, userData) => {
       if (!weatherData) {
         return `
        <div class="bg-white text-dark p-2" style="text-decoration: none;" >
-            <h3>Welcome back!</h3>
+            <a href="/profile/${userData.id}"> <img src="${userData.avatar}" class="user-avatar my-2" alt="user-avatar" width="80" height="80" style="border-radius: 50%; object-fit: cover;"/></a>
+            <h3>Welcome back ${userData?.username || ""}</h3>
             <div> <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></div>
           </div>
-
-
       `
       }
 
       return `
           <div class="bg-white text-dark p-2" style="text-decoration: none;" >
-            <h3>Welcome back!</h3>
+            <a href="/profile/${userData.id}"> <img src="${userData.avatar}" class="user-avatar my-2" alt="user-avatar" width="80" height="80" style="border-radius: 50%; object-fit: cover;"/></a>
+            <h3>Welcome back ${userData?.username || ""}</h3>
             <div>
               <a data-bs-toggle="collapse" style="text-decoration: none" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                 <div class=' text-dark'>${weatherData?.name}, ${weatherData?.sys.country}</div>
+                 <div class=' text-dark'>📍 ${weatherData?.name}, ${weatherData?.sys.country}</div>
                  <div class="fw-bold fs-1 text-dark">${weatherData?.main.temp}ºC</div>
               </a>
             </div>
@@ -109,13 +118,12 @@
                 <div>Overall: ${weatherData?.weather[0].main}</div>
                 <div>Humidity: <span class="fw-bold text-dark">${weatherData?.main.humidity}%</span></div>
                 <div>Wind Speed: <span class="fw-bold text-dark">${((weatherData?.wind.speed)*3.6).toFixed(1)}km/hr</span></div>
-
-
               </div>
             </div>
           </div>
       `
     }
+
 
   const generateMenuItem = (menuItem)=> {
      return `
@@ -125,7 +133,7 @@
      </a>`
   }
 
-  const generateSidebar = (menuItems, weatherData) => {
+  const generateSidebar = (menuItems, weatherData, userData) => {
     if (!user) {
       return `
       <div class="p-3 d-md-block d-lg-block d-xl-none" >
@@ -141,7 +149,7 @@
         <a class='bx bx-log-in-circle bx-sm text-primary' href="/auth/login" style="text-decoration: none"></a>
       </div>
       <div class="p-3 d-none d-sm-none d-lg-none d-xl-block">
-        ${generateWeatherBoard(weatherData)}
+        ${generateWeatherBoard(weatherData, userData)}
       </div>
       <div class=" d-none d-sm-none d-lg-none d-xl-block">
        <a class="btn btn-primary rounded-pill my-3" href="/auth/login">Log in</a>
@@ -154,8 +162,8 @@
    <div class="p-3 d-md-block d-lg-block d-xl-none" >
       <i class='m-2 bx bx-sun bx-sm text-dark'></i>
     </div>
-    <div class="p-3 d-none d-sm-none d-lg-none d-xl-block">
-      ${generateWeatherBoard(weatherData)}
+    <div class="px-3  d-none d-sm-none d-lg-none d-xl-block">
+      ${generateWeatherBoard(weatherData, userData)}
     </div>
    <div class="p-3">
     ${menuItems.map((menuItem) => generateMenuItem(menuItem)).join("")}
@@ -163,9 +171,9 @@
    `
   }
 
-  const generateComponent = (menuItems, weatherData) =>{
+  const generateComponent = (menuItems, weatherData, userData) =>{
     const $page = $('#sidebar-menu-container')
-    const $menu = generateSidebar(menuItems, weatherData)
+    const $menu = generateSidebar(menuItems, weatherData, userData)
 
     $page.html("").append($menu)
   }
@@ -173,8 +181,8 @@
 
     $(document).ready(() =>{
 
-      getLocation()
-      generateComponent(menuItems, weatherData, {isLoading: true})
+      generateComponent(menuItems, weatherData, userData)
+
 
       $("#sidebar-menu-container").on("click", "#auth-logout", (e) => {
         console.log("log out")

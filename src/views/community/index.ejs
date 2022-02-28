@@ -4,12 +4,12 @@
   const generatePage = (info) => {
     const $page = $('#pages-community')
 
-    const $users = generateUsers(info)
+    const $users = generateUsersList(info)
 
      $page.html("").append($users);
   }
 
-    const generateUser = (user) => {
+    const generateUserItem = (user) => {
       return `
 
         <a class="user-card p-3 m-1 align-items-center" style=" text-decoration: none" href="/profile/${user.id}">
@@ -20,14 +20,14 @@
       `
     }
 
-    const generateUsers = (users) => {
+    const generateUsersList = (users) => {
     return `
 
       <div class="bg-white d-flex justify-content-center my-2 p-0 flex-wrap text-center" style="border-radius: 1rem ">
          <div class="text-center py-3" style="width: 100%">
           <h1>Our Community</h1>
          </div>
-        ${users.map((user) =>  generateUser(user)).join("")}
+        ${users.map((user) =>  generateUserItem(user)).join("")}
       </div>
     `
     }
