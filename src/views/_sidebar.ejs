@@ -7,37 +7,50 @@
     {
       title: "Home",
       icon: "bx-home bx-sm",
-      link: "/"
+      link: "/",
+      color: "text-dark",
+      id: ""
     },
      {
       title: "Community",
       icon: "bx-compass bx-sm",
-      link: "/community"
+      link: "/community",
+      color: "text-dark"
     },
      {
       title: "My Posts",
       icon: "bx-detail bx-sm",
-      link: "/my/posts"
+      link: "/my/posts",
+      color: "text-dark",
+      id: ""
     },
      {
       title: "Create",
       icon: "bx-edit-alt bx-sm",
-      link: "/my/posts/create"
+      link: "/my/posts/create",
+      color: "text-dark",
+      id: ""
     },
      {
       title: "Profile",
       icon: "bx-user bx-sm",
-      link: "/my/profile/edit"
+      link: "/my/profile/edit",
+      color: "text-dark",
+      id: ""
     },
      {
       title: "Messages",
       icon: "bx-message-rounded bx-sm",
-      link: "/my/profile/edit"
+      link: "/my/profile/edit",
+      color: "text-dark",
+      id: ""
     },
      {
       title: "Log out",
       icon: "bx-log-out bx-sm",
-      link: "/"
+      link: "/",
+      color: "text-danger",
+      id: "auth-logout"
     },
   ]
 
@@ -106,7 +119,7 @@
 
   const generateMenuItem = (menuItem)=> {
      return `
-     <a class="menu-item py-2 my-3 d-flex text-dark align-items-center rounded-3" style="text-decoration: none;" href=${menuItem.link}>
+     <a id="${menuItem.id}" class="menu-item py-2 my-3 d-flex ${menuItem.color} align-items-center rounded-3" style="text-decoration: none;" href=${menuItem.link}>
        <i class='mx-2 bx ${menuItem.icon}'></i>
        <div class="mx-3 fs-6 d-none d-sm-none d-lg-none d-xl-block ">${menuItem.title}</div>
      </a>`
@@ -163,6 +176,17 @@
       getLocation()
       generateComponent(menuItems, weatherData, {isLoading: true})
 
+      $("#sidebar-menu-container").on("click", "#auth-logout", (e) => {
+        console.log("log out")
+      e.preventDefault();
+
+      axios({
+        method: "DELETE",
+        url: "/api/auth/logout",
+      }).then(() => {
+        window.location.href = "/";
+      });
+    });
 
     })
 
