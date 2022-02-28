@@ -9,19 +9,23 @@
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 8px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-  background: rgb(238, 238, 238);
+    border-radius: 20px;
+  background: rgba(185, 185, 185, 0.5);
 
+}
+
+body {
+  background-color:rgb(227, 227, 227)
 }
 
 #nav-login {
