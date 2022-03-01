@@ -10,17 +10,22 @@ import { ironSession } from 'iron-session/express'
 import { createServer } from "http";
 import { Server } from "socket.io";
 
+
 import parseData from './src/_middlewares/parse-data.js'
 import addUserToLayout from './src/_middlewares/add-user-to-layout.js'
 
 const app = express() // The instance that "host" our server
 const httpServer = createServer(app);
-const port = process.env.PORT || 3000 //  The port number our server runs on
+const PORT = process.env.PORT || 3000 //  The port number our server runs on
+const INDEX = '/index.html';
 
-const io = new Server(httpServer, { cors: {
-  origin: "https://serene-garden-37851.herokuapp.com/",
-   credentials: true
-}});
+const server = express()
+  .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+  httpServer.listen(3000);
+
+
+const io = new Server(httpServer);
+
 
 io.on("connection", (socket) => {
   console.log("User connected:" + socket.id)
@@ -93,5 +98,3 @@ app.use('/', (await import('./src/routes.js')).default)
 //   // eslint-disable-next-line
 //   console.log(`App listening at http://localhost:${port}`)
 // })
-
-httpServer.listen(3000);
