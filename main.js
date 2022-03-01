@@ -7,25 +7,17 @@ import compileSass from 'express-compile-sass'
 import methodOverride from 'method-override'
 import moment from 'moment'
 import { ironSession } from 'iron-session/express'
-import { createServer } from "http";
-import { Server } from "socket.io";
+import { createServer } from "http"
+import { Server } from "socket.io"
 
 
 import parseData from './src/_middlewares/parse-data.js'
 import addUserToLayout from './src/_middlewares/add-user-to-layout.js'
 
 const app = express() // The instance that "host" our server
-const httpServer = createServer(app);
-const PORT = process.env.PORT || 3000 //  The port number our server runs on
-const INDEX = '/index.html';
-
-// const server = express()
-//   .use((req, res) => res.sendFile(INDEX))
-//   .listen(PORT, () => console.log(`Listening on ${PORT}`));
-
-httpServer.listen(3000);
-const io = new Server(httpServer);
-
+const httpServer = createServer(app)
+const port = process.env.PORT || 3000 // The port number our server runs on
+const io = new Server(httpServer)
 
 io.on("connection", (socket) => {
   console.log("User connected:" + socket.id)
@@ -45,9 +37,7 @@ io.on("connection", (socket) => {
   socket.on("chatMessage", (data, timestamp) => {
     io.emit('chatMessage', data, timestamp)
   })
-
-});
-
+})
 
 // Allow views to have access to moment library
 app.locals.moment = moment
@@ -93,8 +83,6 @@ app.use(parseData) // parses multi-part to req.body and req.files
 // Defining the routes for our server
 app.use('/', (await import('./src/routes.js')).default)
 
-// Starts the server
-// app.listen(port, () => {
-//   // eslint-disable-next-line
-//   console.log(`App listening at http://localhost:${port}`)
-// })
+httpServer.listen(port, () => {
+  console.log(`App listening at *:${port}`)
+})
