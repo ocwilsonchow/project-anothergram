@@ -14,9 +14,13 @@ import parseData from './src/_middlewares/parse-data.js'
 import addUserToLayout from './src/_middlewares/add-user-to-layout.js'
 
 const app = express(); // The instance that "host" our server
-const httpServer = createServer(app);
-const port = process.env.PORT || 3000 //  The port number our server runs on
-const io = new Server(httpServer, { });
+// const httpServer = createServer(app);
+// const port = process.env.PORT || 3000 //  The port number our server runs on
+// const io = new Server(httpServer, { });
+
+const httpServer = createServer(app)
+const port = process.env.PORT || 3000 // The port number our server runs on
+const io = new Server(httpServer)
 
 
 io.on("connection", (socket) => {
@@ -83,4 +87,6 @@ app.use(parseData) // parses multi-part to req.body and req.files
 // Defining the routes for our server
 app.use('/', (await import('./src/routes.js')).default)
 
-httpServer.listen(3000);
+httpServer.listen(port, () => {
+  console.log(`App listening at *:${port}`)
+})
