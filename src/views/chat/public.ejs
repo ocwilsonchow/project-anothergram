@@ -4,7 +4,7 @@
 
    socket.on("connection")
 
-   socket.on('message', (data) => {
+   socket.on('chatMessage', (data) => {
      const $messagesContainer = $('#messages')
      const $message = `<div class="bg-white p-1 my-1">${data}</div>`
      console.log(data)
