@@ -6,7 +6,7 @@
 
    socket.on('systemMessage', (data) => {
      const $messagesContainer = $('#messages-container')
-     const $message = `<div class="text-muted p-1 my-1">${data}</div>`
+     const $message = `<div class="text-muted p-1 my-2">${data}</div>`
      console.log(data)
 
      $messagesContainer.append($message)
@@ -15,14 +15,14 @@
    socket.on('chatMessage', (data) => {
      const $messagesContainer = $('#messages-container')
      const $messageInput = $('#messageInput')
-     const $message = `<div class="bg-white p-2 my-1">${data}</div>`
+     const $message = `<div class="bg-white py-1 px-2 my-2">${data}</div>`
      const $page = $('#pages-chat-public')
      console.log($messagesContainer.prop('scrollHeight')
 )
 
 
      $messagesContainer.append($message)
-     $page.scrollTop($messagesContainer.prop('scrollHeight'))
+     $messagesContainer.scrollTop($messagesContainer.prop('scrollHeight'))
 
    })
 
@@ -43,9 +43,9 @@
 </script>
 
 <%- contentFor('body') %>
-<div id="pages-chat-public" class="bg-white my-2 p-4" style="border-radius: 1rem; max-height: 80vh; overflow: auto">
+<div id="pages-chat-public" class="bg-white my-2 p-4" style="border-radius: 1rem;">
     <h1>Public Chat</h1>
-    <div id="messages-container" class="p-2 mt-2 bg-light"></div>
+    <div id="messages-container" class="p-2 my-2 bg-light" style="border-radius: 1rem; max-height: 70vh; overflow: auto"></div>
     <div class="input-group mb-3">
       <input type="text" id="messageInput" class="form-control">
        <button class="btn btn-dark rounded-pill" onclick="sendMessage()">Send Message</button>
