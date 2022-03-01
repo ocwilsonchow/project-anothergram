@@ -1,6 +1,6 @@
 <%- contentFor('styles') %> <%- contentFor('scripts') %>
 <script>
-  const user = "<%= user.id  %>"
+  let user = "<%= user.id  %>"
   const id = window.location.href.split('/').reverse()[0]
 
   const generateTitle = ({ isLoading, post } = {}) => {
