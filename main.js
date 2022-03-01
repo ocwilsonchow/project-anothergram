@@ -20,7 +20,7 @@ const port = process.env.PORT || 3000 // The port number our server runs on
 const io = new Server(httpServer, { /* options */ });
 
 io.on("connection", (socket) => {
-  console.log("hi")
+  console.log("User connected:" + socket.id)
 });
 
 

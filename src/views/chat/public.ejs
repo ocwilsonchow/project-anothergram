@@ -1,8 +1,24 @@
-<%- contentFor('styles') %>
-<%- contentFor('scripts') %>
+<%- contentFor('styles') %> <%- contentFor('scripts') %>
 <script>
 
+  const socket = io("http://localhost:3000");
+
+
+
+
+  $(document).ready(() => {
+    socket.on("connection", () => {
+
+    });
+
+  });
 </script>
 
 <%- contentFor('body') %>
-<div id="pages-chat-public" class="bg-white my-2 p-3">Public Chat</div>
+<div id="pages-chat-public" class="bg-white my-2 p-3">
+    <h1>Public Chat</h1>
+    <input type="text" class="message">
+    <button>Send Message</button>
+
+
+</div>
