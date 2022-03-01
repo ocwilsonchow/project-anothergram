@@ -22,6 +22,14 @@ const io = new Server(httpServer, { /* options */ });
 io.on("connection", (socket) => {
   console.log("User connected:" + socket.id)
 
+  socket.emit('message', 'Welcome to the chat!')
+
+  // BROADCAST WHEN A USER CONNECTS
+  socket.broadcast.emit('message', 'A user has joined the chat')
+
+
+
+
   socket.on("message", (data) => {
     socket.broadcast.emit('message', data)
   })

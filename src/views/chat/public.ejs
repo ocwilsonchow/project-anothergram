@@ -14,7 +14,10 @@
    })
 
    const sendMessage = ()=>{
-     socket.emit('message', 'message sent')
+     const $messageInput = $('#messageInput').val()
+
+
+     socket.emit('message', $messageInput)
    }
 
 
@@ -26,9 +29,9 @@
 </script>
 
 <%- contentFor('body') %>
-<div id="pages-chat-public" class="bg-white my-2 p-3">
+<div id="pages-chat-public" class="bg-white my-2 p-4">
     <h1>Public Chat</h1>
-    <input type="text" class="message">
+    <input type="text" id="messageInput" class="message">
     <button onclick="sendMessage()">Send Message</button>
     <div id="messages"></div>
 
