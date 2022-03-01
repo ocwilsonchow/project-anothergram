@@ -68,16 +68,12 @@
         navigator.geolocation.getCurrentPosition((position)=> {
           lat = position.coords.latitude
           long = position.coords.longitude
-          // console.log(lat + "," + long)
-
             axios({
               method: 'GET',
               url: `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`,
             }).then((resp)=> {
               weatherData = resp.data
-
               generateComponent(menuItems, weatherData, userData)
-
             })
         });
       } else {
@@ -99,10 +95,8 @@
            ${user && ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar my-2" alt="user-avatar" width="80" height="80" style="border-radius: 50%; object-fit: cover;"/></a>`}
             <p>Welcome back! ${user && userData?.username.toUpperCase()}</p>
             <div> <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></div>
-          </div>
-      `
+          </div>`
       }
-
       return `
           <div class="bg-white text-dark p-2" style="text-decoration: none;" >
             ${user && ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar my-2" alt="user-avatar" width="80" height="80" style="border-radius: 50%; object-fit: cover;"/></a>`}
