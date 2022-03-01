@@ -7,8 +7,8 @@ import compileSass from 'express-compile-sass'
 import methodOverride from 'method-override'
 import moment from 'moment'
 import { ironSession } from 'iron-session/express'
-import { createServer } from "http";
-import { Server } from "socket.io";
+import { createServer } from "http"
+import { Server } from "socket.io"
 
 import parseData from './src/_middlewares/parse-data.js'
 import addUserToLayout from './src/_middlewares/add-user-to-layout.js'
@@ -37,9 +37,7 @@ io.on("connection", (socket) => {
   socket.on("chatMessage", (data, timestamp) => {
     io.emit('chatMessage', data, timestamp)
   })
-
-});
-
+})
 
 // Allow views to have access to moment library
 app.locals.moment = moment
