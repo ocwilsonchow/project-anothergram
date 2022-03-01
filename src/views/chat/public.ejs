@@ -2,14 +2,16 @@
 <script>
 
   const socket = io("http://localhost:3000");
+   socket.on("connection")
 
+   const sendMessage = ()=>{
+     socket.emit('message', 'message sent')
+   }
 
 
 
   $(document).ready(() => {
-    socket.on("connection", () => {
 
-    });
 
   });
 </script>
@@ -18,7 +20,7 @@
 <div id="pages-chat-public" class="bg-white my-2 p-3">
     <h1>Public Chat</h1>
     <input type="text" class="message">
-    <button>Send Message</button>
+    <button onclick="sendMessage()">Send Message</button>
 
 
 </div>
