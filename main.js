@@ -22,9 +22,8 @@ const INDEX = '/index.html';
 // const server = express()
 //   .use((req, res) => res.sendFile(INDEX))
 //   .listen(PORT, () => console.log(`Listening on ${PORT}`));
-  httpServer.listen(3000);
 
-
+httpServer.listen(3000);
 const io = new Server(httpServer);
 
 
