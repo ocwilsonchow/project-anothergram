@@ -12,10 +12,14 @@
      $messagesContainer.append($message)
    })
 
-   socket.on('chatMessage', (data) => {
+   socket.on('chatMessage', (data, timestamp) => {
      const $messagesContainer = $('#messages-container')
      const $messageInput = $('#messageInput')
-     const $message = `<div class="bg-white py-1 px-2 my-2">${data}</div>`
+     const $message = `
+     <div class="bg-white py-1 px-2 my-2">
+      <div>${data}</div>
+      <div class="text-muted" style="font-size: 0.8rem;">${moment(timestamp).calendar()} by anonymous</div>
+     </div>`
 
      $messagesContainer.append($message)
      $messagesContainer.scrollTop($messagesContainer.prop('scrollHeight'))
@@ -24,7 +28,10 @@
 
    const sendMessage = (e) => {
      const $messageInput = $('#messageInput').val()
-     socket.emit('chatMessage', $messageInput)
+     const timestamp = new Date().getTime()
+
+     console.log(moment(timestamp).calendar())
+     socket.emit('chatMessage', $messageInput, timestamp)
 
      $('#messageInput').val('')
 
@@ -40,7 +47,7 @@
 
 <%- contentFor('body') %>
 <div id="pages-chat-public" class="bg-white my-2 p-4" style="border-radius: 1rem;">
-    <h1>Public Chat</h1>
+    <h1>Public Live Chat</h1>
     <div id="messages-container" class="p-2 my-2 bg-light" style="border-radius: 1rem; max-height: 70vh; overflow: auto"></div>
     <div class="input-group mb-3">
       <input type="text" id="messageInput" class="form-control">
