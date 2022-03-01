@@ -17,7 +17,9 @@ import addUserToLayout from './src/_middlewares/add-user-to-layout.js'
 const app = express() // The instance that "host" our server
 const httpServer = createServer(app);
 const port = process.env.PORT || 3000 //  The port number our server runs on
-const io = new Server(httpServer, { /* options */ });
+const io = new Server(httpServer, { cors: {
+  origin: "https://serene-garden-37851.herokuapp.com/"
+}});
 
 io.on("connection", (socket) => {
   console.log("User connected:" + socket.id)
