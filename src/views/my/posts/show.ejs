@@ -9,8 +9,8 @@
     <div class="text-center">Loading...</div>`;
     if (!post) return `<h1 class="text-center mb-3">Post ${id} Not Found!</h1>`;
 
-    return `
-  <p class="text-center"></p>`;
+
+
   };
 
   const generatePost = ({ isLoading, post } = {}) => {
@@ -26,7 +26,7 @@
     }
 
     return `
-       <div class="row">
+
         <div class="">
           <div class="card p-3" style="border-radius: 1rem">
            <div class="card-body">
@@ -106,7 +106,7 @@
             `
           }).join("")}
         </div>
-      </div>
+
     `;
   };
 
@@ -186,4 +186,4 @@
 </script>
 
 <%- contentFor('body') %>
-<div id="pages-my-posts-show" class=""></div>
+<div id="pages-my-posts-show" class="my-2"></div>

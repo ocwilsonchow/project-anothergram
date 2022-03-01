@@ -1,6 +1,7 @@
 <%- contentFor('styles') %> <%- contentFor('scripts') %>
 <script>
   const socket = io(window.location.origin)
+
   socket.on("connection")
 
   socket.on('systemMessage', (data) => {
@@ -11,6 +12,7 @@
     $messagesContainer.append($message)
   })
 
+  // ON RECEIVING MESSAGE
   socket.on('chatMessage', (data, timestamp) => {
     const $messagesContainer = $('#messages-container')
     const $messageInput = $('#messageInput')
@@ -24,7 +26,8 @@
     $messagesContainer.scrollTop($messagesContainer.prop('scrollHeight'))
   })
 
-  const sendMessage = (e) => {
+  // SEND MESSAGE TO SERVER
+  const sendMessage = () => {
     const $messageInput = $('#messageInput').val()
     const timestamp = new Date().getTime()
 
@@ -41,8 +44,8 @@
 <%- contentFor('body') %>
 <div id="pages-chat-public" class="bg-white my-2 p-4" style="border-radius: 1rem;">
   <h1>Public Live Chat</h1>
-  <div id="messages-container" class="p-2 my-2 bg-light" style="border-radius: 1rem; max-height: 70vh; overflow: auto"></div>
-  <div class="input-group mb-3">
+  <div id="messages-container" class="p-2 my-2 bg-light" style="border-radius: 1rem; max-height: 70vh; overflow: auto;"></div>
+  <div class="input-group mt-3">
     <input type="text" id="messageInput" class="form-control">
     <button class="btn btn-primary" onclick="sendMessage()"><i class='bx bx-send'></i></button>
   </div>

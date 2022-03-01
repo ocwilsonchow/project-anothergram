@@ -11,11 +11,11 @@ datasource db {
 }
 
 model User {
-  id           Int       @id @default(autoincrement())
+  id           Int           @id @default(autoincrement())
   firstName    String?
   lastName     String?
-  username     String?   @unique
-  email        String    @unique
+  username     String?       @unique
+  email        String        @unique
   passwordHash String
   avatar       String?
   location     String?
@@ -25,6 +25,7 @@ model User {
   occupation   String?
   post         Post[]
   comment      Comment[]
+  chatMessages ChatMessage[]
 }
 
 model Post {
@@ -49,4 +50,20 @@ model Comment {
   content   String
   user      User     @relation(fields: [userId], references: [id])
   userId    Int
+}
+
+model ChatMessage {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  content   String
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    Int?
+  channel   Channel? @relation(fields: [channelId], references: [id])
+  channelId Int?
+}
+
+model Channel {
+  id          Int           @id @default(autoincrement())
+  name        String
+  chatMessage ChatMessage[]
 }

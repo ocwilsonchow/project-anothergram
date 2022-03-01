@@ -12,6 +12,7 @@ import { Server } from "socket.io"
 
 import parseData from './src/_middlewares/parse-data.js'
 import addUserToLayout from './src/_middlewares/add-user-to-layout.js'
+import prisma from './src/controllers/_helpers/prisma.js'
 
 const app = express(); // The instance that "host" our server
 const httpServer = createServer(app)
@@ -21,20 +22,25 @@ const io = new Server(httpServer)
 io.on("connection", (socket) => {
   console.log("User connected:" + socket.id)
 
-  // WELCOME CURRENT USER
+  // SYSTEM || WELCOME CURRENT USER
   socket.emit('systemMessage', 'Welcome to the chat!')
 
-  // BROADCAST WHEN A USER CONNECTS
+  // SYSTEM || BROADCAST WHEN A USER CONNECTS
   socket.broadcast.emit('systemMessage', 'A user has joined the chat')
 
-  // RUNS WHEN CLIENT DISCONNECTS
+  // SYSTEM || RUNS WHEN CLIENT DISCONNECTS
   socket.on('disconnect', () => {
     io.emit('systemMessage', 'A user has left the chat')
   })
 
-  // LISTEN FOR CHAT MESSAGE
-  socket.on("chatMessage", (data, timestamp) => {
-    io.emit('chatMessage', data, timestamp)
+  // USER || LISTEN FOR CHAT MESSAGE
+  socket.on("chatMessage",async (data, timestamp) => {
+    await prisma.chatMessage.create({
+      data: {
+        content: data
+      }
+    })
+    io.emit('chatMessage', data)
   })
 })
 
