@@ -19,8 +19,9 @@ const httpServer = createServer(app);
 const PORT = process.env.PORT || 3000 //  The port number our server runs on
 const INDEX = '/index.html';
 
-const server = express()
-  .use((req, res) => res.sendFile(INDEX, { root: __dirname }))
+// const server = express()
+//   .use((req, res) => res.sendFile(INDEX))
+//   .listen(PORT, () => console.log(`Listening on ${PORT}`));
   httpServer.listen(3000);
 
 
