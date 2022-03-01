@@ -16,10 +16,6 @@
      const $messagesContainer = $('#messages-container')
      const $messageInput = $('#messageInput')
      const $message = `<div class="bg-white py-1 px-2 my-2">${data}</div>`
-     const $page = $('#pages-chat-public')
-     console.log($messagesContainer.prop('scrollHeight')
-)
-
 
      $messagesContainer.append($message)
      $messagesContainer.scrollTop($messagesContainer.prop('scrollHeight'))
@@ -28,10 +24,10 @@
 
    const sendMessage = (e) => {
      const $messageInput = $('#messageInput').val()
-
-     console.log($messageInput)
-
      socket.emit('chatMessage', $messageInput)
+
+     $('#messageInput').val('')
+
    }
 
 
