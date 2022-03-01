@@ -23,14 +23,14 @@ io.on("connection", (socket) => {
   console.log("User connected:" + socket.id)
 
   // WELCOME CURRENT USER
-  socket.emit('message', 'Welcome to the chat!')
+  socket.emit('systemMessage', 'Welcome to the chat!')
 
   // BROADCAST WHEN A USER CONNECTS
-  socket.broadcast.emit('message', 'A user has joined the chat')
+  socket.broadcast.emit('systemMessage', 'A user has joined the chat')
 
   // RUNS WHEN CLIENT DISCONNECTS
   socket.on('disconnect', () => {
-    io.emit('message', 'A user has left the chat')
+    io.emit('systemMessage', 'A user has left the chat')
   })
 
   // LISTEN FOR CHAT MESSAGE

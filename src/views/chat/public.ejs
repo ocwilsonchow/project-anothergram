@@ -4,6 +4,14 @@
 
    socket.on("connection")
 
+   socket.on('systemMessage', (data) => {
+     const $messagesContainer = $('#messages')
+     const $message = `<div class="bg-white p-1 my-1">${data}</div>`
+     console.log(data)
+
+     $messagesContainer.append($message)
+   })
+
    socket.on('chatMessage', (data) => {
      const $messagesContainer = $('#messages')
      const $message = `<div class="bg-white p-1 my-1">${data}</div>`
@@ -29,10 +37,12 @@
 </script>
 
 <%- contentFor('body') %>
-<div id="pages-chat-public" class="bg-white my-2 p-4">
+<div id="pages-chat-public" class="bg-white my-2 p-4" style="border-radius: 1rem">
     <h1>Public Chat</h1>
-    <input type="text" id="messageInput" class="message">
-    <button onclick="sendMessage()">Send Message</button>
+   <div class="input-group mb-3">
+      <input type="text" id="messageInput" class="form-control">
+   </div>
+    <button class="btn btn-dark rounded-pill" onclick="sendMessage()">Send Message</button>
     <div id="messages" class="p-2 mt-2 bg-light"></div>
 
 
