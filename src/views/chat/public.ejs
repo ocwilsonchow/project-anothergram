@@ -5,7 +5,7 @@
 
   socket.on('systemMessage', (data) => {
     const $messagesContainer = $('#messages-container')
-    const $message = `<div class="text-muted p-1 my-2">${data}</div>`
+    const $message = `<div style="font-size: 0.8rem;" class="text-muted text-center p-1 my-2">${data}</div>`
     console.log(data)
 
     $messagesContainer.append($message)
@@ -15,9 +15,9 @@
     const $messagesContainer = $('#messages-container')
     const $messageInput = $('#messageInput')
     const $message = `
-    <div class="bg-white py-1 px-2 my-2">
-      <div>${data}</div>
-      <div class="text-muted" style="font-size: 0.8rem;">${moment(timestamp).calendar()} by anonymous</div>
+    <div class="bg-primary py-2 px-4 my-2 rounded-pill">
+      <div class="text-light">${data}</div>
+      <div class="text-light" style="font-size: 0.6rem;">${moment(timestamp).calendar()} by anonymous</div>
     </div>`
 
     $messagesContainer.append($message)
@@ -28,9 +28,7 @@
     const $messageInput = $('#messageInput').val()
     const timestamp = new Date().getTime()
 
-    console.log(moment(timestamp).calendar())
     socket.emit('chatMessage', $messageInput, timestamp)
-
     $('#messageInput').val('')
   }
 
