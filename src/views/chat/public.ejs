@@ -1,8 +1,17 @@
 <%- contentFor('styles') %> <%- contentFor('scripts') %>
 <script>
+   const socket = io("http://localhost:3000");
 
-  const socket = io("http://localhost:3000");
    socket.on("connection")
+
+   socket.on('message', (data) => {
+     const $messagesContainer = $('#messages')
+     const $message = data
+     console.log(data)
+
+     $messagesContainer.html('').append($message)
+
+   })
 
    const sendMessage = ()=>{
      socket.emit('message', 'message sent')
@@ -21,6 +30,7 @@
     <h1>Public Chat</h1>
     <input type="text" class="message">
     <button onclick="sendMessage()">Send Message</button>
+    <div id="messages"></div>
 
 
 </div>

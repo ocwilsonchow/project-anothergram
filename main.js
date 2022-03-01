@@ -16,14 +16,14 @@ import addUserToLayout from './src/_middlewares/add-user-to-layout.js'
 
 const app = express() // The instance that "host" our server
 const httpServer = createServer(app);
-const port = process.env.PORT || 3000 // The port number our server runs on
+const port = process.env.PORT || 3000 //  The port number our server runs on
 const io = new Server(httpServer, { /* options */ });
 
 io.on("connection", (socket) => {
   console.log("User connected:" + socket.id)
 
   socket.on("message", (data) => {
-    console.log(data)
+    socket.broadcast.emit('message', data)
   })
 
 });
