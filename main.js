@@ -22,16 +22,20 @@ const io = new Server(httpServer, { /* options */ });
 io.on("connection", (socket) => {
   console.log("User connected:" + socket.id)
 
+  // WELCOME CURRENT USER
   socket.emit('message', 'Welcome to the chat!')
 
   // BROADCAST WHEN A USER CONNECTS
   socket.broadcast.emit('message', 'A user has joined the chat')
 
+  // RUNS WHEN CLIENT DISCONNECTS
+  socket.on('disconnect', () => {
+    io.emit('message', 'A user has left the chat')
+  })
 
-
-
-  socket.on("message", (data) => {
-    socket.broadcast.emit('message', data)
+  // LISTEN FOR CHAT MESSAGE
+  socket.on("chatMessage", (data) => {
+    io.emit('message', data)
   })
 
 });

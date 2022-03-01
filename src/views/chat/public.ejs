@@ -6,18 +6,18 @@
 
    socket.on('message', (data) => {
      const $messagesContainer = $('#messages')
-     const $message = data
+     const $message = `<div class="bg-white p-1 my-1">${data}</div>`
      console.log(data)
 
-     $messagesContainer.html('').append($message)
+     $messagesContainer.append($message)
 
    })
 
    const sendMessage = ()=>{
      const $messageInput = $('#messageInput').val()
+     console.log($messageInput)
 
-
-     socket.emit('message', $messageInput)
+     socket.emit('chatMessage', $messageInput)
    }
 
 
@@ -33,7 +33,7 @@
     <h1>Public Chat</h1>
     <input type="text" id="messageInput" class="message">
     <button onclick="sendMessage()">Send Message</button>
-    <div id="messages"></div>
+    <div id="messages" class="p-2 mt-2 bg-light"></div>
 
 
 </div>
