@@ -20,18 +20,19 @@ const port = process.env.PORT || 3000 // The port number our server runs on
 const io = new Server(httpServer)
 
 io.on("connection", (socket) => {
+   const timestamp = new Date().getTime()
   console.log("User connected:" + socket.id)
   const count = io.engine.clientsCount
 
   // SYSTEM || WELCOME CURRENT USER
-  socket.emit('systemMessage', 'Welcome to the chat!', count)
+  socket.emit('systemMessage', 'Welcome to the chat!', count, timestamp)
 
   // SYSTEM || BROADCAST WHEN A USER CONNECTS
-  socket.broadcast.emit('systemMessage', 'A user has joined the chat', count)
+  socket.broadcast.emit('systemMessage', 'A user has joined the chat', count, timestamp)
 
   // SYSTEM || RUNS WHEN CLIENT DISCONNECTS
   socket.on('disconnect', () => {
-    io.emit('systemMessage', 'A user has left the chat', count)
+    io.emit('systemMessage', 'A user has left the chat', count, timestamp)
   })
 
   // USER || LISTEN FOR CHAT MESSAGE

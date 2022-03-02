@@ -4,13 +4,19 @@
 
   $(document).ready(() => {
 
-    $('#toggle-theme').on('click', (e) => {
-      e.preventDefault();
-      console.log("hi")
+    $('.navbar').on('click','#toggle-dark', (e) => {
+
       $('body').toggleClass('dark')
       $('#navbar-container').toggleClass('dark')
+      $('#toggle-dark').replaceWith( `<i id="toggle-light" style="cursor: pointer" class='bx bx-xs bx-sun mx-2 bg-dark p-2 rounded-pill text-warning'></i>`)
 
+    })
 
+    $('.navbar').on('click','#toggle-light', (e) => {
+
+      $('body').toggleClass('dark')
+      $('#navbar-container').toggleClass('dark')
+      $('#toggle-light').replaceWith( `<i id="toggle-dark" style="cursor: pointer" class='bx bx-xs bxs-moon mx-2 bg-light p-2 rounded-pill text-warning'></i>`)
     })
 
     $("#auth-logout").on("click", (e) => {
@@ -26,15 +32,15 @@
   });
 </script>
 
-<nav class="navbar mx-auto" style="max-width: 1300px;">
+<nav class="navbar  mx-auto" style="max-width: 1300px;">
   <div class="container-fluid">
-    <a class="navbar-brand mx-2" style="font-weight: bold; font-size: 1.5rem;" href="/">Anothergram</a>
+    <a class="navbar-brand mx-2" style="font-family: Satisfy ;font-weight: bold; font-size: 1.7rem;" href="/">Anothergram</a>
     <span class="d-flex align-items-center">
 
-         <i id="toggle-theme" style="cursor: pointer" class='bx bx-xs bxs-moon mx-2 bg-dark p-2 rounded-pill text-warning'></i>
+         <i id="toggle-dark" style="cursor: pointer" class='bx bx-xs bxs-moon mx-2 bg-light p-2 rounded-pill text-warning'></i>
 
           <div class="dropdown">
-            <button class="btn btn-dark dropdown-toggle rounded-pill" style="font-size: 0.8rem" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">Menu</button>
+            <button class="btn btn-light dropdown-toggle rounded-pill" style="font-size: 0.8rem" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">Menu</button>
             <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end" aria-labelledby="dropdownMenuButton2">
             <% if (user.id) { %>
               <li class="nav-item">

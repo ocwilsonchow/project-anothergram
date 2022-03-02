@@ -5,9 +5,9 @@
   const socket = io(window.location.origin)
   socket.on("connection")
 
-  socket.on('systemMessage', (data, count) => {
+  socket.on('systemMessage', (data, count, timestamp) => {
     const $messagesContainer = $('#messages-container')
-    const $message = `<div style="font-size: 0.8rem;" class="text-muted text-center p-1 my-2">${data}</div>`
+    const $message = `<div style="font-size: 0.9rem;" class="text-muted text-center p-1 my-2">${data} <span style="font-size: 0.6rem">${moment(timestamp).calendar()}</span></div>`
     const $count = $('#socket-count')
     $messagesContainer.append($message)
     $count.html("Participants in room: " + count)
@@ -49,7 +49,7 @@
   const generateChatLayout = () => {
 
     return `
-      <h2 class="d-flex align-items-center flex-wrap"><span class="mx-1">Public Live Chat</span><span id="socket-count" class="badge bg-primary mx-1" style="font-size: 0.6rem"></span></h2>
+      <h2 class="d-flex align-items-center flex-wrap"><span class="mx-1">Public Live Chat</span><span id="socket-count" class="badge bg-primary mx-1 my-2" style="font-size: 0.8rem"></span></h2>
       <div id="messages-container" class="p-2 my-2 bg-light" style="border-radius: 1rem; max-height:70vh; min-height: 200px; overflow: auto;">
 
       </div>
