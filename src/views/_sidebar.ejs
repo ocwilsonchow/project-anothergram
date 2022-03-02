@@ -92,15 +92,15 @@
       if (!weatherData) {
         return `
        <div class="text-dark p-2" style="text-decoration: none;" >
-           ${userId && ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar my-2" alt="user-avatar" width="100%" style="border-radius: 50%; object-fit: cover;"/></a>`}
-            <p>Welcome back! ${userId && userData?.username.toUpperCase()}</p>
+           ${userId && ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar my-2" alt="user-avatar" width="160px" height="160px" style="border-radius: 50%; object-fit: cover;"/></a>`}
+            <h5 class="">Welcome back! ${userId && userData?.username.toUpperCase()}</h5>
             <div> <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></div>
           </div>`
       }
       return `
           <div class=" text-dark p-2" style="text-decoration: none;" >
-            ${userId && ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar my-2" alt="user-avatar" width="100%" style="border-radius: 50%; object-fit: cover;"/></a>`}
-            <p>Welcome back! ${userId && userData?.username.toUpperCase()}</p>
+            ${userId && ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar my-2 text-center" alt="user-avatar" width="160px" height="160px" style="border-radius: 50%; object-fit: cover;"/></a>`}
+            <h5 class="">Welcome back! ${userId && userData?.username.toUpperCase()}</h5>
             <div class="pt-2">
               <a data-bs-toggle="collapse" style="text-decoration: none" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                  <div class=' text-dark'>📍 ${weatherData?.name}, ${weatherData?.sys.country}</div>
@@ -148,17 +148,18 @@
         ${generateWeatherBoard(weatherData, userData)}
       </div>
       <div class="mx-2 d-none d-sm-none d-lg-none d-xl-block">
-       <a class="btn btn-primary rounded-pill my-2" href="/auth/login">Log in</a>
-       <a class="btn btn-light rounded-pill my-2" href="/auth/signup">Register</a>
-
-       <a class="menu-item py-2 my-3 d-flex text-dark align-items-center rounded-3" style="text-decoration: none;" href='/community'>
-        <i class='mx-1 bx bx-compass bx-sm '></i>
-        <div class="mx-2 fs-6 d-none d-sm-none d-lg-none d-xl-block ">Community</div>
-       </a>
-       <a class="menu-item py-2 my-3 d-flex text-dark align-items-center rounded-3" style="text-decoration: none;" href='/chat/public'>
-        <i class='mx-1 bx bx-message-rounded bx-sm '></i>
-        <div class="mx-2 fs-6 d-none d-sm-none d-lg-none d-xl-block ">Chat</div>
-       </a>
+        <div>
+          <a class="btn btn-primary rounded-pill fs-6 my-2" href="/auth/login">Log in</a>
+          <a class="btn btn-light rounded-pill my-2" href="/auth/signup">Register</a>
+        </div>
+        <a class="menu-item py-2 my-2 d-flex text-dark align-items-center rounded-3" style="text-decoration: none;" href='/community'>
+          <i class='mx-1 bx bx-compass bx-sm '></i>
+          <div class="mx-2 fs-6 d-none d-sm-none d-lg-none d-xl-block ">Community</div>
+        </a>
+        <a class="menu-item py-2 my-2 d-flex text-dark align-items-center rounded-3" style="text-decoration: none;" href='/chat/public'>
+          <i class='mx-1 bx bx-message-rounded bx-sm '></i>
+          <div class="mx-2 fs-6 d-none d-sm-none d-lg-none d-xl-block ">Chat</div>
+        </a>
       </div>
       `
     }
