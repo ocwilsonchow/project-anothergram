@@ -2,13 +2,6 @@
 <script>
 const profileId = window.location.href.split('/').reverse()[0]
 
-const generatePage = (user) => {
-  const $page = $('#pages-show-profile')
-  const $profile = generateProfile(user)
-  const $posts = generatePosts(user)
-  $page.html("").append($profile).append($posts);
-}
-
  const generateProfile = (user) => {
  return `
     <div class="text-center">
@@ -24,6 +17,8 @@ const generatePage = (user) => {
  }
 
  const generatePost = (post) => {
+
+
  let status = "";
     if (post.public) {
       status = "public";
@@ -51,6 +46,13 @@ const generatePage = (user) => {
  }
 
  const generatePosts = (user) => {
+   if (!user) return `<div class="d-flex my-4 justify-content-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>`
+
+
     if (user?.post.length < 1) {
     return `<div class="text-center">This user does not has any post.</div>
     `}
@@ -60,6 +62,13 @@ const generatePage = (user) => {
     </div>
   `
  }
+
+ const generatePage = (user) => {
+  const $page = $('#pages-show-profile')
+  const $profile = generateProfile(user)
+  const $posts = generatePosts(user)
+  $page.html("").append($profile).append($posts);
+}
 
 
 $(document).ready(() => {
