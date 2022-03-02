@@ -23,9 +23,9 @@
 
 :root {
   --bg-body-dark: rgb(22, 20, 30);
-  --bg-body-light: rgb(238, 238, 238);
+  --bg-body-light: rgb(248, 248, 248);
   --bg-card-light: white;
-  --bg-card-dark: rgba(36, 32, 44, 0.5);
+  --bg-card-dark: rgb(40, 35, 49);
 }
 
 body {
@@ -70,7 +70,7 @@ body.dark {
 }
 #navbar-container.dark {
   background-color: var(--bg-body-dark);
-    border-bottom: 1px solid transparent;
+  border-bottom: 1px solid rgb(45, 45, 45);
 
   .navbar-brand {
     color: white;
