@@ -3,6 +3,12 @@
 const profileId = window.location.href.split('/').reverse()[0]
 
  const generateProfile = (user) => {
+     if (!user) return `<div class="d-flex my-4 justify-content-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>`
+
  return `
     <div class="text-center">
         <img src="${user?.avatar}" alt="user-avatar" width="150" height="150" style="border-radius: 50%; object-fit: cover;"/>
@@ -47,9 +53,6 @@ const profileId = window.location.href.split('/').reverse()[0]
 
  const generatePosts = (user) => {
    if (!user) return `<div class="d-flex my-4 justify-content-center">
-      <div class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
     </div>`
 
 
