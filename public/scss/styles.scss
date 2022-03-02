@@ -9,7 +9,7 @@
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 0px;
 }
 
 /* Track */
@@ -20,12 +20,57 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
     border-radius: 20px;
-  background: rgba(185, 185, 185, 0.5);
-
+  background: rgba(185, 185, 185, 0.4);
 }
 
+
+:root{
+  --bg-body-dark: rgb(22, 20, 30);
+  --bg-body-light: white;
+  --bg-card-light: white;
+  --bg-card-dark: rgb(36, 32, 44);
+}
+
+
 body {
-  background-color:rgb(236, 236, 236)
+  background-color:rgb(245, 245, 245);
+  transition: all ease 0.4s
+}
+body.dark {
+  background-color:var(--bg-body-dark);
+}
+
+// SIDEBAR
+#sidebar-menu-container{
+  background-color: var(--bg-card-light);
+}
+#sidebar-menu-container.dark {
+  background-color: var(--bg-card-dark);
+}
+
+// TOOLBAR
+#toolbar-users-container {
+  background-color: var(--bg-card-light);
+}
+
+#toolbar-users-container.dark {
+  background-color: var(--bg-card-dark);
+}
+
+// NAVBAR
+#navbar-container {
+  background-color: var(--bg-body-light);
+  transition: all ease 0.4s;
+   .navbar-brand {
+     color: black;
+   }
+}
+#navbar-container.dark {
+  background-color:var(--bg-body-dark);
+
+  .navbar-brand{
+    color: var(--bg-body-light);
+  }
 }
 
 #nav-login {
@@ -40,6 +85,8 @@ body {
   background-color: rgb(50, 50, 156);
 }
 
+
+// MAIN PAGE
 .card {
   transition: all ease 0.2s;
 }
