@@ -31,7 +31,7 @@
 
 body {
   background-color: rgb(245, 245, 245);
-  transition: all ease 0.4s;
+  transition: all ease 0.5s;
 }
 body.dark {
   background-color: var(--bg-body-dark);
@@ -56,8 +56,8 @@ body.dark {
 
 // NAVBAR
 #navbar-container {
-  background-color: var(--bg-body-light);
-  transition: all ease 0.4s;
+  background-color: rgb(245, 245, 245);
+  transition: all ease 0.5s;
   .navbar-brand {
     color: black;
   }
