@@ -22,7 +22,6 @@ const io = new Server(httpServer)
 io.on("connection", (socket) => {
   console.log("User connected:" + socket.id)
   const count = io.engine.clientsCount
-  console.log(count)
 
   // SYSTEM || WELCOME CURRENT USER
   socket.emit('systemMessage', 'Welcome to the chat!', count)
