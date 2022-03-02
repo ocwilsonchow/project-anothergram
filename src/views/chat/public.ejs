@@ -44,8 +44,7 @@
     $('#messageInput').val('')
   }
 
-  const generateChatLayout = ({isLoading}) => {
-    if (isLoading) return `<div class="text-center mb-3">Loading...</div>`
+  const generateChatLayout = () => {
 
     return `
       <h1>Public Live Chat</h1>
@@ -57,9 +56,9 @@
     `
   }
 
-  const generateChatPage = (info) => {
+  const generateChatPage = () => {
     const $page = $('#pages-chat-public')
-    const $chat = generateChatLayout(info)
+    const $chat = generateChatLayout()
 
     $page.html('').append($chat)
 
@@ -73,7 +72,6 @@
      url: `/api/profile/${userId}`,
    }).then((resp) => {
      userData = resp.data;
-
    });
 
   });
