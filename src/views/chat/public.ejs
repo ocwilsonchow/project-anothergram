@@ -10,7 +10,7 @@
     const $message = `<div style="font-size: 0.8rem;" class="text-muted text-center p-1 my-2">${data}</div>`
     const $count = $('#socket-count')
     $messagesContainer.append($message)
-    $count.html("In room: " + count)
+    $count.html("Participants in room: " + count)
   })
 
   // ON RECEIVING MESSAGE
@@ -46,7 +46,7 @@
 
   const generateChatLayout = () => {
     return `
-      <h1 class="d-flex align-items-center">Public Live Chat<span id="socket-count" class="mx-2 badge bg-primary d-flex align-items-center" style="font-size: 0.8rem"></span></h1>
+      <h2 class="d-flex align-items-center">Public Live Chat<span id="socket-count" class="mx-2 badge bg-primary d-flex align-items-center" style="font-size: 0.6rem"></span></h2>
       <div id="messages-container" class="p-2 my-2 bg-light" style="border-radius: 1rem; max-height:70vh; min-height: 200px; overflow: auto;">
 
       </div>
@@ -73,12 +73,14 @@
      url: `/api/profile/${userId}`,
    }).then((resp) => {
      userData = resp.data;
-   });
+   }).catch(() => {
+     generateChatPage()
+   })
 
   });
 </script>
 
 <%- contentFor('body') %>
-<div id="pages-chat-public" class="bg-white my-2 p-4" style="border-radius: 1rem;">
+<div id="pages-chat-public" class="card bg-white my-2 p-4" style="border-radius: 1rem;">
 
 </div>
