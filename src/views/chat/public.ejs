@@ -45,10 +45,11 @@
   }
 
   const generateChatLayout = () => {
-
     return `
       <h1>Public Live Chat</h1>
-      <div id="messages-container" class="p-2 my-2 bg-light" style="border-radius: 1rem; max-height:70vh; overflow: auto;"></div>
+      <div id="messages-container" class="p-2 my-2 bg-light" style="border-radius: 1rem; max-height:70vh; min-height: 200px; overflow: auto;">
+
+      </div>
       <div class="input-group mt-3">
         <input type="text" id="messageInput" class="form-control" >
         <button class="btn btn-primary ${(!user) && "disabled"}" onclick="sendMessage()">${(!user) && "Login required" || "<i class='bx bx-send'></i>"}</button>
