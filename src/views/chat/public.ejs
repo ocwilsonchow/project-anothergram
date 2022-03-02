@@ -40,19 +40,22 @@
     const timestamp = new Date().getTime()
     const user = userData
 
+    if (!$messageInput) {return console.log("Input cannot be empty")}
+
     socket.emit('chatMessage', $messageInput, timestamp, userData)
     $('#messageInput').val('')
   }
 
   const generateChatLayout = () => {
+
     return `
       <h2 class="d-flex align-items-center">Public Live Chat<span id="socket-count" class="mx-2 badge bg-primary d-flex align-items-center" style="font-size: 0.6rem"></span></h2>
       <div id="messages-container" class="p-2 my-2 bg-light" style="border-radius: 1rem; max-height:70vh; min-height: 200px; overflow: auto;">
 
       </div>
       <div class="input-group mt-3">
-        <input type="text" id="messageInput" class="form-control" >
-        <button class="btn btn-primary ${(!user) && "disabled"}" onclick="sendMessage()">${(!user) && "Login required" || "<i class='bx bx-send'></i>"}</button>
+        <input type="text" id="messageInput" name="messageInput"  class="form-control">
+        <button class="btn btn-primary ${(!user) && "disabled"} " onclick="sendMessage()">${(!user) && "Login required" || "<i class='bx bx-send'></i>"}</button>
       </div>
     `
   }
