@@ -44,10 +44,13 @@
 </div>`;
     if (posts.length === 0) {
       return `
-          <h2 class="text-center mb-3">No Post Found!</h2>
+        <div class="bg-white my-2 py-5" style="border-radius: 1rem">
+          <h2 class="text-center">No Post Found!</h2>
           <div class="text-center">
             <a class="btn btn-primary" href="/my/posts/create">Create New Post</a>
           </div>
+        </div>
+
         `;
     }
     return `
