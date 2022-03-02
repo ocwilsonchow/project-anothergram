@@ -19,7 +19,7 @@
     const $messageInput = $('#messageInput')
     const $message = `
     <div class="d-flex ${userData.id == user && "justify-content-start" || "justify-content-end"}">
-      <div class="d-flex bg-primary py-2 px-2 my-2 rounded-pill">
+      <div class="d-flex ${userData.id == user && "bg-success" || "bg-primary"} py-2 px-2 my-2 rounded-pill">
          ${userId && ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar" alt="user-avatar" width="40" height="40" style="border-radius: 50%; object-fit: cover;"/></a>`}
          <div class="px-2">
           <div class="text-light">${data}</div>
