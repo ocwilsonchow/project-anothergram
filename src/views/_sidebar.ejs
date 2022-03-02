@@ -133,8 +133,11 @@
       <div class="p-3 d-md-block d-lg-block d-xl-none" >
         <i class='m-2 bx bx-sun bx-sm text-dark'></i>
       </div>
-       <div class="p-3 d-md-block d-lg-block d-xl-none" >
+      <div class="p-3 d-md-block d-lg-block d-xl-none" >
         <a class='bx bx-compass bx-sm text-dark' href="/community" style="text-decoration: none"></a>
+      </div>
+      <div class="p-3 d-md-block d-lg-block d-xl-none" >
+        <a class='bx bx-message-rounded bx-sm text-dark' href="/chat/public" style="text-decoration: none"></a>
       </div>
       <div class="p-3 d-md-block d-lg-block d-xl-none" >
         <a class='bx bx-user-plus bx-sm text-dark' href="/auth/signup" style="text-decoration: none"></a>
@@ -145,9 +148,18 @@
       <div class="p-3 d-none d-sm-none d-lg-none d-xl-block">
         ${generateWeatherBoard(weatherData, userData)}
       </div>
-      <div class=" d-none d-sm-none d-lg-none d-xl-block">
+      <div class="mx-2 d-none d-sm-none d-lg-none d-xl-block">
        <a class="btn btn-primary rounded-pill my-3" href="/auth/login">Log in</a>
        <a class="btn btn-light rounded-pill my-3" href="/auth/signup">Sign up</a>
+
+       <a class="menu-item py-2 my-3 d-flex text-dark align-items-center rounded-3" style="text-decoration: none;" href='/community'>
+        <i class='mx-2 bx bx-compass bx-sm '></i>
+        <div class="mx-3 fs-6 d-none d-sm-none d-lg-none d-xl-block ">Community</div>
+       </a>
+       <a class="menu-item py-2 my-3 d-flex text-dark align-items-center rounded-3" style="text-decoration: none;" href='/chat/public'>
+        <i class='mx-2 bx bx-message-rounded bx-sm '></i>
+        <div class="mx-3 fs-6 d-none d-sm-none d-lg-none d-xl-block ">Chat</div>
+       </a>
       </div>
       `
     }
