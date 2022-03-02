@@ -49,13 +49,13 @@
   const generateChatLayout = () => {
 
     return `
-      <h2 class="d-flex align-items-center flex-wrap"><span class="mx-1">Public Live Chat</span><span id="socket-count" class="badge bg-primary mx-1 my-2" style="font-size: 0.8rem"></span></h2>
+      <h2 class="d-flex align-items-center flex-wrap"><span class="mx-1">Public Live Chat</span><span id="socket-count" class="badge bg-light mx-1 my-2 text-primary" style="font-size: 0.8rem"></span></h2>
       <div id="messages-container" class="p-2 my-2 bg-light" style="border-radius: 1rem; max-height:70vh; min-height: 200px; overflow: auto;">
 
       </div>
       <div class="input-group mt-3">
         <input type="text" id="messageInput" name="messageInput"  class="form-control">
-        <button class="btn btn-primary ${(!user) && "disabled"} " onclick="sendMessage()">${(!user) && "Login required" || "<i class='bx bx-send'></i>"}</button>
+        <button id="submitMessageBtn" class="btn btn-dark ${(!user) && "disabled"}" type="submit" onclick="sendMessage()">${(!user) && "Login required" || "<i class='bx bx-send'></i>"}</button>
       </div>
     `
   }
@@ -71,6 +71,15 @@
   $(document).ready(() => {
     generateChatPage()
 
+    $('#pages-chat-public').keypress((e) => {
+
+      if(e.which == 13) {
+        console.log('submitted')
+        sendMessage()
+      }
+
+    })
+
    axios({
      method: "GET",
      url: `/api/profile/${userId}`,
@@ -84,6 +93,6 @@
 </script>
 
 <%- contentFor('body') %>
-<div id="pages-chat-public" class="card bg-white my-2 p-4" style="border-radius: 1rem;">
+<div id="pages-chat-public" class="card bg-white my-2 p-4" style="border-radius: 1rem; min-height: 40vh">
 
 </div>
