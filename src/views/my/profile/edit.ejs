@@ -5,7 +5,9 @@
 let avatarURL = ''
 let isUpdated
 
-const generateForm = ({ user, errors } = {}) => {
+const generateForm = ({isLoading, user, errors } = {}) => {
+  if (isLoading) return `<div class="text-center my-4">Loading...</div>`
+
   if (user?.avatar?.constructor?.name === 'String') {
     avatarURL = user.avatar || avatarURL
   }
@@ -106,7 +108,7 @@ $(document).ready(() => {
     method: 'GET',
     url: '/api/my/profile'
   }).then((resp) => {
-    generatePage({ user: resp.data })
+    generatePage({ isLoading: false, user: resp.data })
   }).catch(() => {
     generatePage()
   })
