@@ -17,41 +17,41 @@
       title: "Home",
       icon: "bx-home bx-sm",
       link: "/",
-      color: "text-dark",
+      color: "text-light",
       id: ""
     },
      {
       title: "Community",
       icon: "bx-compass bx-sm",
       link: "/community",
-      color: "text-dark"
+      color: "text-light"
     },
      {
       title: "My Posts",
       icon: "bx-detail bx-sm",
       link: "/my/posts",
-      color: "text-dark",
+      color: "text-light",
       id: ""
     },
      {
       title: "Create",
       icon: "bx-edit-alt bx-sm",
       link: "/my/posts/create",
-      color: "text-dark",
+      color: "text-light",
       id: ""
     },
      {
       title: "Profile",
       icon: "bx-user bx-sm",
       link: "/my/profile/edit",
-      color: "text-dark",
+      color: "text-light",
       id: ""
     },
      {
       title: "Chat",
       icon: "bx-message-rounded bx-sm",
       link: "/chat/public",
-      color: "text-dark",
+      color: "text-light",
       id: ""
     },
      {
@@ -91,20 +91,20 @@
    const generateWeatherBoard = (weatherData, userData) => {
       if (!weatherData) {
         return `
-       <div class="text-dark p-2" style="text-decoration: none;" >
+       <div class="text-light p-2" style="text-decoration: none;" >
            ${userId && ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar my-2" alt="user-avatar" width="160px" height="160px" style="border-radius: 50%; object-fit: cover;"/></a>`}
             <h5 class="">Welcome back! ${userId && userData?.username.toUpperCase()}</h5>
             <div> <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></div>
           </div>`
       }
       return `
-          <div class=" text-dark p-2" style="text-decoration: none;" >
+          <div class=" text-light p-2" style="text-decoration: none;" >
             ${userId && ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar my-2 text-center" alt="user-avatar" width="160px" height="160px" style="border-radius: 50%; object-fit: cover;"/></a>`}
             <h5 class="">Welcome back! ${userId && userData?.username.toUpperCase()}</h5>
             <div class="pt-2">
               <a data-bs-toggle="collapse" style="text-decoration: none" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                 <div class=' text-dark'>📍 ${weatherData?.name}, ${weatherData?.sys.country}</div>
-                 <div class="fw-bold fs-1 text-dark">${weatherData?.main.temp}ºC</div>
+                 <div class=' text-light'>📍 ${weatherData?.name}, ${weatherData?.sys.country}</div>
+                 <div class="fw-bold fs-1 text-light">${weatherData?.main.temp}ºC</div>
               </a>
             </div>
             <div class="collapse" id="collapseExample">
@@ -130,16 +130,16 @@
     if (!userId) {
       return `
       <div class="p-3 d-md-block d-lg-block d-xl-none" >
-        <i class='m-2 bx bx-sun bx-sm text-dark'></i>
+        <i class='m-2 bx bx-sun bx-sm text-light'></i>
       </div>
       <div class="p-3 d-md-block d-lg-block d-xl-none" >
-        <a class='bx bx-compass bx-sm text-dark' href="/community" style="text-decoration: none"></a>
+        <a class='bx bx-compass bx-sm text-light' href="/community" style="text-decoration: none"></a>
       </div>
       <div class="p-3 d-md-block d-lg-block d-xl-none" >
-        <a class='bx bx-message-rounded bx-sm text-dark' href="/chat/public" style="text-decoration: none"></a>
+        <a class='bx bx-message-rounded bx-sm text-light' href="/chat/public" style="text-decoration: none"></a>
       </div>
       <div class="p-3 d-md-block d-lg-block d-xl-none" >
-        <a class='bx bx-user-plus bx-sm text-dark' href="/auth/signup" style="text-decoration: none"></a>
+        <a class='bx bx-user-plus bx-sm text-light' href="/auth/signup" style="text-decoration: none"></a>
       </div>
       <div class="p-3 d-md-block d-lg-block d-xl-none" >
         <a class='bx bx-log-in-circle bx-sm text-primary' href="/auth/login" style="text-decoration: none"></a>
@@ -152,11 +152,11 @@
           <a class="btn btn-primary rounded-pill fs-6 my-2" href="/auth/login">Log in</a>
           <a class="btn btn-light rounded-pill my-2" href="/auth/signup">Register</a>
         </div>
-        <a class="menu-item py-2 my-2 d-flex text-dark align-items-center rounded-3" style="text-decoration: none;" href='/community'>
+        <a class="menu-item py-2 my-2 d-flex text-light align-items-center rounded-3" style="text-decoration: none;" href='/community'>
           <i class='mx-1 bx bx-compass bx-sm '></i>
           <div class="mx-2 fs-6 d-none d-sm-none d-lg-none d-xl-block ">Community</div>
         </a>
-        <a class="menu-item py-2 my-2 d-flex text-dark align-items-center rounded-3" style="text-decoration: none;" href='/chat/public'>
+        <a class="menu-item py-2 my-2 d-flex text-light align-items-center rounded-3" style="text-decoration: none;" href='/chat/public'>
           <i class='mx-1 bx bx-message-rounded bx-sm '></i>
           <div class="mx-2 fs-6 d-none d-sm-none d-lg-none d-xl-block ">Chat</div>
         </a>
@@ -166,7 +166,7 @@
 
    return `
    <div class="p-3 d-md-block d-lg-block d-xl-none" >
-      <i class='m-2 bx bx-sun bx-sm text-dark'></i>
+      <i class='m-2 bx bx-sun bx-sm text-light'></i>
     </div>
     <div class="px-3 d-md-block d-lg-block d-xl-none" >
      ${userId && ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar" alt="user-avatar" width="40" height="40" style="border-radius: 50%; object-fit: cover;"/></a>`}
@@ -210,4 +210,4 @@
 </script>
 
 
-  <div id="sidebar-menu-container" class="card d-flex flex-column justify-content-start align-items-center" style="border-radius: 15px; overflow: auto; max-height: 85vh;"></div>
+  <div id="sidebar-menu-container" class="card d-flex flex-column justify-content-start align-items-center" style="border-radius: 15px; overflow: auto; min-height: 85vh;"></div>

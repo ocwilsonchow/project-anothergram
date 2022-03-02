@@ -44,7 +44,7 @@ body.dark {
 
 // SIDEBAR
 #sidebar-menu-container {
-  background-color: var(--bg-card-light);
+  background-color: var(--bg-body-dark);
 }
 #sidebar-menu-container.dark {
   background-color: var(--bg-card-dark);
@@ -133,7 +133,7 @@ main .card:hover {
 }
 
 .menu-item:hover {
-  background-color: rgb(238, 238, 238);
+  background-color: rgb(95, 95, 95);
 }
 
 .user-avatar {
