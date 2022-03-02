@@ -6,7 +6,11 @@
   const generateTitle = ({ isLoading, post } = {}) => {
     if (isLoading)
       return `
-    <div class="text-center">Loading...</div>`;
+    <div class="d-flex my-4 justify-content-center">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>`;
     if (!post) return `<h1 class="text-center mb-3">Post ${id} Not Found!</h1>`;
 
 
