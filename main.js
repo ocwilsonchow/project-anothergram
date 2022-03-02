@@ -21,16 +21,18 @@ const io = new Server(httpServer)
 
 io.on("connection", (socket) => {
   console.log("User connected:" + socket.id)
+  const count = io.engine.clientsCount
+  console.log(count)
 
   // SYSTEM || WELCOME CURRENT USER
-  socket.emit('systemMessage', 'Welcome to the chat!')
+  socket.emit('systemMessage', 'Welcome to the chat!', count)
 
   // SYSTEM || BROADCAST WHEN A USER CONNECTS
-  socket.broadcast.emit('systemMessage', 'A user has joined the chat')
+  socket.broadcast.emit('systemMessage', 'A user has joined the chat', count)
 
   // SYSTEM || RUNS WHEN CLIENT DISCONNECTS
   socket.on('disconnect', () => {
-    io.emit('systemMessage', 'A user has left the chat')
+    io.emit('systemMessage', 'A user has left the chat', count)
   })
 
   // USER || LISTEN FOR CHAT MESSAGE
