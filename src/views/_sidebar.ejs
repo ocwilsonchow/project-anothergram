@@ -91,14 +91,14 @@
    const generateWeatherBoard = (weatherData, userData) => {
       if (!weatherData) {
         return `
-       <div class="bg-white text-dark p-2" style="text-decoration: none;" >
+       <div class="mx-3 bg-white text-dark p-2" style="text-decoration: none;" >
            ${userId && ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar my-2" alt="user-avatar" width="80" height="80" style="border-radius: 50%; object-fit: cover;"/></a>`}
             <p>Welcome back! ${userId && userData?.username.toUpperCase()}</p>
             <div> <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></div>
           </div>`
       }
       return `
-          <div class="bg-white text-dark p-2" style="text-decoration: none;" >
+          <div class=" bg-white text-dark p-2" style="text-decoration: none;" >
             ${userId && ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar my-2" alt="user-avatar" width="80" height="80" style="border-radius: 50%; object-fit: cover;"/></a>`}
             <p>Welcome back! ${userId && userData?.username.toUpperCase()}</p>
             <div class="pt-2">
@@ -149,16 +149,16 @@
         ${generateWeatherBoard(weatherData, userData)}
       </div>
       <div class="mx-2 d-none d-sm-none d-lg-none d-xl-block">
-       <a class="btn btn-primary rounded-pill my-3" href="/auth/login">Log in</a>
-       <a class="btn btn-light rounded-pill my-3" href="/auth/signup">Sign up</a>
+       <a class="btn btn-primary rounded-pill my-2" href="/auth/login">Log in</a>
+       <a class="btn btn-light rounded-pill my-2" href="/auth/signup">Register</a>
 
        <a class="menu-item py-2 my-3 d-flex text-dark align-items-center rounded-3" style="text-decoration: none;" href='/community'>
-        <i class='mx-2 bx bx-compass bx-sm '></i>
-        <div class="mx-3 fs-6 d-none d-sm-none d-lg-none d-xl-block ">Community</div>
+        <i class='mx-1 bx bx-compass bx-sm '></i>
+        <div class="mx-2 fs-6 d-none d-sm-none d-lg-none d-xl-block ">Community</div>
        </a>
        <a class="menu-item py-2 my-3 d-flex text-dark align-items-center rounded-3" style="text-decoration: none;" href='/chat/public'>
-        <i class='mx-2 bx bx-message-rounded bx-sm '></i>
-        <div class="mx-3 fs-6 d-none d-sm-none d-lg-none d-xl-block ">Chat</div>
+        <i class='mx-1 bx bx-message-rounded bx-sm '></i>
+        <div class="mx-2 fs-6 d-none d-sm-none d-lg-none d-xl-block ">Chat</div>
        </a>
       </div>
       `
