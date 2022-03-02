@@ -50,12 +50,23 @@
       `;
   };
 
+  const generateSearchBar = () => {
+    return `
+      <div class="input-group mb-3">
+        <span class="input-group-text bg-dark" id=""><i class='bx bx-search-alt text-light' ></i></span>
+        <input type="text" class="form-control" placeholder="">
+
+      </div>
+    `
+  }
+
   const generatePage = (info) => {
     const $page = $("#pages-posts-index");
     const $title = generateTitle();
     const $posts = generatePosts(info);
+    const $searchBar = generateSearchBar()
 
-    $page.html("").append($title).append($posts);
+    $page.html("").append($title).append($searchBar).append($posts);
   };
 
   $(document).ready(() => {
