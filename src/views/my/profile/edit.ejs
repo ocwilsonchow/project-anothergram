@@ -10,7 +10,7 @@ const generateForm = ({ user, errors } = {}) => {
     avatarURL = user.avatar || avatarURL
   }
   const $form = $(`
-    <div class="">
+    <div>
       <div id="form-wrapper" class="my-2 p-4 mb-4 bg-white" style="border-radius: 1rem;">
         <h1 class="text-center py-3">Update Profile</h1>
        <div id="alert-wrapper"></div>
@@ -53,7 +53,7 @@ const generateForm = ({ user, errors } = {}) => {
           </div>
 
           <div class="input-group py-1">
-            <span for="user-new-password-confirmation" class="input-group-text">New Password Confirmation</span>
+            <span for="user-new-password-confirmation" class="input-group-text">Confirm Password</span>
             <input id="user-new-password-confirmation" class="form-control ${errors?.passwordConfirmation && 'is-invalid'}" name="passwordConfirmation" rows="3" value="${user?.passwordConfirmation || ''}" type="password"></input>
             <div class="invalid-feedback">${errors?.passwordConfirmation || ''}</div>
           </div>

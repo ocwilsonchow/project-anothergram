@@ -1,7 +1,8 @@
 <%- contentFor('styles') %> <%- contentFor('scripts') %>
 <script>
-  const socket = io(window.location.origin)
+  const user = "<%= user.id  %>"
 
+  const socket = io(window.location.origin)
   socket.on("connection")
 
   socket.on('systemMessage', (data) => {
@@ -13,14 +14,21 @@
   })
 
   // ON RECEIVING MESSAGE
-  socket.on('chatMessage', (data, timestamp) => {
+  socket.on('chatMessage', (data, timestamp, userData) => {
     const $messagesContainer = $('#messages-container')
     const $messageInput = $('#messageInput')
     const $message = `
-    <div class="bg-primary py-2 px-4 my-2 rounded-pill">
-      <div class="text-light">${data}</div>
-      <div class="text-light" style="font-size: 0.6rem;">${moment(timestamp).calendar()} by anonymous</div>
-    </div>`
+    <div class="d-flex justify-content-start">
+      <div class="d-flex bg-primary py-2 px-2 my-2 rounded-pill">
+         ${userId && ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar" alt="user-avatar" width="40" height="40" style="border-radius: 50%; object-fit: cover;"/></a>`}
+         <div class="px-2">
+          <div class="text-light">${data}</div>
+          <div class="text-light" style="font-size: 0.6rem;">${moment(timestamp).calendar()} by ${userData?.username || "anonymous"}</div>
+         </div>
+      </div>
+
+    </div>
+    `
 
     $messagesContainer.append($message)
     $messagesContainer.scrollTop($messagesContainer.prop('scrollHeight'))
@@ -30,23 +38,46 @@
   const sendMessage = () => {
     const $messageInput = $('#messageInput').val()
     const timestamp = new Date().getTime()
+    const user = userData
 
-    socket.emit('chatMessage', $messageInput, timestamp)
+    socket.emit('chatMessage', $messageInput, timestamp, userData)
     $('#messageInput').val('')
   }
 
-  $(document).ready(() => {
+  const generateChatLayout = () => {
 
+    return `
+      <h1>Public Live Chat</h1>
+      <div id="messages-container" class="p-2 my-2 bg-light" style="border-radius: 1rem; max-height:70vh; overflow: auto;"></div>
+      <div class="input-group mt-3">
+        <input type="text" id="messageInput" class="form-control" >
+        <button class="btn btn-primary ${(!user) && "disabled"}" onclick="sendMessage()">${(!user) && "Login required" || "<i class='bx bx-send'></i>"}</button>
+      </div>
+    `
+  }
+
+  const generateChatPage = () => {
+    const $page = $('#pages-chat-public')
+    const $chat = generateChatLayout()
+
+    $page.html('').append($chat)
+
+  }
+
+  $(document).ready(() => {
+     generateChatPage()
+
+   axios({
+     method: "GET",
+     url: `/api/profile/${userId}`,
+   }).then((resp) => {
+     userData = resp.data;
+   });
 
   });
 </script>
 
 <%- contentFor('body') %>
 <div id="pages-chat-public" class="bg-white my-2 p-4" style="border-radius: 1rem;">
-  <h1>Public Live Chat</h1>
-  <div id="messages-container" class="p-2 my-2 bg-light" style="border-radius: 1rem; max-height: 70vh; overflow: auto;"></div>
-  <div class="input-group mt-3">
-    <input type="text" id="messageInput" class="form-control">
-    <button class="btn btn-primary" onclick="sendMessage()"><i class='bx bx-send'></i></button>
-  </div>
+
 </div>

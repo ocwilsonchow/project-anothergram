@@ -34,13 +34,9 @@ io.on("connection", (socket) => {
   })
 
   // USER || LISTEN FOR CHAT MESSAGE
-  socket.on("chatMessage",async (data, timestamp) => {
-    await prisma.chatMessage.create({
-      data: {
-        content: data
-      }
-    })
-    io.emit('chatMessage', data)
+  socket.on("chatMessage", (data, timestamp, userData) => {
+
+    io.emit('chatMessage', data, timestamp, userData)
   })
 })
 
