@@ -24,13 +24,13 @@
 
 :root {
   --bg-body-dark: rgb(22, 20, 30);
-  --bg-body-light: white;
+  --bg-body-light: rgb(245, 245, 245);
   --bg-card-light: white;
   --bg-card-dark: rgb(36, 32, 44);
 }
 
 body {
-  background-color: rgb(245, 245, 245);
+  background-color: var(--bg-body-dark);
   transition: all ease 0.5s;
 }
 body.dark {
@@ -84,13 +84,14 @@ body.dark {
 // MAIN PAGE
 .card {
   background-color: var(--bg-body-light);
-  transition: all ease 0.5s;
+  transition: all ease 0.3s;
 }
 .card.dark {
   background-color: var(--bg-card-dark);
 }
 main .card:hover {
   box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+  background-color: rgb(222, 222, 222);
 }
 
 .user-card {
