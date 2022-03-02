@@ -91,14 +91,14 @@
    const generateWeatherBoard = (weatherData, userData) => {
       if (!weatherData) {
         return `
-       <div class="mx-3 bg-white text-dark p-2" style="text-decoration: none;" >
+       <div class="text-dark p-2" style="text-decoration: none;" >
            ${userId && ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar my-2" alt="user-avatar" width="80" height="80" style="border-radius: 50%; object-fit: cover;"/></a>`}
             <p>Welcome back! ${userId && userData?.username.toUpperCase()}</p>
             <div> <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></div>
           </div>`
       }
       return `
-          <div class=" bg-white text-dark p-2" style="text-decoration: none;" >
+          <div class=" text-dark p-2" style="text-decoration: none;" >
             ${userId && ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar my-2" alt="user-avatar" width="80" height="80" style="border-radius: 50%; object-fit: cover;"/></a>`}
             <p>Welcome back! ${userId && userData?.username.toUpperCase()}</p>
             <div class="pt-2">
@@ -209,4 +209,4 @@
 </script>
 
 
-  <div id="sidebar-menu-container" class="d-flex flex-column justify-content-center align-items-center" style="border-radius: 15px;"></div>
+  <div id="sidebar-menu-container" class="card d-flex flex-column justify-content-center align-items-center" style="border-radius: 15px;"></div>
