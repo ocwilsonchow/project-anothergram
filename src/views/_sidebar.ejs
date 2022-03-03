@@ -92,7 +92,7 @@
   const generateWeatherBoard = (weatherData, userData) => {
     if (!weatherData) {
       return `
-       <div class="text-light p-2" style="text-decoration: none;" >
+       <div class="text-light p-2" style="text-decoration: none; width: 172px" >
            ${
              userId &&
              ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar my-2" alt="user-avatar" width="160px" height="160px" style="border-radius: 50%; object-fit: cover;"/></a>`
@@ -100,7 +100,10 @@
             <h5 class="">Welcome back! ${
               userId && userData?.username.toUpperCase()
             }</h5>
-            <div> <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></div>
+            <div>
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              <div class="text-muted" style="font-size: 0.9rem">Location service required</div>
+            </div>
           </div>`;
     }
     return `
