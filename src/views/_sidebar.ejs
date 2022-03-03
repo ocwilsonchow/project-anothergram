@@ -1,105 +1,114 @@
 <script>
-  const userId = "<%= user.id  %>"
-  const apiKey = '<%= process.env.OPEN_WEATHER_API_KEY %>';
-  let lat, long, weatherData, userData
+  const userId = "<%= user.id  %>";
+  const apiKey = "<%= process.env.OPEN_WEATHER_API_KEY %>";
+  let lat, long, weatherData, userData;
 
   axios({
-          method: "GET",
-          url: `/api/profile/${userId}`,
-        }).then((resp) => {
-          userData = resp.data;
-          generateComponent(menuItems, weatherData, userData)
-        });
+    method: "GET",
+    url: `/api/profile/${userId}`,
+  }).then((resp) => {
+    userData = resp.data;
+    generateComponent(menuItems, weatherData, userData);
+  });
 
-
-   const menuItems = [
+  const menuItems = [
     {
       title: "Home",
       icon: "bx-home bx-sm",
       link: "/",
       color: "text-light",
-      id: ""
+      id: "",
     },
-     {
-      title: "Community",
-      icon: "bx-compass bx-sm",
-      link: "/community",
-      color: "text-light"
-    },
-     {
-      title: "My Posts",
-      icon: "bx-detail bx-sm",
-      link: "/my/posts",
-      color: "text-light",
-      id: ""
-    },
-     {
+    {
       title: "Create",
       icon: "bx-edit-alt bx-sm",
       link: "/my/posts/create",
       color: "text-light",
-      id: ""
+      id: "",
     },
-     {
-      title: "Profile",
-      icon: "bx-user bx-sm",
-      link: "/my/profile/edit",
+    {
+      title: "My Posts",
+      icon: "bx-detail bx-sm",
+      link: "/my/posts",
       color: "text-light",
-      id: ""
+      id: "",
     },
-     {
+    {
       title: "Chat",
       icon: "bx-message-rounded bx-sm",
       link: "/chat/public",
       color: "text-light",
-      id: ""
+      id: "",
     },
-     {
+    {
+      title: "Community",
+      icon: "bx-compass bx-sm",
+      link: "/community",
+      color: "text-light",
+    },
+
+    {
+      title: "Profile",
+      icon: "bx-user bx-sm",
+      link: "/my/profile/edit",
+      color: "text-light",
+      id: "",
+    },
+
+    {
       title: "Log out",
       icon: "bx-log-out bx-sm",
       link: "/",
       color: "text-danger",
-      id: "auth-logout"
+      id: "auth-logout",
     },
-  ]
+  ];
 
-   const getLocation = () => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position)=> {
-          lat = position.coords.latitude
-          long = position.coords.longitude
-            axios({
-              method: 'GET',
-              url: `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`,
-            }).then((resp)=> {
-              weatherData = resp.data
-              generateComponent(menuItems, weatherData, userData)
-            })
-        });
-      } else {
-        console.log("Geolocation is not supported by this browser.");
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        lat = position.coords.latitude;
+        long = position.coords.longitude;
         axios({
-              method: 'GET',
-              url: `https://api.openweathermap.org/data/2.5/weather?lat=22.3355433&lon=114.1622848&appid=${apiKey}&units=metric`,
-            }).then((resp)=> {
-              weatherData = resp.data
-            })
-      }
+          method: "GET",
+          url: `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`,
+        }).then((resp) => {
+          weatherData = resp.data;
+          generateComponent(menuItems, weatherData, userData);
+        });
+      });
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+      axios({
+        method: "GET",
+        url: `https://api.openweathermap.org/data/2.5/weather?lat=22.3355433&lon=114.1622848&appid=${apiKey}&units=metric`,
+      }).then((resp) => {
+        weatherData = resp.data;
+      });
     }
-   getLocation()
+  };
+  getLocation();
 
-   const generateWeatherBoard = (weatherData, userData) => {
-      if (!weatherData) {
-        return `
-       <div class="text-light p-2" style="text-decoration: none;" >
-           ${userId && ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar my-2" alt="user-avatar" width="160px" height="160px" style="border-radius: 50%; object-fit: cover;"/></a>`}
-            <h5 class="">Welcome back! ${userId && userData?.username.toUpperCase()}</h5>
-            <div> <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></div>
-          </div>`
-      }
+  const generateWeatherBoard = (weatherData, userData) => {
+    if (!weatherData) {
       return `
+       <div class="text-light p-2" style="text-decoration: none;" >
+           ${
+             userId &&
+             ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar my-2" alt="user-avatar" width="160px" height="160px" style="border-radius: 50%; object-fit: cover;"/></a>`
+           }
+            <h5 class="">Welcome back! ${
+              userId && userData?.username.toUpperCase()
+            }</h5>
+            <div> <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span></div>
+          </div>`;
+    }
+    return `
           <div class=" text-light p-2" style="text-decoration: none;" >
-            ${userId && ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar my-2 text-center" alt="user-avatar" width="160px" height="160px" style="border-radius: 50%; object-fit: cover;"/></a>`}
+            ${
+              userId &&
+              ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar my-2 text-center" alt="user-avatar" width="160px" height="160px" style="border-radius: 50%; object-fit: cover;"/></a>`
+            }
             <h5 class="">Welcome back! ${userId && userData?.username.toUpperCase()}</h5>
             <div class="pt-2">
               <a data-bs-toggle="collapse" style="text-decoration: none" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -110,21 +119,25 @@
             <div class="collapse" id="collapseExample">
               <div class="">
                 <div>Overall: ${weatherData?.weather[0].main}</div>
-                <div>Humidity: <span class="fw-bold text-light">${weatherData?.main.humidity}%</span></div>
-                <div>Wind Speed: <span class="fw-bold text-light">${((weatherData?.wind.speed)*3.6).toFixed(1)}km/hr</span></div>
+                <div>Humidity: <span class="fw-bold text-light">${
+                  weatherData?.main.humidity
+                }%</span></div>
+                <div>Wind Speed: <span class="fw-bold text-light">${(
+                  weatherData?.wind.speed * 3.6
+                ).toFixed(1)}km/hr</span></div>
               </div>
             </div>
           </div>
-      `
-    }
+      `;
+  };
 
-  const generateMenuItem = (menuItem)=> {
-     return `
+  const generateMenuItem = (menuItem) => {
+    return `
      <a id="${menuItem.id}" class="menu-item py-2 my-3 d-flex ${menuItem.color} align-items-center rounded-3" style="text-decoration: none;" href=${menuItem.link}>
        <i class='mx-2 bx ${menuItem.icon}'></i>
        <div class="mx-3 fs-6 d-none d-sm-none d-lg-none d-xl-block ">${menuItem.title}</div>
-     </a>`
-  }
+     </a>`;
+  };
 
   const generateSidebar = (menuItems, weatherData, userData) => {
     if (!userId) {
@@ -161,15 +174,18 @@
           <div class="mx-2 fs-6 d-none d-sm-none d-lg-none d-xl-block ">Chat</div>
         </a>
       </div>
-      `
+      `;
     }
 
-   return `
+    return `
    <div class="p-3 d-md-block d-lg-block d-xl-none" >
       <i class='m-2 bx bx-sun bx-sm text-light'></i>
     </div>
     <div class="px-3 d-md-block d-lg-block d-xl-none" >
-     ${userId && ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar" alt="user-avatar" width="40" height="40" style="border-radius: 50%; object-fit: cover;"/></a>`}
+     ${
+       userId &&
+       ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar" alt="user-avatar" width="40" height="40" style="border-radius: 50%; object-fit: cover;"/></a>`
+     }
     </div>
     <div class="px-3  d-none d-sm-none d-lg-none d-xl-block">
       ${generateWeatherBoard(weatherData, userData)}
@@ -177,24 +193,21 @@
    <div class="p-3">
     ${menuItems.map((menuItem) => generateMenuItem(menuItem)).join("")}
     </div>
-   `
-  }
+   `;
+  };
 
-  const generateComponent = (menuItems, weatherData, userData) =>{
-    const $page = $('#sidebar-menu-container')
-    const $menu = generateSidebar(menuItems, weatherData, userData)
+  const generateComponent = (menuItems, weatherData, userData) => {
+    const $page = $("#sidebar-menu-container");
+    const $menu = generateSidebar(menuItems, weatherData, userData);
 
-    $page.html("").append($menu)
-  }
+    $page.html("").append($menu);
+  };
 
+  $(document).ready(() => {
+    generateComponent(menuItems, weatherData, userData);
 
-    $(document).ready(() =>{
-
-      generateComponent(menuItems, weatherData, userData)
-
-
-      $("#sidebar-menu-container").on("click", "#auth-logout", (e) => {
-        console.log("log out")
+    $("#sidebar-menu-container").on("click", "#auth-logout", (e) => {
+      console.log("log out");
       e.preventDefault();
 
       axios({
@@ -204,10 +217,11 @@
         window.location.href = "/";
       });
     });
-
-    })
-
+  });
 </script>
 
-
-  <div id="sidebar-menu-container" class="card d-flex flex-column justify-content-start align-items-center" style="border-radius: 15px; overflow: auto;"></div>
+<div
+  id="sidebar-menu-container"
+  class="card d-flex flex-column justify-content-start align-items-center"
+  style="border-radius: 15px; overflow: auto"
+></div>
