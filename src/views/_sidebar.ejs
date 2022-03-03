@@ -145,8 +145,8 @@
   const generateSidebar = (menuItems, weatherData, userData) => {
     if (!userId) {
       return `
-      <div class="p-3 d-md-block d-lg-block d-xl-none" >
-        <i class='m-2 bx bx-sun bx-sm text-light'></i>
+      <div class="p-3 mt-3 d-md-block d-lg-block d-xl-none" >
+        <a class='bx bx-home bx-sm text-light' href="/" style="text-decoration: none"></a>
       </div>
       <div class="p-3 d-md-block d-lg-block d-xl-none" >
         <a class='bx bx-compass bx-sm text-light' href="/community" style="text-decoration: none"></a>
@@ -181,8 +181,8 @@
     }
 
     return `
-   <div class="p-3 d-md-block d-lg-block d-xl-none" >
-      <i class='m-2 bx bx-sun bx-sm text-light'></i>
+   <div class="p-3 mt-3 d-md-block d-lg-block d-xl-none" >
+        <a class='bx bx-home bx-sm text-light' href="/" style="text-decoration: none"></a>
     </div>
     <div class="px-3 d-md-block d-lg-block d-xl-none" >
      ${

@@ -28,20 +28,22 @@
   };
 
   const generatePosts = ({ isLoading, posts = [] } = {}) => {
-    if (isLoading) return `<div class="d-flex my-4 justify-content-center">
-  <div class="spinner-border" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-</div>`;
+    if (isLoading) return `
+    <div class="d-flex my-4 justify-content-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>`;
     if (posts.length === 0) {
       return `
-          <h2 class="text-center mb-3">No Post Found!</h2>
+          <h2 class="text-center my-5">Sorry, your search does not match any content!</h2>
+          <div id="refresh-page" class="text-center"><a href="/" class="btn btn-info rounded-pill"><i class='bx bx-revision'></i></a></div>
         `;
     }
     return `
         <div class="row pb-3">
           <div class="">
-            <div class="row row-cols-1 g-2">
+            <div class="row row-cols-1 g-3">
               ${posts.map((post) => generatePost(post)).join("")}
 
             </div>
@@ -50,22 +52,52 @@
       `;
   };
 
+  const generateSearchBar = () => {
+    return `
+      <form id="filter" class="input-group mb-3">
+        <span class="input-group-text bg-white"><i class='bx bx-search-alt text-dark' ></i></span>
+        <input type="text" class="form-control bg-light text-dark rounded-end" name="q" placeholder="Search content" >
+         <button class="btn btn-dark" type="submit" hidden ></button>
+      </form>
+    `
+  }
+
   const generatePage = (info) => {
     const $page = $("#pages-posts-index");
     const $title = generateTitle();
     const $posts = generatePosts(info);
+    const $searchBar = generateSearchBar()
 
-    $page.html("").append($title).append($posts);
+    $page.html("").append($title).append($searchBar).append($posts);
   };
 
   $(document).ready(() => {
     generatePage({ isLoading: true });
+    //Initial page
     axios({
       method: "GET",
       url: "/api/posts",
     }).then((resp) => {
+
       generatePage({ posts: resp.data.posts});
     });
+
+    // On keypress filter search
+     $('#pages-posts-index').on('submit', '#filter' ,(e) => {
+      e.preventDefault()
+
+      console.log(e.target)
+      const queries = parseFormData(new FormData(e.target))
+
+      axios({
+        method: 'GET',
+        url: "api/posts",
+        params: queries
+      }).then((resp) => {
+        generatePage({ posts: resp.data.posts})
+      })
+
+    })
 
 
 
