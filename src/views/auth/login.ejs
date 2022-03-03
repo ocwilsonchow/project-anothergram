@@ -4,7 +4,7 @@
 const generateForm = ({ user, errors } = {}) => {
   return `
     <div class="row bg-white my-2 p-5 mx-auto" style="border-radius: 1rem;">
-    <div class="text-center py-3"> <h1>Login</h1></div>
+    <div class="text-center py-3"> <h1>Login 🔒</h1></div>
       <div id="form-wrapper">
         <form id="login-form" class="">
           <div class="mb-3">
@@ -19,7 +19,7 @@ const generateForm = ({ user, errors } = {}) => {
             <div class="invalid-feedback">${errors?.password || ''}</div>
           </div>
 
-          <button class="btn btn-primary my-3" type="submit">Submit</button>
+          <button class="btn btn-dark rounded-pill my-3" type="submit">Login</button>
         </form>
         <div class="my-3">Have not got an account? <a href="/auth/signup">Sign up</a></div>
       </div>

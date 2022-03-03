@@ -18,12 +18,12 @@
     const $messagesContainer = $('#messages-container')
     const $messageInput = $('#messageInput')
     const $message = `
-    <div class="d-flex ${userData.id == user && "justify-content-start" || "justify-content-end"}">
+    <div class="d-flex ${userData.id == user && "justify-content-start" ||  "justify-content-end"}">
       <div class="d-flex ${userData.id == user && "bg-success" || "bg-primary"} py-2 px-2 my-2 rounded-pill">
-         ${userId && `<a href="/profile/${userData?.id}"> <img src="${userData?.avatar || ""}" class="user-avatar" alt="user-avatar" width="40" height="40" style="border-radius: 50%; object-fit: cover;"/></a>`}
+      <a href="/profile/${userData?.id || ""}"> <img src="${userData?.avatar || "https://lab-restful-api.s3.ap-northeast-2.amazonaws.com/profile.jpeg"}" class="user-avatar" alt="user-avatar" width="40" height="40" style="border-radius: 50%; object-fit: cover;"/></a>
          <div class="px-2">
           <div class="text-light">${data}</div>
-          <div class="text-light" style="font-size: 0.6rem;">${moment(timestamp).calendar()} by ${userData?.username || "anonymous"}</div>
+          <div class="text-light" style="font-size: 0.6rem;">${moment(timestamp).calendar()} by ${userData?.username || "anonymous user"}</div>
          </div>
       </div>
 
@@ -58,7 +58,7 @@
       </div>
       <div class="input-group mt-3">
         <input type="text" id="messageInput" name="messageInput"  class="form-control">
-        <button id="submitMessageBtn" class="btn btn-dark" type="submit" onclick="sendMessage()"><i class='bx bx-send'></i></button>
+        <button id="submitMessageBtn" class="btn btn-dark ${!user && 'disabled'}"  type="submit" onclick="sendMessage()">${ !user && "Login required" || `<i class='bx bx-send'></i>`}</button>
       </div>
     `
   }
@@ -76,11 +76,11 @@
 
     $('#pages-chat-public').keypress((e) => {
 
+      if (!user) return
       if(e.which == 13) {
         console.log('submitted')
         sendMessage()
       }
-
     })
 
    axios({
