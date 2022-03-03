@@ -3,8 +3,9 @@
 
    const generateUser = (user) => {
       return `
-        <a class="" href="/profile/${user.id}" data-bs-toggle="tooltip" data-bs-placement="right" title=${user.username}>
-          <img src="${user.avatar}" class="user-avatar" alt="user-avatar" width="90" height="90" style="border-radius: 50%; object-fit: cover;"/>
+        <a class="position-relative py-1" href="/profile/${user.id}" data-bs-toggle="tooltip" data-bs-placement="right" title=${user.username}>
+          <img src="${user.avatar}" class="user-avatar" alt="user-avatar" width="80" height="80" style="border-radius: 50%; object-fit: cover;"/>
+
         </a>
       `
     }
