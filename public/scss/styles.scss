@@ -94,13 +94,13 @@ body.dark {
 // MAIN PAGE
 .card {
   background-color: var(--bg-card-light);
-  transition: all ease 0.3s;
+  transition: all ease 0.2s;
 }
 .card.dark {
   background-color: var(--bg-card-dark);
 }
 main .card:hover {
-  box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+ box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
 }
 
 .user-card {
