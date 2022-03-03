@@ -36,7 +36,8 @@
     </div>`;
     if (posts.length === 0) {
       return `
-          <h2 class="text-center mb-3">No Post Found!</h2>
+          <h2 class="text-center my-5">Sorry, your search does not match any content!</h2>
+          <div id="refresh-page" class="text-center"><a href="/" class="btn btn-info rounded-pill"><i class='bx bx-revision'></i></a></div>
         `;
     }
     return `
@@ -54,8 +55,9 @@
   const generateSearchBar = () => {
     return `
       <form id="filter" class="input-group mb-3">
-        <input type="text" class="form-control" name="q" >
-         <button class="btn btn-dark" type="submit" ><i class='bx bx-search-alt text-light' ></i></button>
+        <span class="input-group-text bg-light"><i class='bx bx-search-alt text-dark' ></i></span>
+        <input type="text" class="form-control bg-light text-dark" name="q" >
+         <button class="btn btn-dark" type="submit" hidden ><i class='bx bx-search-alt text-light' ></i></button>
       </form>
     `
   }
