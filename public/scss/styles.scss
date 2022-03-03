@@ -7,18 +7,20 @@
 }
 
 ::-webkit-scrollbar {
-  width: 0px;
+  width: 5px;
+
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
   border-radius: 10px;
+
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   border-radius: 20px;
-  background: rgba(185, 185, 185, 0.4);
+  background: rgba(40, 40, 68, 0.718);
 }
 
 :root {
@@ -52,7 +54,7 @@ body.dark {
 
 // TOOLBAR
 #toolbar-users-container {
-  background-color: var(--bg-card-light);
+  background-color: var(--bg-body-dark);
 }
 
 #toolbar-users-container.dark {
@@ -68,6 +70,8 @@ body.dark {
     color: Black;
   }
 }
+
+
 #navbar-container.dark {
   background-color: var(--bg-body-dark);
   border-bottom: 1px solid rgb(45, 45, 45);

@@ -3,7 +3,6 @@ import handleErrors from '../../../_helpers/handle-errors.js'
 import checkOwnership from './_check-ownership.js'
 
 const controllersApiWishlistsDestroy = async (req, res) => {
-
   try {
     const postId = parseInt(req.query.id)
     const deletedPost = await prisma.post.delete({ where:
