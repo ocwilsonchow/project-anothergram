@@ -7,6 +7,7 @@
 
 
   const generatePost = (post) => {
+
     let status = ""
     if (post.public) {
       status = "public"
@@ -24,6 +25,7 @@
               <img src="${post.user.avatar}" alt="user-avatar" width="40" height="40" style="border-radius: 50%; object-fit: cover;"/>
               <span class="badge bg-light text-muted">Posted by ${post.user.username}</span>
               <p class="card-text my-3" style="text-align: left;">${post.content}</p>
+             ${post?.imageURL && ` <img src="${post?.imageURL}" width="100%""; object-fit: cover;"/>` || ""}
             </div>
           <div>
             <span class="badge ${bg}"> ${status}</span>
