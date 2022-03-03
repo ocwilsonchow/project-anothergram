@@ -1,16 +1,17 @@
 <%- contentFor('styles') %> <%- contentFor('scripts') %>
 <script>
-  let user = "<%= user.id  %>"
   const id = window.location.href.split('/').reverse()[0]
+  let user = "<%= user.id  %>"
+
 
   const generateTitle = ({ isLoading, post } = {}) => {
     if (isLoading)
       return `
     <div class="d-flex my-4 justify-content-center">
-  <div class="spinner-border" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-</div>`;
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>`;
     if (!post) return `<h1 class="text-center mb-3">Post ${id} Not Found!</h1>`;
 
 
@@ -79,9 +80,9 @@
           </div>
 
 
-            <form id="comment-new-form" class="py-3">
+          <form id="comment-new-form" class="py-3">
             <div class="input-group mb-3">
-              <div></div>
+
               <input type="text" class="form-control" placeholder="Your comment" name="content">
                <input type="number" hidden class="form-control" id="postId" name="postId" value=${post.id}>
               <button class="btn btn-outline-secondary" type="submit" id="comment-submit">Comment</button>
@@ -126,6 +127,16 @@
   $(document).ready(() => {
     generatePage({ isLoading: true });
 
+    axios({
+      method: "GET",
+      url: `/api/my/posts/${id}`,
+    }).then((resp) => {
+      generatePage({ isLoading: false, post: resp.data });
+    }).catch(() => {
+      generatePage();
+    });
+
+
     // Delete Post
     $('#pages-my-posts-show').on('click', '#delete-my-post-confirm', (e) => {
       $(e.target).attr("disabled", true);
@@ -133,13 +144,13 @@
       axios({
         method: "DELETE",
         url: `/api/my/posts/${id}`,
+        params: {id}
       }).then((resp) => {
         window.location.href = `/my/posts`;
       }).catch((err)=>{
         console.log(err)
       })
-
-    } )
+    })
 
 
       // Delete Comment
@@ -176,16 +187,6 @@
           })
         })
 
-    axios({
-      method: "GET",
-      url: `/api/my/posts/${id}`,
-    })
-      .then((resp) => {
-        generatePage({ isLoading: false, post: resp.data });
-      })
-      .catch(() => {
-        generatePage();
-      });
 
   });
 </script>
