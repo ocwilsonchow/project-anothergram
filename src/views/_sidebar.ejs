@@ -181,10 +181,7 @@
     }
 
     return `
-   <div class="p-3 mt-3 d-md-block d-lg-block d-xl-none" >
-        <a class='bx bx-home bx-sm text-light' href="/" style="text-decoration: none"></a>
-    </div>
-    <div class="px-3 d-md-block d-lg-block d-xl-none" >
+    <div class="px-3 mt-4 d-md-block d-lg-block d-xl-none" >
      ${
        userId &&
        ` <a href="/profile/${userData?.id}"> <img src="${userData?.avatar}" class="user-avatar" alt="user-avatar" width="40" height="40" style="border-radius: 50%; object-fit: cover;"/></a>`
