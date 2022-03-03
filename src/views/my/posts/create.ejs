@@ -1,40 +1,48 @@
 <%- contentFor('styles') %> <%- contentFor('scripts') %>
 <script>
-  const generateForm = () => {
-    return `
+  const generateForm = ({post, errors} = {}) => {
+    const $form = $( `
       <div class="card  my-2 row mx-auto p-3 bg-white" style="border-radius: 1rem">
         <form id="post-new-form">
           <h1 class="text-center py-3">Create My New Post</h1>
           <div class="my-3">
             <label for="title" class="form-label">Title</label>
-            <input type="text" name="title" class="form-control" id="titleInput" required>
+            <input type="text" name="title" class="form-control ${errors?.title && 'is-invalid'}" id="titleInput" value="${post?.title || ''}" >
           </div>
           <div class="my-3">
             <label for="contentInput" class="form-label">Content</label>
-            <textarea class="form-control" name="content" id="contentInput" rows="10" required></textarea>
+            <textarea class="form-control ${errors?.content && 'is-invalid'}" name="content" id="contentInput" value="${post?.content || ''}" rows="10" ></textarea>
           </div>
 
           <!-- Add image -->
           <div class="my-3">
             <label for="imageURL" class="form-label">Image</label>
-            <input id="imageURL" class="form-control" name="imageURL" type="file"></input>
+            <input id="imageURL" class="form-control ${errors?.imageURL && 'is-invalid'}" value="${post?.imageURL || ''}" name="imageURL" type="file"></input>
           </div>
 
            <!-- Add Public -->
           <div class="form-check form-switch my-5">
             <input class="form-check-input " type="checkbox" id="public" name="public">
-            <label class="form-check-label" for="public">Make this post public</label>
+            <label class="form-check-label" for="public" value="${post?.public || ''}">Make this post public</label>
           </div>
           <button class="btn btn-primary mx-auto my-4" id="add-new-post">Post</button>
         </form>
       </div>
-    `;
+    `);
+
+
+  if (post?.imageURL?.constructor?.name === 'File') {
+    const $image = $('#imageURL').attr('class', `form-control ${errors?.post && 'is-invalid'}`)
+    $form.find('#imageURL').replaceWith($image)
+  }
+
+  return $form
   };
 
-  const generatePage = () => {
+  const generatePage = (info) => {
     const $page = $("#pages-my-posts-new");
 
-    const $form = generateForm();
+    const $form = generateForm(info);
 
     $page.html("").append($form);
   };
@@ -58,7 +66,10 @@
         window.location.href = `/my/posts`;
       })
       .catch((err) => {
-        generatePage();
+        generatePage({
+          post: parseFormData(data),
+          errors: err.response.data
+        });
       });
     });
 
