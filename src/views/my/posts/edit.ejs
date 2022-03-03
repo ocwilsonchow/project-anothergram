@@ -5,6 +5,8 @@ const id = window.location.href.split('/').reverse()[1]
 let publicChecked
 
   const generateForm = ({ isLoading, post, errors } = {}) => {
+    console.log("*" + post?.public)
+
     if (post?.public) {
       publicChecked = "checked"
     } else {
@@ -24,12 +26,11 @@ let publicChecked
             <textarea class="form-control" name="content" id="contentInput" rows="3" >${post?.content}</textarea>
           </div>
           ${post?.imageURL && ` <img src="${post?.imageURL}" width="100%""; object-fit: cover;"/>` || ""}
-          <div class="form-check form-switch my-3">
-
-            <input class="form-check-input" type="checkbox" id="public" name="public" ${publicChecked}>
+          <div class="form-check form-switch my-5">
+            <input class="form-check-input" type="checkbox" id="publicInput" name="public" ${publicChecked && "checked"}>
             <label class="form-check-label" for="public">Make this post public</label>
           </div>
-          <button class="btn btn-primary mx-auto my-2" id="update-post">Update</button>
+           <button class="btn btn-primary mx-auto my-2" id="update-post" type="submit">Update</button>
         </form>
       </div>
     `;
@@ -37,7 +38,6 @@ let publicChecked
 
   const generatePage = (info) => {
     const $page = $("#pages-my-posts-edit");
-
     const $form = generateForm(info);
 
     $page.html("").append($form);
@@ -57,7 +57,7 @@ let publicChecked
       generatePage()
     })
 
-   $('#public').on('click', (e) => {
+   $('#pages-my-posts-edit').on('click', '#publicInput', (e) => {
      console.log($('#public:checked').val())
 
    })
@@ -73,11 +73,9 @@ let publicChecked
       method: "PUT",
       url: `/api/my/posts/${id}`,
       data,
-    })
-      .then((resp) => {
+    }).then((resp) => {
         window.location.href = `/my/posts`;
-      })
-      .catch((err) => {
+      }).catch((err) => {
         generatePage();
       });
     });

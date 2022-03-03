@@ -6,12 +6,12 @@ import checkOwnership from './_check-ownership.js'
 
 const updateSchema = yup.object({
    title: yup.string().required(),
-  content: yup.string().required(),
-  image: yup.string(),
-  public: yup.boolean().transform((value) => !!value)
+   content: yup.string().required(),
+   public: yup.boolean().transform((value) => !!value)
 })
 
 const controllersApiPostsUpdate = async (req, res) => {
+  console.log(req.body)
   try {
     const { params: { id }, body } = req
     const verifiedData = await updateSchema.validate(body, { abortEarly: false, stripUnknown: true })
