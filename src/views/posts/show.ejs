@@ -18,7 +18,7 @@
               <img src="${post.user.avatar}" alt="user-avatar" width="40" height="40" style="border-radius: 50%; object-fit: cover;"/>
               <span class="badge bg-light text-muted">Posted by ${post.user.username}</span>
               <span class="badge bg-light text-muted">#${post.id}</span>
-              <p class="card-text my-3" style="text-align: left;">${post.content}</p>
+              <p class="card-text my-3 fs-6" style="text-align: left;">${post.content}</p>
               ${post?.imageURL && ` <img src="${post?.imageURL}" width="100%""; object-fit: cover;"/>` || ""}
             </div>
           <div>
@@ -29,33 +29,35 @@
           <form id="comment-new-form" class="py-3">
             <div class="input-group mb-3">
               <input type="text" class="form-control" required placeholder="Your comment" name="content">
-               <input type="number" hidden class="form-control" id="postId" name="postId" value=${post.id}>
+              <input type="number" hidden class="form-control" id="postId" name="postId" value=${post.id}>
               <button class="btn btn-outline-dark ${(!user) && "disabled"}"   type="submit" id="comment-submit">${(!user) && "Login required" || "Comment"}</button>
             </div>
           </form>
 
 
-          ${post.comment.map((comment) => {
+            ${post.comment.map((comment) => {
             return `
               <div class="d-flex p-2 my-1 rounded-pill bg-light align-items-center justify-content-between">
-                <span class="d-flex m-2 justify-content-center">
+                <span class="d-flex m-2 justify-content-center align-items-center">
                   <img src="${comment.user.avatar}" alt="user-avatar" width="40" height="40" style="border-radius: 50%; object-fit: cover;"/>
-                  <span class="ms-3">
-                    <div>${comment.user.username} <span class="badge bg-light text-muted">${moment(comment.createdAt).calendar()}</span></div>
-                    <div class="text-muted">${comment.content}</div>
-
-                  </span>
+                  <div class="ms-3">
+                    <span>
+                      ${comment.user.username}
+                    </span>
+                     <span class="bg-white badge text-muted " style="font-size: 0.6rem">
+                        ${moment(comment.createdAt).calendar()
+                      }</span>
+                    <div class="text-dark">${comment.content}</div>
+                  </div>
                 </span>
-                <span class="p-2">
+                <span class="p-1">
                   <form id="delete-comment">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="rounded-pill btn btn-dark btn-sm" id="delete-my-comment-confirm"  value=${comment.id} ${comment.userId != user && "disabled hidden"} data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
+                    <button type="button" class="rounded-pill btn btn-dark btn-sm" id="delete-my-comment-confirm"  value=${comment.id} ${comment.userId != user && "disabled hidden"} data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="font-size: 0.7rem"><i class='bx bxs-trash-alt'></i></button>
                   </form>
                 </span>
               </div>
             `
           }).join("")}
-
         </a>
       </div>
 `;
