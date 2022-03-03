@@ -15,6 +15,7 @@
               <span class="badge bg-light text-muted">Posted by ${post.user.username}</span>
 
               <p class="card-text my-3" style="text-align: left;">${post.content}</p>
+              ${post?.imageURL && ` <img src="${post?.imageURL}" width="100%""; object-fit: cover;"/>` || ""}
             </div>
           <div>
             <span class="badge bg-dark">Public</span>
