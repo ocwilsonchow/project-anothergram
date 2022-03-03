@@ -43,7 +43,7 @@
               ${post?.imageURL && ` <img src="${post?.imageURL}" width="100%""; object-fit: cover;"/>` || ""}
             </div>
           <div>
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between my-3">
               <span>
                 <span class="badge ${bg}"> ${status}</span>
                 <span class="badge bg-light text-muted">${moment(
@@ -51,9 +51,9 @@
                 ).subtract(1, 'days').calendar()}</span>
               </span>
               <span>
-                <a href="/my/posts/${id}/edit" class="btn btn-light btn-sm">Edit</a>
+                <a href="/my/posts/${id}/edit" class="btn btn-light rounded-pill btn-sm">Edit</a>
 
-                    <button type="button" id="delete-my-post" class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <button type="button" id="delete-my-post" class="btn btn-dark btn-sm rounded-pill" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                       Delete
                     </button>
 
@@ -81,11 +81,11 @@
 
 
           <form id="comment-new-form" class="py-3">
-            <div class="input-group mb-3">
+            <div class="input-group">
 
               <input type="text" class="form-control" placeholder="Your comment" name="content">
                <input type="number" hidden class="form-control" id="postId" name="postId" value=${post.id}>
-              <button class="btn btn-outline-secondary" type="submit" id="comment-submit">Comment</button>
+              <button class="btn btn-outline-dark" type="submit" id="comment-submit">Comment</button>
             </div>
           </form>
 
@@ -104,8 +104,8 @@
                 </span>
                 <span class="p-2">
                   <form id="delete-comment">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="rounded-pill btn btn-secondary btn-sm" id="delete-my-comment-confirm"  value=${comment.id} ${comment.userId != user && "disabled hidden"} data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
+
+                    <button type="button" class="rounded-pill btn btn-dark btn-sm" id="delete-my-comment-confirm"  value=${comment.id} ${comment.userId != user && "disabled hidden"} data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
                   </form>
                 </span>
               </div>
