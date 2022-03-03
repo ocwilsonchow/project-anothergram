@@ -3,11 +3,37 @@ import handleErrors from "../../_helpers/handle-errors.js";
 import _ from "lodash";
 
 const controllersApiPostsIndex = async (req, res) => {
+  console.log('search')
   try {
+    // Filters
+    const q = req.query.q || ''
+
+    // Common where query
+    const where = {
+      public: true,
+      OR: [
+        {
+          title: {
+            contains: q
+          }
+        }, {
+          content: {
+            contains: q
+          }
+        },{
+          user: {
+            username: {
+              contains: q
+            }
+          }
+        },
+      ]
+    }
+
+
+
     const foundPosts = await prisma.post.findMany({
-      where: {
-        public: true,
-      },
+      where,
       orderBy: {
         createdAt: "desc",
       },
@@ -27,7 +53,8 @@ const controllersApiPostsIndex = async (req, res) => {
               }
             }
           }
-        }
+        },
+       tag: true
       }
     });
 

@@ -53,11 +53,10 @@
 
   const generateSearchBar = () => {
     return `
-      <div class="input-group mb-3">
-        <span class="input-group-text bg-dark" id=""><i class='bx bx-search-alt text-light' ></i></span>
-        <input type="text" class="form-control" placeholder="">
-
-      </div>
+      <form id="filter" class="input-group mb-3">
+        <input type="text" class="form-control" name="q" >
+         <button class="btn btn-dark" type="submit" ><i class='bx bx-search-alt text-light' ></i></button>
+      </form>
     `
   }
 
@@ -72,12 +71,31 @@
 
   $(document).ready(() => {
     generatePage({ isLoading: true });
+    //Initial page
     axios({
       method: "GET",
       url: "/api/posts",
     }).then((resp) => {
+      console.log(resp.data.posts)
       generatePage({ posts: resp.data.posts});
     });
+
+    // On keypress filter search
+     $('#pages-posts-index').on('submit', '#filter' ,(e) => {
+      e.preventDefault()
+
+      console.log(e.target)
+      const queries = parseFormData(new FormData(e.target))
+
+      axios({
+        method: 'GET',
+        url: "api/posts",
+        params: queries
+      }).then((resp) => {
+        generatePage({ posts: resp.data.posts})
+      })
+
+    })
 
 
 

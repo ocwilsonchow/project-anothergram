@@ -39,6 +39,14 @@ model Post {
   imageURL  String?
   comment   Comment[]
   public    Boolean   @default(false)
+  tag       Tag[]
+
+}
+
+model Tag {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+  post Post[]
 
 }
 

@@ -1,6 +1,7 @@
 import prisma from '../../_helpers/prisma.js'
 import handleErrors from '../../_helpers/handle-errors.js'
 
+
 const controllersApiCommentDestroy = async (req, res) => {
   try {
     const deleteId = Number(req.query.deleteId)
@@ -16,5 +17,6 @@ const controllersApiCommentDestroy = async (req, res) => {
 }
 
 export default [
+
   controllersApiCommentDestroy
 ]
