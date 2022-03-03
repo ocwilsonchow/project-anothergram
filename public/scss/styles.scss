@@ -8,19 +8,17 @@
 
 ::-webkit-scrollbar {
   width: 5px;
-
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
   border-radius: 10px;
-
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   border-radius: 20px;
-  background: rgba(40, 40, 68, 0.718);
+  background: rgba(40, 40, 68, 0.45);
 }
 
 :root {
