@@ -5,12 +5,21 @@ import checkOwnership from './_check-ownership.js'
 const controllersApiWishlistsDestroy = async (req, res) => {
   try {
     const postId = parseInt(req.query.id)
-    const deletedPost = await prisma.post.delete({ where:
-      {
-      id: postId
-    }
-  })
-    return res.status(200).json(deletedPost)
+
+    const deletedComments = await prisma.comment.deleteMany({
+      where: {
+        postId: postId
+      }
+    })
+
+    const deletedPost = await prisma.post.deleteMany({
+      where: {
+        id: postId
+      }
+    })
+
+
+    return res.status(200).json(deletedComments)
   } catch (err) {
     return handleErrors(res, err)
   }
