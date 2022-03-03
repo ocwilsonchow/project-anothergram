@@ -160,18 +160,18 @@
       <div class="p-3 d-none d-sm-none d-lg-none d-xl-block">
         ${generateWeatherBoard(weatherData, userData)}
       </div>
-      <div class="mx-2 d-none d-sm-none d-lg-none d-xl-block">
+      <div class="m-2 d-none d-sm-none d-lg-none d-xl-block">
         <div class="d-flex flex-wrap justify-content-center">
           <a class="m-1  btn btn-primary rounded-pill fs-6 my-2 " href="/auth/login">Log in</a>
           <a class="m-1 btn btn-light rounded-pill my-2" href="/auth/signup">Register</a>
         </div>
-        <a class="menu-item py-2 my-2 d-flex text-light align-items-center rounded-3" style="text-decoration: none;" href='/community'>
-          <i class='mx-1 bx bx-compass bx-sm '></i>
-          <div class="mx-2 fs-6 d-none d-sm-none d-lg-none d-xl-block ">Community</div>
-        </a>
         <a class="menu-item py-2 my-2 d-flex text-light align-items-center rounded-3" style="text-decoration: none;" href='/chat/public'>
-          <i class='mx-1 bx bx-message-rounded bx-sm '></i>
-          <div class="mx-2 fs-6 d-none d-sm-none d-lg-none d-xl-block ">Chat</div>
+          <i class='mx-2 bx bx-message-rounded bx-sm '></i>
+          <div class="mx-2 fs-6 d-none d-sm-none d-lg-none d-xl-block d-flex align-items-center"><span>Chat</span><span class="badge bg-primary ms-2">NEW</span></div>
+        </a>
+        <a class="menu-item py-2 my-2 d-flex text-light align-items-center rounded-3" style="text-decoration: none;" href='/community'>
+          <i class='mx-2 bx bx-compass bx-sm '></i>
+          <div class="mx-2 fs-6 d-none d-sm-none d-lg-none d-xl-block ">Community</div>
         </a>
       </div>
       `;
