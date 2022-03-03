@@ -30,7 +30,7 @@
             <div class="input-group mb-3">
               <input type="text" class="form-control" required placeholder="Your comment" name="content">
                <input type="number" hidden class="form-control" id="postId" name="postId" value=${post.id}>
-              <button class="btn btn-outline-secondary ${(!user) && "disabled"}"   type="submit" id="comment-submit">${(!user) && "Login required" || "Comment"}</button>
+              <button class="btn btn-outline-dark ${(!user) && "disabled"}"   type="submit" id="comment-submit">${(!user) && "Login required" || "Comment"}</button>
             </div>
           </form>
 
@@ -49,7 +49,7 @@
                 <span class="p-2">
                   <form id="delete-comment">
                     <!-- Button trigger modal -->
-                    <button type="button" class="rounded-pill btn btn-secondary btn-sm" id="delete-my-comment-confirm"  value=${comment.id} ${comment.userId != user && "disabled hidden"} data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
+                    <button type="button" class="rounded-pill btn btn-dark btn-sm" id="delete-my-comment-confirm"  value=${comment.id} ${comment.userId != user && "disabled hidden"} data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
                   </form>
                 </span>
               </div>
