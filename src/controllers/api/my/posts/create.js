@@ -27,7 +27,6 @@ const controllersApiMyPostsCreate = async (req, res) => {
         public: verifiedData.public
       }
     })
-    console.log(newPost)
     return res.status(201).json(newPost)
   } catch (err) {
     return handleErrors(res, err)

@@ -3,7 +3,6 @@ import handleErrors from "../../_helpers/handle-errors.js";
 import _ from "lodash";
 
 const controllersApiPostsIndex = async (req, res) => {
-  console.log('search')
   try {
     // Filters
     const q = req.query.q || ''

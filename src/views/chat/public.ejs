@@ -8,9 +8,15 @@
   socket.on('systemMessage', (data, count, timestamp) => {
     const $messagesContainer = $('#messages-container')
     const $message = `<div style="font-size: 0.8rem;" class="text-muted text-center p-1 my-2">${data} <span style="font-size: 0.6rem">${moment(timestamp).calendar()}</span></div>`
-    const $count = $('#socket-count')
+    let $count = $('#socket-count')
+
+    const appendCount = (count) => {
+
+      $count.html("Participants in room: " + count)
+    }
+    appendCount(count)
     $messagesContainer.append($message)
-    $count.html("Participants in room: " + count)
+
   })
 
   // ON RECEIVING MESSAGE

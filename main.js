@@ -21,8 +21,8 @@ const io = new Server(httpServer)
 
 io.on("connection", (socket) => {
    const timestamp = new Date().getTime()
-  console.log("User connected:" + socket.id)
-  const count = io.engine.clientsCount
+  console.log("User connected: " + socket.id)
+  let count = io.engine.clientsCount
 
   // SYSTEM || WELCOME CURRENT USER
   socket.emit('systemMessage', 'Welcome to the chat!', count, timestamp)
@@ -32,12 +32,12 @@ io.on("connection", (socket) => {
 
   // SYSTEM || RUNS WHEN CLIENT DISCONNECTS
   socket.on('disconnect', () => {
+    count = io.engine.clientsCount
     io.emit('systemMessage', 'A user has left the chat', count, timestamp)
   })
 
   // USER || LISTEN FOR CHAT MESSAGE
   socket.on("chatMessage", (data, timestamp, userData) => {
-
     io.emit('chatMessage', data, timestamp, userData)
   })
 })
